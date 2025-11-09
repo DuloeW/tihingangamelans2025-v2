@@ -6,7 +6,8 @@
     'gambar' => 'images/bende1.png',
 ])
 
-<div class="min-w-72 font-markazi bg-boxCatalog rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
+<div data-aos="fade-up" data-aos-duration="1500"
+    class="min-w-72 font-markazi bg-boxCatalog rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
     <div class="w-auto flex justify-center items-center bg-white py-5">
         <img src="{{ asset($gambar) }}" alt="" class="h-40 w-auto">
     </div>
@@ -19,9 +20,8 @@
             @if ($showPrice)
                 <p class="text-xl font-semibold mt-2">Price: {{ $price }}</p>
             @endif
-            <a class="px-6 py-2 bg-primary text-white rounded-lg tracking-wider" 
-            href="">
-              Selengkapnya
+            <a class="px-6 py-2 bg-primary text-white rounded-lg tracking-wider" href="">
+                Selengkapnya
             </a>
         </div>
     </div>

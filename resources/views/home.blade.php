@@ -47,7 +47,7 @@
 <x-global-layout>
 
     <x-slot:title>
-        Home - Tihingan Gamelans
+        Home
     </x-slot:title>
 
     {{-- Hero Section --}}
@@ -66,19 +66,19 @@
     {{-- What Can You Do Section --}}
     <section class="h-[480px] w-auto px-20 grid place-items-center font-markazi text-primary">
         <div class="h-fit w-auto flex flex-col gap-10">
-            <h1 class="text-8xl text-center mb-7" data-aos="fade-up" data-aos-duration="1500">What Can You Do ?</h1>
+            <h1 class="text-8xl text-center mb-7" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">What Can You Do ?</h1>
             <div class="flex justify-around gap-10">
-                <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1510">
+                <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1510" data-aos-easing="ease-in-sine">
                     <h3 class="font-bold">Shop Gamelans</h3>
                     <p>Don't Know where to buy the Gamelan ?
                         buy here !</p>
                 </div>
                 <div class="text-2xl text-center tracking-wider px-5 border-r-2 border-l-2 border-primary/50"
-                    data-aos="zoom-in" data-aos-duration="1520">
+                    data-aos="zoom-in" data-aos-duration="1590" data-aos-easing="ease-in-sine">
                     <h3 class="font-bold">Learn How To Play</h3>
                     <p>You can feel the experience to play the Gamelan from here.</p>
                 </div>
-                <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1530">
+                <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1680" data-aos-easing="ease-in-sine">
                     <h3 class="font-bold">Join The Workshop</h3>
                     <p>Witness the fascinating process of making the Gamelan.</p>
                 </div>
@@ -90,7 +90,7 @@
     <section class="h-fit min-h-[480] px-20">
         {{-- TODO contoh menggunakan animasi --}}
         <div class="w-auto font-markazi py-20 ">
-            <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="1200">Gamelans</h1>
+            <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Gamelans</h1>
             <p class="text-center text-primary text-2xl" data-aos="fade-up" data-aos-duration="1500">Lorem ipsum dolor
                 sit amet consectetur adipisicing elit. Id
                 illo provident a quam repellendus eos.</p>
@@ -106,7 +106,9 @@
     {{-- Pengguna Reviews Section --}}
     <section class="h-[480px] font-markazi">
         <div class="w-auto grid place-items-center mt-44">
-            <h1 class="text-7xl text-center w-10/12 text-primary">Beberapa Pengguna Menyukai Tihingan Gamelans</h1>
+            <h1 data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine" 
+            class="text-7xl text-center w-10/12 text-primary">Beberapa
+                Pengguna Menyukai Tihingan Gamelans</h1>
         </div>
         <div class="relative mx-auto w-full px-20 mt-10 overflow-hidden group">
             <div
@@ -145,33 +147,40 @@
     <section class="h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">
         <div class="flex flex-col justify-center items-center">
             <h1 class="text-8xl">Siap Memulai?</h1>
-            <p class="text-2xl tracking-wider">Gabung bersama kami dan jelajahi jutaan gamelan dari pengerajin terpercaya!</p>
+            <p class="text-2xl tracking-wider">Gabung bersama kami dan jelajahi jutaan gamelan dari pengerajin
+                terpercaya!</p>
         </div>
         <div class="w-auto grid place-items-center mt-8">
-            <a href="#" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung Sekarang</a>
+            <a href="#" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung
+                Sekarang</a>
         </div>
     </section>
 
     {{-- Owner Call to Action Section  --}}
-    <section class="h-[480px] font-markazi px-20 py-20 flex text-primary">
-        <div class="flex-1">
+    <section class="h-[480px] font-markazi px-20 py-20 flex text-primary overflow-x-hidden">
+        <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" class="flex-1">
             <h1 class="text-8xl">Tentang Kami</h1>
-            <p class="text-2xl">Desa Tihingan yang terletak di Kecamatan Banjarangkan, Kabupaten Klungkung, dikenal luas sebagai desa pengrajin gamelan Bali yang telah mewariskan keahlian turun-temurun sejak berabad-abad silam. Desa ini menjadi pusat pembuatan gamelan tradisional yang sangat dihormati di Bali, di mana hampir setiap keluarga memiliki keterampilan dalam menempa logam perunggu dan menciptakan instrumen gamelan dengan nada khas yang sakral.</p>
+            <p class="text-2xl">Desa Tihingan yang terletak di Kecamatan Banjarangkan, Kabupaten Klungkung, dikenal luas
+                sebagai desa pengrajin gamelan Bali yang telah mewariskan keahlian turun-temurun sejak berabad-abad
+                silam. Desa ini menjadi pusat pembuatan gamelan tradisional yang sangat dihormati di Bali, di mana
+                hampir setiap keluarga memiliki keterampilan dalam menempa logam perunggu dan menciptakan instrumen
+                gamelan dengan nada khas yang sakral.</p>
         </div>
-        <div class="flex-1 grid place-items-center">
-            <img class="w-96"
-                src="{{ asset('images/logo_vektor_02.svg') }}" alt="">
+        <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
+            class="flex-1 grid place-items-center">
+            <img class="w-96" src="{{ asset('images/logo_vektor_02.svg') }}" alt="">
         </div>
     </section>
 
     {{-- Owner Call to Action Section  --}}
-    <section class="h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">
+    <section class="min-h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">
         <div class="flex flex-col justify-center items-center">
-            <h1 class="text-8xl">Seniman Tihingan?</h1>
+            <h1 class="text-8xl text-center">Seniman Tihingan?</h1>
             <p class="text-2xl tracking-wider">Gabung bersama kami dan luaskan jangkauan pasar anda!</p>
         </div>
         <div class="w-auto grid place-items-center mt-8">
-            <a href="#" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung Sekarang</a>
+            <a href="#" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung
+                Sekarang</a>
         </div>
     </section>
 </x-global-layout>

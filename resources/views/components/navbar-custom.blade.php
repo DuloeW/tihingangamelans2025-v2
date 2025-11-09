@@ -1,3 +1,8 @@
+@php
+    $activeRoute = $title ?? '';
+    $activeClass = 'text-white bg-primary px-10 py-1 text-center rounded-lg font-medium';
+@endphp
+
 <nav class="flex items-center justify-between px-12 py-1 shadow-sm static bg-white top-0 z-50">
     <div class="flex items-center space-x-3">
         <img src="{{ asset('images/logo_vektor_02.svg') }}" alt="Logo" class="h-16 w-auto" />
@@ -8,11 +13,14 @@
     </div>
 
     <div class="flex font-markazi items-center text-xl font-medium gap-10">
-        <a href="" class="text-primary text-xl hover:text-[#7A2C1D] transition">Home</a>
-        <a href="" class="text-primary hover:text-[#7A2C1D] transition">Gamelan</a>
-        <a href="" class="text-primary hover:text-[#7A2C1D] transition">Store</a>
-        <a href="{{ route('login') }}"
-            class="bg-primary text-white px-10 py-1 text-center rounded-lg font-medium hover:bg-[#7A2C1D] transition">
+        <a class="text-primary {{ request()->is('/') ? $activeClass : '' }} text-xl hover:text-[#7A2C1D] transition"
+            href="/">Home</a>
+        <a class="text-primary {{ request()->is('gallery-gamelan') ? $activeClass : '' }} hover:text-[#7A2C1D] transition"
+            href="/gallery-gamelan">Gallery</a>
+        <a class="text-primary {{ request()->is('store') ? $activeClass : ''  }}  hover:text-[#7A2C1D] transition"
+            href="/store">Store</a>
+        <a class="text-primary {{ request()->is('login') ? $activeClass : ''  }}  hover:text-[#7A2C1D] transition"
+            href="{{ route('login') }}">
             Login
         </a>
     </div>
