@@ -1,0 +1,1 @@
+ <img {{ $attributes }} src="{{ asset('images/logo_vektor_03.svg') }}" alt="logo tihinngangamelan">
