@@ -6,9 +6,12 @@
                     ensemble. It consists of a series of small, horizontally mounted gongs that are played with padded
                     sticks. The Bonang produces a rich, resonant sound and is often used to play melodic patterns and
                     embellishments in gamelan music.',
-            'showPrice' => true,
+            'showPrice' => false,
             'price' => '$1,000.00',
             'gambar' => 'images/bende1.png',
+            'dataAos' => 'fade-up',
+            'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
             'nama' => 'Gamelan Saron',
@@ -16,9 +19,12 @@
                     ensemble. It consists of a set of bronze or iron bars that are laid out horizontally and played with
                     a mallet. The Saron produces a bright, metallic sound and is often used to play the main melody in
                     gamelan music.',
-            'showPrice' => true,
+            'showPrice' => false,
             'price' => '$800.00',
             'gambar' => 'images/bende1.png',
+            'dataAos' => 'fade-up',
+            'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
             'nama' => 'Gamelan Kendang',
@@ -29,6 +35,9 @@
             'showPrice' => false,
             'price' => '',
             'gambar' => 'images/bende1.png',
+            'dataAos' => 'fade-up',
+            'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
             'nama' => 'Gamelan Gambang',
@@ -39,6 +48,9 @@
             'showPrice' => false,
             'price' => '',
             'gambar' => 'images/bende1.png',
+            'dataAos' => 'fade-up',
+            'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
     ];
 @endphp
@@ -87,7 +99,7 @@
     </section>
 
     {{-- Gamelan Gallery Section --}}
-    <section class="h-fit min-h-[480] px-20">
+    <section class="h-fit min-h-[480px] px-20">
         {{-- TODO contoh menggunakan animasi --}}
         <div class="w-auto font-markazi py-20 ">
             <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Gamelans</h1>
@@ -97,8 +109,16 @@
         </div>
         <div class="grid grid-cols-2 grid-rows-2 gap-24">
             @foreach ($gamelans as $gamelan)
-                <x-gamelan-box :nama="$gamelan['nama']" :showPrice="$gamelan['showPrice']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']"
-                    :gambar="$gamelan['gambar']" />
+                <x-gamelan-box 
+                    :nama="$gamelan['nama']" 
+                    :showPrice="$gamelan['showPrice']" 
+                    :deskripsi="$gamelan['deskripsi']" 
+                    :price="$gamelan['price']"
+                    :gambar="$gamelan['gambar']"
+                    :dataAos="$gamelan['dataAos']"
+                    :dataAosDuration="$gamelan['dataAosDuration']"
+                    :horizontal="$gamelan['horizontal']"
+                />
             @endforeach
         </div>
     </section>
