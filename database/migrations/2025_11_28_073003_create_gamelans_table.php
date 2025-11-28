@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Admin;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bisnis', function (Blueprint $table) {
-            $table->id('bisnis_id');
-            $table->foreignIdFor(Admin::class, 'admin_id')->onDelete('cascade');
+        Schema::create('gamelan', function (Blueprint $table) {
+            $table->uuid('gamelan_id')->primary();
+
+            $table->foreignUuid('admin_id')
+            ->constrained('admin', 'admin_id')
+            ->onDelete('cascade');
+
             $table->string('nama');
             $table->text('deskripsi');
             $table->string('gambar');
-            $table->string('email');
-            $table->enum('status', ['active', 'inactive', 'verified', 'unverified'])->default('inactive');
-            $table->timestamps();
+            $table->string('audio');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bisnis');
+        Schema::dropIfExists('gamelan');
     }
 };

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Pengguna;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ulasan', function (Blueprint $table) {
-            $table->id('ulasan_id');
-            $table->foreignIdFor(Pengguna::class, 'pengguna_id');
+        Schema::create('ulasan_katalog', function (Blueprint $table) {
+            $table->uuid('ulasan_katalog_id')->primary();
+
+            $table->foreignUuid('pengguna_id')
+            ->constrained('pengguna', 'pengguna_id')
+            ->onDelete('cascade');
+            $table->foreignUuid('katalog_id')
+            ->constrained('katalogs', 'katalog_id')
+            ->onDelete('cascade');
+
             $table->string('isi_ulasan');
             $table->string('tag_ulasan');
             $table->string('nama_pengulas');
-            $table->timestamps();
         });
     }
 
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ulasans');
+        Schema::dropIfExists('ulasan_katalog');
     }
 };

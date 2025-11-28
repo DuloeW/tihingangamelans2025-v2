@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Bisnis;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tag_bisnis', function (Blueprint $table) {
-            $table->id('tag_bisnis_id');
-            $table->foreignIdFor(Bisnis::class, 'bisnis_id')->onDelete('cascade');
-            $table->timestamps();
+            $table->uuid('tag_bisnis_id')->primary();
+            
+            $table->foreignUuid('bisnis_id')
+            ->constrained('bisnis', 'bisnis_id')
+            ->onDelete('cascade');
+
+            $table->enum('jenis', ['Learn', 'Workshop', 'Purchase']);
         });
     }
 
