@@ -11,6 +11,10 @@ Route::get('/gallery-gamelan', function () {
     return view('gallery-gamelan');
 });
 
+Route::get('/store', function () {
+    return view('store');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
