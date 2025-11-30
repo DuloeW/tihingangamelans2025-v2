@@ -38,9 +38,16 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'pengguna',
+            'provider' => 'admin',
         ],
     ],
+
+    'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class, // Gunakan Admin
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
