@@ -17,11 +17,18 @@
             href="/">Home</a>
         <a class="text-primary {{ request()->is('gallery-gamelan') ? $activeClass : '' }} hover:text-[#7A2C1D] transition"
             href="/gallery-gamelan">Gallery</a>
-        <a class="text-primary {{ request()->is('store') ? $activeClass : ''  }}  hover:text-[#7A2C1D] transition"
+        <a class="text-primary {{ request()->is('store') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
             href="/store">Store</a>
-        <a class="text-primary {{ request()->is('login') ? $activeClass : ''  }}  hover:text-[#7A2C1D] transition"
-            href="{{ route('login') }}">
-            Login
+        @if (Auth::check())
+            <a class="text-primary {{ request()->is('dashboard') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
+                href="{{ route('dashboard') }}">
+                Dasboard
+            </a>
+        @else
+            <a class="text-primary {{ request()->is('login') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
+                href="{{ route('login') }}">
+                Login
+        @endif
         </a>
     </div>
 

@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+        'owner' => [
+            'driver' => 'session',
+            'provider' => 'owner',
+        ],
     ],
 
     'providers' => [
@@ -70,6 +78,14 @@ return [
         'pengguna' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Pengguna::class),
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'owner' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Owner::class,
         ],
 
         // 'users' => [

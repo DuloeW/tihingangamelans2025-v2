@@ -16,10 +16,10 @@
     </div>
     <div class="px-10 py-5 h-auto w-full flex flex-col justify-between">
         <div>
-            <h2 class="text-3xl font-medium mb-2">{{ $nama }}</h2>
+            <h2 class="text-3xl font-medium">{{ $nama }}</h2>
             <div>
                 @foreach ($tag_bisnis as $tag)
-                    <span class="inline-block bg-primary text-white text-sm px-3 py-1 rounded-full mr-2 mb-2">
+                    <span class="inline-block text-orange-500 tracking-wider text-md rounded-full mr-2 mb-2">
                         {{ $tag }}
                     </span>
                 @endforeach
