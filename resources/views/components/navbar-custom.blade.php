@@ -22,7 +22,7 @@
         @if (Auth::check())
             <a class="text-primary {{ request()->is('dashboard') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
                 href="{{ route('dashboard') }}">
-                Dasboard
+                Dashboard
             </a>
         @else
             <a class="text-primary {{ request()->is('login') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
