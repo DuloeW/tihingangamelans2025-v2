@@ -1,83 +1,200 @@
 @php
-    $stores = [
+    $gamelans = [
         [
-            'nama' => 'Gong Sigar',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'The Gong Sigar is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble. It is a large, vertically mounted gong that produces a deep, resonant sound when struck with a padded mallet. The Gong Sigar is often used to mark the beginning and end of musical pieces in gamelan music.',
-            'profile' => 'images/bende1.png',
+            'nama' => 'Gamelan Bonang',
+            'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of',
+            'showPrice' => true,
+            'price' => '$1,000.00',
+            'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
-            'nama' => 'Kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-                    ensemble. It is a double-headed drum that is played with the hands and produces a variety of rhythms and sounds. The Kendang is often used to lead the ensemble and provide rhythmic accompaniment to other instruments.',
-            'profile' => 'images/bende1.png',
+            'nama' => 'Gamelan Saron',
+            'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
+                    ensemble.',
+            'showPrice' => true,
+            'price' => '$800.00',
+            'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
-            'nama' => 'Kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
+            'nama' => 'Gamelan Kendang',
             'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-                    ensemble. It is a double-headed drum that is played with the hands and produces a variety of rhythms and sounds. The Kendang is often used to lead the ensemble and provide rhythmic accompaniment to other instruments.',
-            'profile' => 'images/bende1.png',
+                    ensemble. ',
+            'showPrice' => true,
+            'price' => '$900',
+            'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
         [
-            'nama' => 'Kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-                    ensemble. It is a double-headed drum that is played with the hands and produces a variety of rhythms and sounds. The Kendang is often used to lead the ensemble and provide rhythmic accompaniment to other instruments.',
-            'profile' => 'images/bende1.png',
+            'nama' => 'Gamelan Gambang',
+            'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
+                    ensemble.',
+            'showPrice' => true,
+            'price' => '$29230293',
+            'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
+            'horizontal' => false,
         ],
     ];
+
 @endphp
 
 <x-global-layout>
+
     <x-slot:title>
-        Store
+        Store {{ $slug }}
     </x-slot:title>
 
-    <section id="store" class="min-h-[480px] px-20 pb-20 font-markazi">
-        <div class="container mx-auto">
-            <h2 class="text-center text-8xl py-10">Store</h2>
 
-            <div class="w-full grid place-items-center">
-                <div class="max-w-3xl w-full flex justify-center items-stretch gap-3">
-                    <div
-                        class="flex-1 flex items-center bg-white rounded-lg shadow-[0_4px_15px_-3px_rgba(0,0,0,0.07)] px-4 py-3.5">
-                        <x-search-icon />
-    
-                        <input type="text" placeholder="Cari Toko Kerajinan"
-                            class="w-full ml-4 text-lg bg-transparent outline-none border-none text-gray-800 placeholder-gray-800 font-input tracking-wide focus:border-none" />
-                    </div>
-    
-                    <button
-                        class="bg-white rounded-lg shadow-[0_4px_15px_-3px_rgba(0,0,0,0.07)] px-4 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                        <x-filter-search-icon />
-                    </button>
+    <div class="min-h-[480px] px-20 pb-20 font-markazi" x-data="{ activeTab: 'katalog' }">
+
+        <div class="max-w-8xl mx-auto mt-6">
+            <div class="flex items-center border text-primary border-gray-300 rounded-xl px-6 py-4 bg-white shadow-sm">
+                <!-- Gambar kiri -->
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('images/bende1.png') }}" alt="Logo Toko"
+                        class="w-20 h-20 rounded-full border border-gray-200 object-cover" />
                 </div>
-
-            </div>
-
-            <div class="mt-24    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($stores as $store)
-                    <x-box-store 
-                        :nama="$store['nama']" 
-                        :deskripsi="$store['deskripsi']" 
-                        :tag_bisnis="$store['tag_bisnis']" 
-                        :profile="$store['profile']" 
-                        :dataAos="$store['dataAos']" 
-                        :dataAosDuration="$store['dataAosDuration']" 
-                    />
-                @endforeach
+                <!-- Info toko tengah -->
+                <div class="flex-1 ml-6">
+                    <h2 class="text-3xl font-semibold tracking-wide">GONG SIGAR</h2>
+                    <p class="text-xl font-medium leading-snug mt-1">Menjual Gamelan, menyewakan gamelan, kujungan
+                        wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel</p>
+                </div>
+                <!-- Rating kanan -->
+                <div class="flex flex-col items-end ml-6">
+                    <h2 class="text-3xl font-bold text-primary">Baik</h2>
+                    <p class="text-sm text-primary/30 mt-1">Rating & Ulasan</p>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="w-full max-h-40 flex gap-5 mt-4 border-b-2 py-6">
+            <button @click="activeTab = 'katalog'"
+                :class="activeTab === 'katalog' ?
+                    'bg-primary text-white rounded-md' :
+                    'text-primary '"
+                class="px-10 py-3 ">
+                Katalog
+            </button>
+            <button @click="activeTab = 'ulasan'"
+                :class="activeTab === 'ulasan' ?
+                    'bg-primary text-white rounded-md' :
+                    'text-primary '"
+                class="px-10 py-3 ">
+                Ulasan
+            </button>
+        </div>
+
+        {{-- KATALOG --}}
+        <div class="w-full mt-10" x-show="activeTab === 'katalog'">
+            <div class="flex flex-col gap-10">
+                <div>
+                    <h2 class="text-5xl">Gamelans</h2>
+                    <p class="text-xl">Gamelan yang kami sediakan</p>
+                    <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
+                        @foreach ($gamelans as $gamelan)
+                            <div class="w-1/3 flex-shrink-0">
+                                <x-gamelan-box 
+                                    :nama="$gamelan['nama']" 
+                                    :deskripsi="$gamelan['deskripsi']" 
+                                    :showPrice="$gamelan['showPrice']" 
+                                    :price="$gamelan['price']"
+                                    :gambar="$gamelan['gambar']" 
+                                    :dataAos="$gamelan['dataAos']" 
+                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+    
+                <div>
+                    <h2 class="text-5xl">Workshop</h2>
+                    <p class="text-xl">Berbagai macam workshop gamelan</p>
+                    <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
+                        @foreach ($gamelans as $gamelan)
+                            <div class="w-1/3 flex-shrink-0">
+                                <x-gamelan-box 
+                                    :nama="$gamelan['nama']" 
+                                    :deskripsi="$gamelan['deskripsi']" 
+                                    :showPrice="$gamelan['showPrice']" 
+                                    :price="$gamelan['price']"
+                                    :gambar="$gamelan['gambar']" 
+                                    :dataAos="$gamelan['dataAos']" 
+                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-5xl">Kelas Belajar</h2>
+                    <p class="text-xl">Berbagai macam kelas gamelan</p>
+                    <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
+                        @foreach ($gamelans as $gamelan)
+                            <div class="w-1/3 flex-shrink-0">
+                                <x-gamelan-box 
+                                    :nama="$gamelan['nama']" 
+                                    :deskripsi="$gamelan['deskripsi']" 
+                                    :showPrice="$gamelan['showPrice']" 
+                                    :price="$gamelan['price']"
+                                    :gambar="$gamelan['gambar']" 
+                                    :dataAos="$gamelan['dataAos']" 
+                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- Ulasan Bisnis --}}
+        <div class="w-full mt-10" x-show="activeTab === 'ulasan'">
+            <div>
+                <div>
+                    {{-- TODO Ulasan bisnin --}}
+                    
+                </div>
+
+                <div class="mt-10">
+                    <hr class="mb-4">
+                    <h2 class="text-3xl font-semibold text-primary mb-2">Berikan Ulasan</h2>
+                    <form method="POST" action="#" class="space-y-4">
+                        @csrf
+                        <div class="flex gap-8 mb-2">
+                            <label class="font-semibold text-primary text-base cursor-pointer">
+                                <input type="radio" name="rating" value="Sangat Bagus" class="hidden peer">
+                                <span class="peer-checked:underline">Sangat Bagus</span>
+                            </label>
+                            <label class="font-semibold text-primary text-base cursor-pointer">
+                                <input type="radio" name="rating" value="Bagus" class="hidden peer">
+                                <span class="peer-checked:underline">Bagus</span>
+                            </label>
+                            <label class="font-semibold text-primary text-base cursor-pointer">
+                                <input type="radio" name="rating" value="Cukup" class="hidden peer">
+                                <span class="peer-checked:underline">Cukup</span>
+                            </label>
+                            <label class="font-semibold text-primary text-base cursor-pointer">
+                                <input type="radio" name="rating" value="Kurang" class="hidden peer">
+                                <span class="peer-checked:underline">Kurang</span>
+                            </label>
+                        </div>
+                        <textarea name="ulasan" rows="4" class="w-full border border-gray-400 rounded-md p-3 text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ulasan anda..........."></textarea>
+                        <button type="submit" class="w-full bg-[#3A2415] text-white py-2 rounded-md text-base tracking-wide">Kirim</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </x-global-layout>

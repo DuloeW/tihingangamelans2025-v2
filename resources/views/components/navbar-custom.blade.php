@@ -15,9 +15,9 @@
     <div class="flex font-markazi items-center text-xl font-medium gap-10">
         <a class="text-primary {{ request()->is('/') ? $activeClass : '' }} text-xl hover:text-[#7A2C1D] transition"
             href="/">Home</a>
-        <a class="text-primary {{ request()->is('gallery-gamelan') ? $activeClass : '' }} hover:text-[#7A2C1D] transition"
+        <a class="text-primary {{ request()->is('gallery-gamelan*') ? $activeClass : '' }} hover:text-[#7A2C1D] transition"
             href="/gallery-gamelan">Gallery</a>
-        <a class="text-primary {{ request()->is('store') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
+        <a class="text-primary {{ request()->is('store*') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"
             href="/store">Store</a>
         @if (Auth::check())
             <a class="text-primary {{ request()->is('dashboard') ? $activeClass : '' }}  hover:text-[#7A2C1D] transition"

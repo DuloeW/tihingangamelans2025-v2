@@ -1,5 +1,6 @@
 @props([
     'nama' => 'Gamelan Name',
+    'slug' => 'gamelan-name',
     'deskripsi' => 'Gamelan Description',
     'tag_bisnis' => ['tag1', 'tag2', 'tag3'],
     'profile' => 'images/bende1.png',
@@ -26,8 +27,9 @@
             </div>
             <p class="text-xl tracking-wider">{{ $deskripsi }}</p>
         </div>
-        <div class="flex mt-5 justify-end items-center">
-            <a class="px-6 py-2 bg-primary text-white rounded-lg tracking-wider" href="">
+        <div class="flex mt-5 justify-start items-center">
+            <a href="{{ url('store/' . $slug) }}"
+                class="px-6 py-2 bg-primary text-white rounded-lg tracking-wider" >
                 Selengkapnya
             </a>
         </div>

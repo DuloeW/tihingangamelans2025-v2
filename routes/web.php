@@ -12,7 +12,11 @@ Route::get('/gallery-gamelan', function () {
 });
 
 Route::get('/store', function () {
-    return view('store');
+    return view('list-store');
+});
+
+Route::get('/store/{slug}', function ($slug) {
+    return view('store', ['slug' => $slug]);
 });
 
 Route::get('/dashboard', function () {
