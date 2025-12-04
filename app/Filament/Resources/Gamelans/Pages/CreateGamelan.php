@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateGamelan extends CreateRecord
 {
     protected static string $resource = GamelanResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
