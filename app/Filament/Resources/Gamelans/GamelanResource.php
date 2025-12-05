@@ -121,10 +121,12 @@ class GamelanResource extends Resource
             ->actions([
                Action::make('edit')
                     ->label('Edit')
+                    ->icon('heroicon-o-pencil')
                     ->url(fn (Gamelan $record) => GamelanResource::getUrl('edit', ['record' => $record]))
                     ->openUrlInNewTab(false),
                 Action::make('Delete')
                     ->label('Hapus')
+                    ->icon('heroicon-o-trash')
                     ->requiresConfirmation(),
                 BulkAction::make('bulkDelete')
                     ->label('Hapus Terpilih')
