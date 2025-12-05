@@ -34,23 +34,7 @@
                         </div>
 
                         <!-- Provinsi, Kabupaten, Kecamatan -->
-                        <div class="flex gap-4">
-                            <div class="flex-1">
-                                <label for="provinsi" class="block text-sm font-semibold text-[#3A2415] mb-1">Provinsi</label>
-                                <input type="text" id="provinsi" name="provinsi" placeholder="Bali" 
-                                    class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
-                            </div>
-                            <div class="flex-1">
-                                <label for="kabupaten" class="block text-sm font-semibold text-[#3A2415] mb-1">Kabupaten</label>
-                                <input type="text" id="kabupaten" name="kabupaten" placeholder="Tabanan" 
-                                    class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
-                            </div>
-                            <div class="flex-1">
-                                <label for="kecamatan" class="block text-sm font-semibold text-[#3A2415] mb-1">Kecamatan</label>
-                                <input type="text" id="kecamatan" name="kecamatan" placeholder="Kediri" 
-                                    class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
-                            </div>
-                        </div>
+                        @livewire('alamat-selector')
 
                         <!-- Alamat Lengkap -->
                         <div>
@@ -61,7 +45,7 @@
 
                         <!-- Tombol Aksi -->
                         <div class="flex gap-4 pt-2">
-                            <a href="#" 
+                            <a href="{{ url('store/' . $store->slug) }}" 
                                 class="flex-1 border-2 py-3  border-[#3A2415] text-[#3A2415] text-lg tracking-wide rounded-md text-center font-semibold hover:bg-gray-50 transition">
                                 Balik
                             </a>

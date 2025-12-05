@@ -1,44 +1,3 @@
-@php
-    $stores = [
-        [
-            'nama' => 'Gong Sigar',
-            'slug' => 'gong-sigar',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'Menjual Gamelan, menyewakan gamelan, kujungan wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel',
-            'profile' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-        [
-            'nama' => 'Kendang',
-            'slug' => 'kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'Menjual Gamelan, menyewakan gamelan, kujungan wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel',
-            'profile' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-        [
-            'nama' => 'Kendang',
-            'slug' => 'kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'Menjual Gamelan, menyewakan gamelan, kujungan wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel',
-            'profile' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-        [
-            'nama' => 'Kendang',
-            'slug' => 'kendang',
-            'tag_bisnis' => ['learn', 'workshop', 'purchase'],
-            'deskripsi' => 'Menjual Gamelan, menyewakan gamelan, kujungan wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel',
-            'profile' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-    ];
-@endphp
-
 <x-global-layout>
     <x-slot:title>
         Store
@@ -69,13 +28,13 @@
             <div class="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-8">
                 @foreach ($stores as $store)
                     <x-box-store 
-                        :nama="$store['nama']"
-                        :slug="$store['slug']"
-                        :deskripsi="$store['deskripsi']" 
-                        :tag_bisnis="$store['tag_bisnis']" 
-                        :profile="$store['profile']" 
-                        :dataAos="$store['dataAos']" 
-                        :dataAosDuration="$store['dataAosDuration']" 
+                        :nama="$store->nama"
+                        :slug="$store->slug"
+                        :deskripsi="$store->deskripsi" 
+                        :tag_bisnis="$store->tag_bisnis" 
+                        :profile="$store->profile" 
+                        :dataAos="'fade-up'" 
+                        :dataAosDuration="'1500'" 
                     />
                 @endforeach
             </div>
