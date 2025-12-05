@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('no_telephone');
+            $table->rememberToken();
         });
     }
 
