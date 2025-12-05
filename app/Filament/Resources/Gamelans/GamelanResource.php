@@ -24,7 +24,9 @@ use Filament\Forms\Components\Hidden;
 
 use Filament\Actions\Action;
 use Filament\Actions\BulkAction;
-
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\facades\Storage;
 
@@ -57,13 +59,18 @@ class GamelanResource extends Resource
 
                
                 FileUpload::make('gambar')
+                    ->label('Gambar Gamelan')
+                    ->disk('public')
                     ->directory('gamelan-images')
+                    ->visibility('public')
                     ->image()
                     ->required()
                     ->columnSpanFull(),
 
              
                 FileUpload::make('audio')
+                    ->disk('public')
+                    ->visibility('public')
                     ->label('File Audio Gamelan')
                     ->directory('gamelan-audio')
                     ->acceptedFileTypes(['audio/*', 'application/octet-stream'])
@@ -100,39 +107,33 @@ class GamelanResource extends Resource
                     ->wrap()
                     ->sortable()
                     ->color('gray'),
-                TextColumn::make('Audio')
+                TextColumn::make('audio')
                     ->label('File Audio')
-                    ->formatStateUsing(function (Gamelan $record) {
-                        if ($record->audio) {
-                            $url = Storage::url($record->audio);
-                            return new HtmlString("<audio controls>
-                                <source src='{$url}' type='audio/mpeg'>
-                                Your browser does not support the audio element.
-                            </audio>");
+                    ->formatStateUsing(function ($state) {
+                        if ($state) {
+                            return basename($state);
                         }
-                        return 'No audio file';
+                        return '-';
                     })
-                    ->html(true),
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
 
             ->actions([
-               Action::make('edit')
+               EditAction::make('edit')
                     ->label('Edit')
                     ->icon('heroicon-o-pencil')
                     ->url(fn (Gamelan $record) => GamelanResource::getUrl('edit', ['record' => $record]))
                     ->openUrlInNewTab(false),
-                Action::make('Delete')
+                DeleteAction::make('Delete')
                     ->label('Hapus')
                     ->icon('heroicon-o-trash')
                     ->requiresConfirmation(),
-                BulkAction::make('bulkDelete')
+                DeleteBulkAction::make('bulkDelete')
                     ->label('Hapus Terpilih')
-                    ->requiresConfirmation(),
-                BulkAction::make('bulkEdit')
-                    ->label('Edit Terpilih')
                     ->requiresConfirmation(),
             ]);
     }

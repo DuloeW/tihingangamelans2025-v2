@@ -14,7 +14,7 @@
     data-aos-duration="{{ $dataAosDuration }}"
     class="{{ $horizontal == true ? 'flex flex-row w-fit h-auto mb-10 shadow-lg rounded-lg overflow-hidden' : 'w-full h-auto mb-10 shadow-lg rounded-lg overflow-hidden' }} bg-boxCatalog">
     <div class="w-auto flex justify-center items-center bg-white py-5">
-        <img src="{{ asset($gambar) }}" alt="" class="h-40 w-auto object-cover">
+        <img src="{{ asset('storage/' . $gambar) }}" alt="{{ $gambar }}" class="h-40 w-auto object-cover">
     </div>
     <div class="px-10 py-5 h-auto {{ $horizontal == true ? 'w-3/5' : 'w-full' }} flex flex-col justify-between">
         <div>

@@ -1,58 +1,58 @@
 @php
-    $gamelans = [
-        [
-            'nama' => 'Gamelan Bonang',
-            'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble. It consists of a series of small, horizontally mounted gongs that are played with padded
-                    sticks. The Bonang produces a rich, resonant sound and is often used to play melodic patterns and
-                    embellishments in gamelan music.',
-            'showPrice' => false,
-            'price' => '$1,000.00',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-            'horizontal' => false,
-        ],
-        [
-            'nama' => 'Gamelan Saron',
-            'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble. It consists of a set of bronze or iron bars that are laid out horizontally and played with
-                    a mallet. The Saron produces a bright, metallic sound and is often used to play the main melody in
-                    gamelan music.',
-            'showPrice' => false,
-            'price' => '$800.00',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-            'horizontal' => false,
-        ],
-        [
-            'nama' => 'Gamelan Kendang',
-            'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-                    ensemble. It is a double-headed drum made from wood and animal skin, and it is played with the hands.
-                    The Kendang provides the rhythmic foundation for gamelan music and is used to signal changes in tempo
-                    and dynamics.',
-            'showPrice' => false,
-            'price' => '',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-            'horizontal' => false,
-        ],
-        [
-            'nama' => 'Gamelan Gambang',
-            'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble. It consists of a set of wooden bars that are laid out horizontally and played with mallets.
-                    The Gambang produces a warm, mellow sound and is often used to play melodic patterns and
-                    embellishments in gamelan music.',
-            'showPrice' => false,
-            'price' => '',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-            'horizontal' => false,
-        ],
-    ];
+    // $gamelans = [
+    //     [
+    //         'nama' => 'Gamelan Bonang',
+    //         'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of the gamelan
+    //                 ensemble. It consists of a series of small, horizontally mounted gongs that are played with padded
+    //                 sticks. The Bonang produces a rich, resonant sound and is often used to play melodic patterns and
+    //                 embellishments in gamelan music.',
+    //         'showPrice' => false,
+    //         'price' => '$1,000.00',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //         'horizontal' => false,
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Saron',
+    //         'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
+    //                 ensemble. It consists of a set of bronze or iron bars that are laid out horizontally and played with
+    //                 a mallet. The Saron produces a bright, metallic sound and is often used to play the main melody in
+    //                 gamelan music.',
+    //         'showPrice' => false,
+    //         'price' => '$800.00',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //         'horizontal' => false,
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Kendang',
+    //         'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
+    //                 ensemble. It is a double-headed drum made from wood and animal skin, and it is played with the hands.
+    //                 The Kendang provides the rhythmic foundation for gamelan music and is used to signal changes in tempo
+    //                 and dynamics.',
+    //         'showPrice' => false,
+    //         'price' => '',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //         'horizontal' => false,
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Gambang',
+    //         'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
+    //                 ensemble. It consists of a set of wooden bars that are laid out horizontally and played with mallets.
+    //                 The Gambang produces a warm, mellow sound and is often used to play melodic patterns and
+    //                 embellishments in gamelan music.',
+    //         'showPrice' => false,
+    //         'price' => '',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //         'horizontal' => false,
+    //     ],
+    // ];
 @endphp
 
 {{-- TODO ERROR LOGO --}}
@@ -112,14 +112,14 @@
         <div class="grid grid-cols-2 grid-rows-2 gap-24">
             @foreach ($gamelans as $gamelan)
                 <x-gamelan-box 
-                    :nama="$gamelan['nama']" 
-                    :showPrice="$gamelan['showPrice']" 
-                    :deskripsi="$gamelan['deskripsi']" 
-                    :price="$gamelan['price']"
-                    :gambar="$gamelan['gambar']"
-                    :dataAos="$gamelan['dataAos']"
-                    :dataAosDuration="$gamelan['dataAosDuration']"
-                    :horizontal="$gamelan['horizontal']"
+                    :nama="$gamelan->nama" 
+                    :showPrice="false" 
+                    :deskripsi="$gamelan->deskripsi" 
+                    :price="$gamelan->price"
+                    :gambar="$gamelan->gambar"
+                    :dataAos="'fade-up'"
+                    :dataAosDuration="1500"
+                    :horizontal="false" 
                 />
             @endforeach
         </div>
