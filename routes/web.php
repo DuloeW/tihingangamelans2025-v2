@@ -19,6 +19,11 @@ Route::get('/store/{slug}', function ($slug) {
     return view('store', ['slug' => $slug]);
 });
 
+Route::get('/detail-katalog', function () {
+    return view('detail-katalog');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

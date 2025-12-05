@@ -55,6 +55,8 @@
     ];
 @endphp
 
+{{-- TODO ERROR LOGO --}}
+
 
 <x-global-layout>
 

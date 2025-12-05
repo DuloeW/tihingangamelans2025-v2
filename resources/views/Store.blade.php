@@ -4,7 +4,7 @@
             'nama' => 'Gamelan Bonang',
             'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of',
             'showPrice' => true,
-            'price' => '$1,000.00',
+            'price' => '10000000',
             'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
@@ -14,34 +14,28 @@
             'nama' => 'Gamelan Saron',
             'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
                     ensemble.',
-            'showPrice' => true,
-            'price' => '$800.00',
+            'price' => '10000000',
             'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
-            'horizontal' => false,
         ],
         [
             'nama' => 'Gamelan Kendang',
             'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
                     ensemble. ',
-            'showPrice' => true,
-            'price' => '$900',
+            'price' => '10000000',
             'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
-            'horizontal' => false,
         ],
         [
             'nama' => 'Gamelan Gambang',
             'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
                     ensemble.',
-            'showPrice' => true,
-            'price' => '$29230293',
+            'price' => '10000000',
             'gambar' => 'images/bende1.png',
             'dataAos' => 'fade-up',
             'dataAosDuration' => '1500',
-            'horizontal' => false,
         ],
     ];
 
@@ -103,33 +97,21 @@
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                         @foreach ($gamelans as $gamelan)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-gamelan-box 
-                                    :nama="$gamelan['nama']" 
-                                    :deskripsi="$gamelan['deskripsi']" 
-                                    :showPrice="$gamelan['showPrice']" 
-                                    :price="$gamelan['price']"
-                                    :gambar="$gamelan['gambar']" 
-                                    :dataAos="$gamelan['dataAos']" 
-                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']" :gambar="$gamelan['gambar']"
+                                    :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
                             </div>
                         @endforeach
                     </div>
                 </div>
-    
+
                 <div>
                     <h2 class="text-5xl">Workshop</h2>
                     <p class="text-xl">Berbagai macam workshop gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                         @foreach ($gamelans as $gamelan)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-gamelan-box 
-                                    :nama="$gamelan['nama']" 
-                                    :deskripsi="$gamelan['deskripsi']" 
-                                    :showPrice="$gamelan['showPrice']" 
-                                    :price="$gamelan['price']"
-                                    :gambar="$gamelan['gambar']" 
-                                    :dataAos="$gamelan['dataAos']" 
-                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']" :gambar="$gamelan['gambar']"
+                                    :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
                             </div>
                         @endforeach
                     </div>
@@ -141,14 +123,8 @@
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                         @foreach ($gamelans as $gamelan)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-gamelan-box 
-                                    :nama="$gamelan['nama']" 
-                                    :deskripsi="$gamelan['deskripsi']" 
-                                    :showPrice="$gamelan['showPrice']" 
-                                    :price="$gamelan['price']"
-                                    :gambar="$gamelan['gambar']" 
-                                    :dataAos="$gamelan['dataAos']" 
-                                    :dataAosDuration="$gamelan['dataAosDuration']" :horizontal="$gamelan['horizontal']" />
+                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']"
+                                    :gambar="$gamelan['gambar']" :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
                             </div>
                         @endforeach
                     </div>
@@ -162,7 +138,20 @@
             <div>
                 <div>
                     {{-- TODO Ulasan bisnin --}}
-                    
+                    <div class="grid grid-cols-2">
+                        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-md px-8 py-6 flex flex-col gap-2">
+                            <div class="flex items-center gap-4 mb-2">
+                                <img class="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm" src="{{ asset('images/ulasan_profile.png') }}" alt="Ulasan Profile">
+                                <span class="text-lg font-bold text-gray-800">Nino Sanjaya</span>
+                            </div>
+                            <div class="flex gap-3 text-sm font-medium text-orange-500 mb-1">
+                                <span class="bg-orange-50 rounded px-2 py-0.5">Sangat Bagus</span>
+                                <span class="bg-orange-50 rounded px-2 py-0.5">Keren</span>
+                            </div>
+                            <blockquote class="mt-2 text-base italic text-[#7c4a1e] font-medium leading-relaxed">"Pengalaman yang luar biasa!"</blockquote>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div class="mt-10">
@@ -188,8 +177,11 @@
                                 <span class="peer-checked:underline">Kurang</span>
                             </label>
                         </div>
-                        <textarea name="ulasan" rows="4" class="w-full border border-gray-400 rounded-md p-3 text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ulasan anda..........."></textarea>
-                        <button type="submit" class="w-full bg-[#3A2415] text-white py-2 rounded-md text-base tracking-wide">Kirim</button>
+                        <textarea name="ulasan" rows="4"
+                            class="w-full border border-gray-400 rounded-md p-3 text-primary placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
+                            placeholder="Ulasan anda..........."></textarea>
+                        <button type="submit"
+                            class="w-full bg-[#3A2415] text-white py-2 rounded-md text-base tracking-wide">Kirim</button>
                     </form>
                 </div>
             </div>
