@@ -24,7 +24,8 @@ use Filament\Forms\Components\Hidden;
 
 use Filament\Actions\Action;
 use Filament\Actions\BulkAction;
-
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\facades\Storage;
 
@@ -100,13 +101,15 @@ class GamelanResource extends Resource
                     ->wrap()
                     ->sortable()
                     ->color('gray'),
+
+
                 TextColumn::make('Audio')
                     ->label('File Audio')
                     ->formatStateUsing(function (Gamelan $record) {
                         if ($record->audio) {
                             $url = Storage::url($record->audio);
                             return new HtmlString("<audio controls>
-                                <source src='{$url}' type='audio/mpeg'>
+                                <source src='{$url}' type='audio/*'>
                                 Your browser does not support the audio element.
                             </audio>");
                         }
@@ -119,12 +122,12 @@ class GamelanResource extends Resource
             ])
 
             ->actions([
-               Action::make('edit')
+               EditAction::make('edit')
                     ->label('Edit')
                     ->icon('heroicon-o-pencil')
                     ->url(fn (Gamelan $record) => GamelanResource::getUrl('edit', ['record' => $record]))
                     ->openUrlInNewTab(false),
-                Action::make('Delete')
+                DeleteAction::make('Delete')
                     ->label('Hapus')
                     ->icon('heroicon-o-trash')
                     ->requiresConfirmation(),
