@@ -38,7 +38,7 @@ class BisnisController extends Controller
                     'id' => 103,
                     'nama_produk' => 'Kendang Bali',
                     'deskripsi' => 'Traditional Balinese drum that provides rhythmic foundation for gamelan music.',
-                    'jenis' => 'alat-musik', // Contoh jenis beda
+                    'jenis' => 'workshop', // Contoh jenis beda
                     'harga' => 3500000,
                     'gambar' => 'images/bende1.png'
                 ]
@@ -56,7 +56,7 @@ class BisnisController extends Controller
                     'id' => 201,
                     'nama_produk' => 'Kain Endek',
                     'deskripsi' => 'Traditional Balinese woven fabric with beautiful patterns and vibrant colors.',
-                    'jenis' => 'kain',
+                    'jenis' => 'kelas',
                     'harga' => 250000,
                     'gambar' => 'images/bende1.png'
                 ]
