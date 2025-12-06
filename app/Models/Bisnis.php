@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids; 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Bisnis extends Model
 {
@@ -16,6 +17,12 @@ class Bisnis extends Model
     public $timestamps = false; 
 
     protected $guarded = [];
+
+    // Relasi ke owner
+    public function owner(): HasOne
+    {
+        return $this->hasOne(Owner::class, 'bisnis_id', 'bisnis_id');
+    }
 
     // Relasi ke Admin
     public function admin(): BelongsTo

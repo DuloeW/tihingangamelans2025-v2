@@ -1,43 +1,43 @@
 @php
-    $gamelans = [
-        [
-            'nama' => 'Gamelan Bonang',
-            'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of',
-            'showPrice' => true,
-            'price' => '10000000',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-            'horizontal' => false,
-        ],
-        [
-            'nama' => 'Gamelan Saron',
-            'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble.',
-            'price' => '10000000',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-        [
-            'nama' => 'Gamelan Kendang',
-            'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-                    ensemble. ',
-            'price' => '10000000',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-        [
-            'nama' => 'Gamelan Gambang',
-            'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
-                    ensemble.',
-            'price' => '10000000',
-            'gambar' => 'images/bende1.png',
-            'dataAos' => 'fade-up',
-            'dataAosDuration' => '1500',
-        ],
-    ];
+    // $gamelans = [
+    //     [
+    //         'nama' => 'Gamelan Bonang',
+    //         'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of',
+    //         'showPrice' => true,
+    //         'price' => '10000000',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //         'horizontal' => false,
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Saron',
+    //         'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
+    //                 ensemble.',
+    //         'price' => '10000000',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Kendang',
+    //         'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
+    //                 ensemble. ',
+    //         'price' => '10000000',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //     ],
+    //     [
+    //         'nama' => 'Gamelan Gambang',
+    //         'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
+    //                 ensemble.',
+    //         'price' => '10000000',
+    //         'gambar' => 'images/bende1.png',
+    //         'dataAos' => 'fade-up',
+    //         'dataAosDuration' => '1500',
+    //     ],
+    // ];
 
 @endphp
 
@@ -95,10 +95,18 @@
                     <h2 class="text-5xl">Gamelans</h2>
                     <p class="text-xl">Gamelan yang kami sediakan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($gamelans as $gamelan)
+                        @foreach ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']" :gambar="$gamelan['gambar']"
-                                    :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
+                                 <x-katalog-box 
+                                    :nama="$catalog->nama_produk" 
+                                    :deskripsi="$catalog->deskripsi" 
+                                    :price="$catalog->harga"
+                                    :slug="$slug"
+                                    :jenis_katalog="$catalog->jenis"
+                                    :id_katalog="$catalog->id"
+                                    :gambar="$catalog->gambar" 
+                                    :dataAos="'fade-up'" 
+                                    :dataAosDuration="'1500'" />
                             </div>
                         @endforeach
                     </div>
@@ -108,10 +116,18 @@
                     <h2 class="text-5xl">Workshop</h2>
                     <p class="text-xl">Berbagai macam workshop gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($gamelans as $gamelan)
+                        @foreach ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']" :gambar="$gamelan['gambar']"
-                                    :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
+                                <x-katalog-box 
+                                    :nama="$catalog->nama_produk" 
+                                    :deskripsi="$catalog->deskripsi" 
+                                    :price="$catalog->harga"
+                                    :slug="$slug"
+                                    :jenis_katalog="$catalog->jenis"
+                                    :id_katalog="$catalog->id"
+                                    :gambar="$catalog->gambar" 
+                                    :dataAos="'fade-up'" 
+                                    :dataAosDuration="'1500'" />
                             </div>
                         @endforeach
                     </div>
@@ -121,10 +137,18 @@
                     <h2 class="text-5xl">Kelas Belajar</h2>
                     <p class="text-xl">Berbagai macam kelas gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($gamelans as $gamelan)
+                        @foreach ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
-                                <x-katalog-box :nama="$gamelan['nama']" :deskripsi="$gamelan['deskripsi']" :price="$gamelan['price']"
-                                    :gambar="$gamelan['gambar']" :dataAos="$gamelan['dataAos']" :dataAosDuration="$gamelan['dataAosDuration']" />
+                                <x-katalog-box 
+                                    :nama="$catalog->nama_produk" 
+                                    :deskripsi="$catalog->deskripsi" 
+                                    :price="$catalog->harga"
+                                    :slug="$slug"
+                                    :jenis_katalog="$catalog->jenis"
+                                    :id_katalog="$catalog->id"
+                                    :gambar="$catalog->gambar" 
+                                    :dataAos="'fade-up'" 
+                                    :dataAosDuration="'1500'" />
                             </div>
                         @endforeach
                     </div>
