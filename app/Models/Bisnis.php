@@ -16,6 +16,16 @@ class Bisnis extends Model
     protected $keyType = 'string';
     public $timestamps = false; 
 
+    protected $fillable = [
+        'bisnis_id',
+        'admin_id',
+        'owner_id',
+        'nama',
+        'slug',
+        'deskripsi',
+        'status',
+    ];
+
     protected $guarded = [];
 
     // Relasi ke owner
