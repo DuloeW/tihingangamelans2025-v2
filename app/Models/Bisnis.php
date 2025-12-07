@@ -18,7 +18,6 @@ class Bisnis extends Model
 
     protected $fillable = [
         'bisnis_id',
-        'admin_id',
         'owner_id',
         'nama',
         'slug',
@@ -29,14 +28,9 @@ class Bisnis extends Model
     protected $guarded = [];
 
     // Relasi ke owner
-    public function owner(): HasOne
+    public function owner(): BelongsTo
     {
-        return $this->hasOne(Owner::class, 'bisnis_id', 'bisnis_id');
+        return $this->belongsTo(Owner::class, 'owner_id', 'owner_id');
     }
-
-    // Relasi ke Admin
-    public function admin(): BelongsTo
-    {
-        return $this->belongsTo(Admin::class, 'admin_id', 'id_admin');
-    }
+    
 }
