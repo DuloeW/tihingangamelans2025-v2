@@ -48,7 +48,7 @@ class GamelanResource extends Resource
                 
                
                 Hidden::make('admin_id')
-                    ->default(fn () => auth()->id())
+                    ->default(fn () => auth('admin')->user()->admin_id)
                     ->required(),
 
                
