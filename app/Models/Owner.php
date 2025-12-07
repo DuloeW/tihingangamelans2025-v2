@@ -15,16 +15,12 @@ use Filament\Models\Contracts\HasName;
 class Owner extends Authenticatable implements FilamentUser, HasName
 {
     //
-    use Notifiable;
+    use HasUuids;
 
     protected $table = 'owner';
     protected $primaryKey = 'owner_id';
-    public $incrementing = false;
     protected $guard = 'owner';
-    protected $keyType = 'string';
     public $timestamps = false;
-
-    protected $guarded = [];
 
     protected $hidden = [
         'password',
@@ -33,6 +29,14 @@ class Owner extends Authenticatable implements FilamentUser, HasName
 
     protected $casts = [
         'password' => 'hashed',
+    ];
+
+    protected $fillable = [
+        'nama', 
+        'email', 
+        'password',
+        'user_name',    
+        'no_telephone'
     ];
 
     // Relasi ke binis

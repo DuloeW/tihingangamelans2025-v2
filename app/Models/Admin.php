@@ -14,6 +14,7 @@ class Admin extends Authenticatable implements FilamentUser, HasName
     
     protected $table = 'admin';
     protected $primaryKey = 'admin_id';
+    protected $guard = 'admin';
     public $timestamps = false;
 
     protected $fillable = [
