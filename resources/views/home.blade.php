@@ -201,7 +201,7 @@
             <p class="text-2xl tracking-wider">Gabung bersama kami dan luaskan jangkauan pasar anda!</p>
         </div>
         <div class="w-auto grid place-items-center mt-8">
-            <a href="#" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung
+            <a href="{{ route('filament.owner.auth.register') }}" class="inline-block text-3xl px-10 py-5 bg-primary text-white rounded-full">Gabung
                 Sekarang</a>
         </div>
     </section>

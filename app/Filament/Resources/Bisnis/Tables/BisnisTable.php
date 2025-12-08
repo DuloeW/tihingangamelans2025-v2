@@ -3,9 +3,11 @@
 namespace App\Filament\Resources\Bisnis\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\TextInput;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,43 +17,50 @@ class BisnisTable
     {
         return $table
             ->columns([
+                TextColumn::make('owner.nama')
+                    ->searchable(),
                 TextColumn::make('nama')
-                    ->label('Nama Bisnis')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
-
-                TextColumn::make('nama_owner')
-                    ->label('Nama Owner')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
-
+                    ->searchable(),
+                TextColumn::make('tags.jenis')
+                    ->label('Jenis')
+                    ->badge()
+                    ->searchable(),
                 TextColumn::make('deskripsi')
-                    ->label('Deskripsi')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
-
+                    ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
-                    ->searchable()
-                    ->sortable()
-                    ->weight('bold'),
-
-
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'verified' => 'primary',
+                        'inactive' => 'warning',
+                        'unverified' => 'danger',
+                        default => 'secondary',
+                    }),
+                TextColumn::make('email')
+                    ->icon(Heroicon::Envelope)
+                    ->iconColor('primary')
+                    ->searchable(),
+                TextColumn::make('contactPersons.no_telephone')
+                    ->label('No. Telepon')
+                    ->icon(Heroicon::Phone)
+                    ->iconColor('success')
+                    ->listWithLineBreaks()
+                    ->searchable(),
+                ImageColumn::make('gambar')
+                    ->square()
+                    ->size(50)
+                    ->searchable(),
+                TextColumn::make('dokumenBisnis.nama_dokumen')
+                    ->label('Dokumen')
+                    ->listWithLineBreaks()
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                ->schema([
-                    TextInput::make('title')
-                        ->required()
-                        ->maxLength(255),
-                    // ...
-                ]),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
