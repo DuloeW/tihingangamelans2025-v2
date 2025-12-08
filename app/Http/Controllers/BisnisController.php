@@ -68,31 +68,28 @@ class BisnisController extends Controller
     public function index()
     {
         // Ubah array jadi object supaya enak dipanggil di blade ($store->nama)
-        $stores = json_decode(json_encode($this->dummyStores));
-
+        $stores = Bisnis::query()
+                         ->where('status', 'active')
+                         ->orWhere('status', 'verified')
+                         ->with('tags')
+                         ->get();
+        // dd($stores->toArray());
         return view('list-store', ['stores' => $stores]);
     }
 
     // 2. HALAMAN DETAIL TOKO
     public function showStore($slug) {
-        // 1. Ambil data mentah (Masih berupa Array)
-        $storeData = collect($this->dummyStores)->firstWhere('slug', $slug);
+        $storeData = Bisnis::where('slug', $slug)->with('katalogs')->first();
 
         if (!$storeData) {
             abort(404);
         }
 
-        // 2. KONVERSI TOTAL: Array -> Object
-        // json_decode(json_encode(...)) adalah cara tercepat mengubah seluruh isi array jadi object
-        $store = json_decode(json_encode($storeData));
-
         // 3. Kirim ke View
         return view('detail-store', [
-            'store' => $store,
+            'store' => $storeData,
             'slug' => $slug,
-            // Karena sudah di-convert di langkah no 2, 
-            // $store->katalog sekarang isinya sudah Object, bukan Array lagi.
-            'catalogs' => $store->katalog 
+            'catalogs' => $storeData->katalogs 
         ]);
     }
 
@@ -100,14 +97,16 @@ class BisnisController extends Controller
     public function showCatalog($slug, $jenis_katalog, $id_katalog)
     {
         // A. Cari Tokonya dulu
-        $storeData = collect($this->dummyStores)->firstWhere('slug', $slug);
+        $storeData = Bisnis::where('slug', $slug)
+                        ->with('katalogs')
+                        ->first();
         
         if (!$storeData) {
             abort(404); 
         }
 
         // B. Cari Produk di dalam toko tersebut
-        $catalogData = collect($storeData['katalog'])
+        $catalogData = $storeData->katalogs
                         ->where('id', $id_katalog)
                         // Opsional: Validasi jenis juga kalau mau ketat
                         ->where('jenis', $jenis_katalog) 

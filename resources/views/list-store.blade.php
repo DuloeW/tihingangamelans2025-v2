@@ -31,7 +31,7 @@
                         :nama="$store->nama"
                         :slug="$store->slug"
                         :deskripsi="$store->deskripsi" 
-                        :tag_bisnis="$store->tag_bisnis" 
+                        :tag_bisnis="$store->tags->pluck('jenis')" 
                         :profile="$store->profile" 
                         :dataAos="'fade-up'" 
                         :dataAosDuration="'1500'" 

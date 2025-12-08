@@ -1,46 +1,3 @@
-@php
-    // $gamelans = [
-    //     [
-    //         'nama' => 'Gamelan Bonang',
-    //         'deskripsi' => 'The Bonang is a traditional Indonesian musical instrument that is part of',
-    //         'showPrice' => true,
-    //         'price' => '10000000',
-    //         'gambar' => 'images/bende1.png',
-    //         'dataAos' => 'fade-up',
-    //         'dataAosDuration' => '1500',
-    //         'horizontal' => false,
-    //     ],
-    //     [
-    //         'nama' => 'Gamelan Saron',
-    //         'deskripsi' => 'The Saron is a traditional Indonesian musical instrument that is part of the gamelan
-    //                 ensemble.',
-    //         'price' => '10000000',
-    //         'gambar' => 'images/bende1.png',
-    //         'dataAos' => 'fade-up',
-    //         'dataAosDuration' => '1500',
-    //     ],
-    //     [
-    //         'nama' => 'Gamelan Kendang',
-    //         'deskripsi' => 'The Kendang is a traditional Indonesian drum that is an essential part of the gamelan
-    //                 ensemble. ',
-    //         'price' => '10000000',
-    //         'gambar' => 'images/bende1.png',
-    //         'dataAos' => 'fade-up',
-    //         'dataAosDuration' => '1500',
-    //     ],
-    //     [
-    //         'nama' => 'Gamelan Gambang',
-    //         'deskripsi' => 'The Gambang is a traditional Indonesian musical instrument that is part of the gamelan
-    //                 ensemble.',
-    //         'price' => '10000000',
-    //         'gambar' => 'images/bende1.png',
-    //         'dataAos' => 'fade-up',
-    //         'dataAosDuration' => '1500',
-    //     ],
-    // ];
-
-@endphp
-
 <x-global-layout>
 
     <x-slot:title>
@@ -59,9 +16,8 @@
                 </div>
                 <!-- Info toko tengah -->
                 <div class="flex-1 ml-6">
-                    <h2 class="text-3xl font-semibold tracking-wide">GONG SIGAR</h2>
-                    <p class="text-xl font-medium leading-snug mt-1">Menjual Gamelan, menyewakan gamelan, kujungan
-                        wisatawan untuk melihat proses pembuatan gamelan dan belajar megambel</p>
+                    <h2 class="text-3xl font-semibold tracking-wide">{{ $store->nama }}</h2>
+                    <p class="text-xl font-medium leading-snug mt-1">{{ $store->deskripsi }}</p>
                 </div>
                 <!-- Rating kanan -->
                 <div class="flex flex-col items-end ml-6">
@@ -95,7 +51,7 @@
                     <h2 class="text-5xl">Gamelans</h2>
                     <p class="text-xl">Gamelan yang kami sediakan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($catalogs as $catalog)
+                        @forelse ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
                                  <x-katalog-box 
                                     :nama="$catalog->nama_produk" 
@@ -108,7 +64,9 @@
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
-                        @endforeach
+                        @empty
+                            <p class="text-primary mx-auto">Tidak ada katalog gamelan tersedia.</p>
+                        @endforelse
                     </div>
                 </div>
 
@@ -116,7 +74,7 @@
                     <h2 class="text-5xl">Workshop</h2>
                     <p class="text-xl">Berbagai macam workshop gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($catalogs as $catalog)
+                        @forelse ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
                                 <x-katalog-box 
                                     :nama="$catalog->nama_produk" 
@@ -129,7 +87,9 @@
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
-                        @endforeach
+                        @empty
+                            <p class="text-primary mx-auto">Tidak ada katalog workshop tersedia.</p>
+                        @endforelse
                     </div>
                 </div>
 
@@ -137,7 +97,7 @@
                     <h2 class="text-5xl">Kelas Belajar</h2>
                     <p class="text-xl">Berbagai macam kelas gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @foreach ($catalogs as $catalog)
+                        @forelse ($catalogs as $catalog)
                             <div class="w-1/3 flex-shrink-0">
                                 <x-katalog-box 
                                     :nama="$catalog->nama_produk" 
@@ -150,7 +110,9 @@
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
-                        @endforeach
+                        @empty
+                            <p class="text-primary mx-auto">Tidak ada katalog kelas belajar tersedia.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
