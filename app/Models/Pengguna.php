@@ -35,9 +35,9 @@ class Pengguna extends Authenticatable
         'email',
         'password',
         'jenis_kelamin',
-        'kabupaten',
-        'kecamatan',
-        'provinsi',
+        'city_code',
+        'district_code',
+        'province_code',
         'gambar',
         'no_telephone',
     ];

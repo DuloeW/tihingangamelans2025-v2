@@ -34,26 +34,38 @@ class RegisteredUserController extends Controller
             'nama' => ['required', 'string', 'max:150'],
             'user_name' => ['required', 'string', 'max:45'],
             'jenis_kelamin' => ['required', 'string', 'max:45'],
-            'kabupaten' => ['required', 'string', 'max:45'],
-            'kecamatan' => ['required', 'string', 'max:45'],
-            'provinsi' => ['required', 'string', 'max:45'],
+            'city_code' => ['required', 'string', 'max:45'],
+            'district_code' => ['required', 'string', 'max:45'],
+            'province_code' => ['required', 'string', 'max:45'],
             'no_telephone' => ['required', 'string', 'max:20'],
+            'gambar' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:100', 'unique:'.Pengguna::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = Pengguna::create([
-            'nama' => $request->nama,
-            'user_name' => $request->user_name,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'kabupaten' => $request->kabupaten,
-            'kecamatan' => $request->kecamatan,
-            'provinsi' => $request->provinsi,
-            'no_telephone' => $request->no_telephone,
-            'email' => $request->email,
-            'gambar' => 'default.png',
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+
+            $path_gambar = 'default.png';
+
+            if($request->hasFile('gambar')) {
+                $path_gambar = $request->file('gambar')->store('foto-profile-pengguna', 'public');
+            }
+
+            $user = Pengguna::create([
+                'nama' => $request->nama,
+                'user_name' => $request->user_name,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'city_code' => $request->city_code,
+                'district_code' => $request->district_code,
+                'province_code' => $request->province_code,
+                'no_telephone' => $request->no_telephone,
+                'email' => $request->email,
+                'gambar' => $path_gambar,
+                'password' => Hash::make($request->password),
+            ]);
+        } catch (\Exception $th) {
+            dd($th->getMessage());
+        }
 
         event(new Registered($user));
 

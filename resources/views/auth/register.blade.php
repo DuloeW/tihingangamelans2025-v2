@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <h1 class="text-5xl font-markazi font-semibold text-primary">Register</h1>
@@ -51,30 +51,25 @@
             <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2" />
         </div>
 
-        <div class="flex justify-between">
-            <!-- Kabupaten -->
-            <div class="mt-4">
-                <x-input-label for="kabupaten" :value="__('Kabupaten')" />
-                <x-text-input id="kabupaten" class="block mt-1 w-full" type="text" name="kabupaten" :value="old('kabupaten')"
-                    required autofocus autocomplete="kabupaten" />
-                <x-input-error :messages="$errors->get('kabupaten')" class="mt-2" />
-            </div>
-    
-            <!-- Kecamatan -->
-            <div class="mt-4">
-                <x-input-label for="kecamatan" :value="__('Kecamatan')" />
-                <x-text-input id="kecamatan" class="block mt-1 w-full" type="text" name="kecamatan" :value="old('kecamatan')"
-                    required autofocus autocomplete="kecamatan" />
-                <x-input-error :messages="$errors->get('kecamatan')" class="mt-2" />
-            </div>
+        <!-- Alamat Selector  -->
+        <div class="mt-4">
+            @livewire('alamat-selector', ['layout' => 'register'])
         </div>
 
-        <!-- Provinsi -->
         <div class="mt-4">
-            <x-input-label for="provinsi" :value="__('Provinsi')" />
-            <x-text-input id="provinsi" class="block mt-1 w-full" type="text" name="provinsi" :value="old('provinsi')"
-                required autofocus autocomplete="provinsi" />
-            <x-input-error :messages="$errors->get('provinsi')" class="mt-2" />
+            <x-input-label for="gambar" :value="__('Profile')" />
+            <input
+                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-l-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-gray-800 file:text-white
+                    hover:file:bg-gray-700"
+                id="file_input" name="gambar" type="file" />
+
+            <p class="mt-1 text-xs text-gray-500">
+                PNG, JPG, atau JPEG.
+            </p>
         </div>
 
         <!-- Password -->
