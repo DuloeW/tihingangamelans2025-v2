@@ -26,6 +26,7 @@ class BisnisTable
                     ->badge()
                     ->searchable(),
                 TextColumn::make('deskripsi')
+                    ->limit(20)
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge()
