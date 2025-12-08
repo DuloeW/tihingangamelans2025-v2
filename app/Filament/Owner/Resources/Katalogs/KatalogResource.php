@@ -51,6 +51,9 @@ class KatalogResource extends Resource
 
     public static function canViewAny(): bool 
     {
-        return Bisnis::where('owner_id', auth('owner')->user()->owner_id)->exists();
+        return Bisnis::query()
+            ->where('owner_id', auth('owner')->id())
+            ->whereIn('status', ['active', 'verified'])
+            ->exists();
     }
 }
