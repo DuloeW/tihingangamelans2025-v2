@@ -61,7 +61,6 @@ class BisnisTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
