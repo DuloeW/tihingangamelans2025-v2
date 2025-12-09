@@ -25,7 +25,7 @@ Route::prefix('store')->name('store.')->controller(BisnisController::class)->gro
 
     // 3. Halaman Detail Produk/Katalog
     // URL: /store/nama-toko-gamelan/gamelan-bali/15
-    Route::get('/{slug}/{jenis_katalog}/{id_katalog}', 'showCatalog')->name('catalog.detail');
+    Route::get('/{slug}/{jenis}/{katalog_id}', 'showCatalog')->name('catalog.detail');
 
 });
 

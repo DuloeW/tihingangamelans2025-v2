@@ -14,10 +14,6 @@ class KatalogsTable
     {
         return $table
             ->columns([
-                TextColumn::make('katalog_id')
-                    ->searchable(),
-                TextColumn::make('bisnis_id')
-                    ->searchable(),
                 TextColumn::make('nama')
                     ->searchable(),
                 TextColumn::make('harga')

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Owner\Resources\Katalogs\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -13,10 +14,6 @@ class KatalogForm
     {
         return $schema
             ->components([
-                TextInput::make('katalog_id')
-                    ->required(),
-                TextInput::make('bisnis_id')
-                    ->required(),
                 TextInput::make('nama')
                     ->required(),
                 Textarea::make('deskripsi')
@@ -28,7 +25,11 @@ class KatalogForm
                 Select::make('jenis')
                     ->options(['Workshop' => 'Workshop', 'Kelas' => 'Kelas', 'Gamelan' => 'Gamelan'])
                     ->required(),
-                TextInput::make('gambar')
+                FileUpload::make('gambar')
+                    ->disk('public')
+                    ->image()
+                    ->maxSize(2048)
+                    ->directory('katalog-gambars')
                     ->required(),
             ]);
     }

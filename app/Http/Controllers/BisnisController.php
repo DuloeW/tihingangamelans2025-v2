@@ -81,15 +81,25 @@ class BisnisController extends Controller
     public function showStore($slug) {
         $storeData = Bisnis::where('slug', $slug)->with('katalogs')->first();
 
+        $workshops = $storeData->katalogs->where('jenis', 'Workshop');
+        $classes = $storeData->katalogs->where('jenis', 'Kelas');
+        $gamelans = $storeData->katalogs->where('jenis', 'Gamelan');
+
+        dd($gamelans->toArray());
+
         if (!$storeData) {
             abort(404);
         }
+
+        // dd($storeData->toArray());n
 
         // 3. Kirim ke View
         return view('detail-store', [
             'store' => $storeData,
             'slug' => $slug,
-            'catalogs' => $storeData->katalogs 
+            'workshops' => $workshops,
+            'classes' => $classes,
+            'gamelans' => $gamelans
         ]);
     }
 

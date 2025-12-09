@@ -51,16 +51,16 @@
                     <h2 class="text-5xl">Gamelans</h2>
                     <p class="text-xl">Gamelan yang kami sediakan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @forelse ($catalogs as $catalog)
+                        @forelse ($gamelans as $gamelan)
                             <div class="w-1/3 flex-shrink-0">
                                  <x-katalog-box 
-                                    :nama="$catalog->nama_produk" 
-                                    :deskripsi="$catalog->deskripsi" 
-                                    :price="$catalog->harga"
+                                    :nama="$gamelan->nama" 
+                                    :deskripsi="$gamelan->deskripsi" 
+                                    :price="$gamelan->harga"
                                     :slug="$slug"
-                                    :jenis_katalog="$catalog->jenis"
-                                    :id_katalog="$catalog->id"
-                                    :gambar="$catalog->gambar" 
+                                    :jenis="$gamelan->jenis"
+                                    :katalog_id="$gamelan->katalog_id"
+                                    :gambar="$gamelan->gambar" 
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
@@ -74,16 +74,16 @@
                     <h2 class="text-5xl">Workshop</h2>
                     <p class="text-xl">Berbagai macam workshop gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @forelse ($catalogs as $catalog)
+                        @forelse ($workshops as $workshop)
                             <div class="w-1/3 flex-shrink-0">
                                 <x-katalog-box 
-                                    :nama="$catalog->nama_produk" 
-                                    :deskripsi="$catalog->deskripsi" 
-                                    :price="$catalog->harga"
+                                    :nama="$workshop->nama" 
+                                    :deskripsi="$workshop->deskripsi" 
+                                    :price="$workshop->harga"
                                     :slug="$slug"
-                                    :jenis_katalog="$catalog->jenis"
-                                    :id_katalog="$catalog->id"
-                                    :gambar="$catalog->gambar" 
+                                    :jenis="$workshop->jenis"
+                                    :katalog_id="$workshop->katalog_id"
+                                    :gambar="$workshop->gambar" 
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
@@ -97,16 +97,16 @@
                     <h2 class="text-5xl">Kelas Belajar</h2>
                     <p class="text-xl">Berbagai macam kelas gamelan</p>
                     <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
-                        @forelse ($catalogs as $catalog)
+                        @forelse ($classes as $class)
                             <div class="w-1/3 flex-shrink-0">
                                 <x-katalog-box 
-                                    :nama="$catalog->nama_produk" 
-                                    :deskripsi="$catalog->deskripsi" 
-                                    :price="$catalog->harga"
+                                    :nama="$class->nama" 
+                                    :deskripsi="$class->deskripsi" 
+                                    :price="$class->harga"
                                     :slug="$slug"
-                                    :jenis_katalog="$catalog->jenis"
-                                    :id_katalog="$catalog->id"
-                                    :gambar="$catalog->gambar" 
+                                    :jenis="$class->jenis"
+                                    :katalog_id="$class->katalog_id"
+                                    :gambar="$class->gambar" 
                                     :dataAos="'fade-up'" 
                                     :dataAosDuration="'1500'" />
                             </div>
