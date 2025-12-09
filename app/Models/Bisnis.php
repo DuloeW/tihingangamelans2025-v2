@@ -17,6 +17,7 @@ class Bisnis extends Model
 
     protected $fillable = [
         'bisnis_id',
+        'admin_id',
         'owner_id',
         'nama',
         'slug',
