@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class KatalogResource extends Resource
 {
@@ -55,5 +56,13 @@ class KatalogResource extends Resource
             ->where('owner_id', auth('owner')->id())
             ->whereIn('status', ['active', 'verified'])
             ->exists();
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->whereHas('bisnis', function ($query) {
+                $query->where('owner_id', auth('owner')->id());
+        });
     }
 }
