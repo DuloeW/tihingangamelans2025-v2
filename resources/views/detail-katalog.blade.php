@@ -9,23 +9,22 @@
                 <!-- Gambar Produk & Harga -->
                 <div class="w-1/3 flex flex-col">
                     <div class="w-full bg-gray-50 rounded-xl p-6 flex items-center justify-center mb-4">
-                        <img src="{{ asset('images/bende1.png') }}" alt="Gamelan"
+                        <img src="{{ asset($catalog->gambar) }}" alt="Gamelan"
                             class="w-48 h-48 object-contain drop-shadow-md">
                     </div>
-                    <p class="text-4xl text-primary font-semibold">{{ $catalog->nama_produk }}</p>
-                    <p class="text-primary text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-                        blanditiis porro numquam nihil magni rerum dolorum, fuga consectetur nam. Quod.</p>
-                    <p class="text-3xl mt-4 font-bold text-[#3A2415]">Rp.500.000,00</p>
+                    <p class="text-4xl text-primary font-semibold">{{ $catalog->nama}}</p>
+                    <p class="text-primary text-lg">{{ $catalog->deskripsi }}</p>
+                    <p class="text-3xl mt-4 font-bold text-[#3A2415]">Rp.{{ number_format($catalog->harga, 0, ',', '.') }},00</p>
                 </div>
 
                 <!-- Form Pemesanan -->
                 <div class="flex-1 p-6">
                     @switch($catalog->jenis)
-                        @case('workshop')
+                        @case('Workshop')
                             <x-form-katalog-workshop :store="$store" />
                         @break
 
-                        @case('kelas')
+                        @case('Kelas')
                             <x-form-katalog-kelas :store="$store" />
                         @break
 
