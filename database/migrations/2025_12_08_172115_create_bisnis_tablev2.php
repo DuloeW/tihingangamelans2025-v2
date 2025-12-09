@@ -14,15 +14,12 @@ return new class extends Migration
         Schema::create('bisnis', function (Blueprint $table) {
             $table->uuid('bisnis_id')->primary();
 
-            $table->char('admin_id', 36);
+            $table->char('admin_id', 36)->nullable();
 
             $table->foreign('admin_id')
                     ->references('admin_id')
                     ->on('admin')
-                    ->nullable()
-                    ->onDelete('cascade');
-
-           
+                    ->nullOnDelete();
             
             $table->foreignUuid('owner_id')
                     ->constrained('owner', 'owner_id')
