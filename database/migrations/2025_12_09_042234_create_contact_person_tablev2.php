@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gamelan', function (Blueprint $table) {
-            $table->uuid('gamelan_id')->primary();
-
-            $table->foreignUuid('admin_id')
-            ->constrained('admin', 'admin_id')
-            ->onDelete('cascade');
-
+        Schema::create('contact_person', function (Blueprint $table) {
+            $table->uuid('contact_person_id')->primary();
+            $table->foreignUuid('bisnis_id')
+                    ->constrained('bisnis', 'bisnis_id')
+                    ->onDelete('cascade');
             $table->string('nama');
-            $table->text('deskripsi');
-            $table->string('gambar');
-            $table->string('audio');
+            $table->string('no_telephone');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gamelan');
+        Schema::dropIfExists('contact_person');
     }
 };

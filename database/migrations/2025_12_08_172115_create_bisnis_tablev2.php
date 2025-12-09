@@ -15,14 +15,20 @@ return new class extends Migration
             $table->uuid('bisnis_id')->primary();
 
             $table->foreignUuid('admin_id')
-            ->constrained('admin', 'admin_id')
-            ->onDelete('cascade');
-
+                    ->constrained('admin', 'admin_id')
+                    ->onDelete('cascade');
+            
+            $table->foreignUuid('owner_id')
+                    ->constrained('owner', 'owner_id')
+                    ->onDelete('cascade');
+            
             $table->string('nama');
+            $table->string('slug')->unique();
+
             $table->text('deskripsi');
             $table->string('gambar');
             $table->string('email');
-            $table->enum('status', ['active', 'inactive', 'verified', 'unverified'])->default('inactive');
+            $table->enum('status', ['verified', 'unverified'])->default('unverified');
         });
     }
 

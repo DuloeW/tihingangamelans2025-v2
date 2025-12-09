@@ -18,9 +18,26 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('kabupaten');
-            $table->string('kecamatan');
-            $table->string('provinsi');
+            $table->char('province_code', 2)->nullable();
+            $table->char('city_code', 4)->nullable();
+            $table->char('district_code', 7)->nullable();
+
+            $table->foreign('province_code')
+                    ->references('code')
+                    ->on('indonesia_provinces')
+                    ->onDelete('cascade');
+
+            $table->foreign('city_code')
+                    ->references('code')
+                    ->on('indonesia_cities')
+                    ->onDelete('cascade');
+                    
+            $table->foreign('district_code')
+                    ->references('code')
+                    ->on('indonesia_districts')
+                    ->onDelete('cascade');
+
+
             $table->string('jenis_kelamin');
             $table->string('no_telephone');
             $table->string('gambar')->default('default.png');

@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('owner', function (Blueprint $table) {
             $table->uuid('owner_id')->primary();
-
-            $table->foreignUuid('bisnis_id')
-            ->constrained('bisnis', 'bisnis_id')
-            ->onDelete('cascade');
-            
             $table->string('nama');
             $table->string('user_name');
-            $table->string('no_telephone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
+            $table->string('no_telephone');
+            $table->rememberToken();
+            $table->timestamps(false);
         });
     }
 

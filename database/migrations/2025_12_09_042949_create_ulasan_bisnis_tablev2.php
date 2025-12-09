@@ -11,19 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ulasan_katalog', function (Blueprint $table) {
-            $table->uuid('ulasan_katalog_id')->primary();
+        Schema::create('ulasan_bisnis', function (Blueprint $table) {
+            $table->uuid('ulasan_bisnis_id')->primary();
 
             $table->foreignUuid('pengguna_id')
-            ->constrained('pengguna', 'pengguna_id')
-            ->onDelete('cascade');
-            $table->foreignUuid('katalog_id')
-            ->constrained('katalogs', 'katalog_id')
-            ->onDelete('cascade');
+                ->constrained('pengguna', 'pengguna_id')
+                ->onDelete('cascade');
+
+            $table->foreignUuid('bisnis_id')
+                ->constrained('bisnis', 'bisnis_id')
+                ->onDelete('cascade');
 
             $table->string('isi_ulasan');
-            $table->string('tag_ulasan');
+            $table->tinyInteger('rating');
             $table->string('nama_pengulas');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ulasan_katalog');
+        Schema::dropIfExists('ulasan_bisnis');
     }
 };

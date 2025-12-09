@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->uuid('jadwal_id')->primary();
-
+    
             $table->foreignUuid('katalog_id')
-            ->constrained('katalogs', 'katalog_id')
-            ->onDelete('cascade');
-            
-            $table->dateTime('tanggal_mulai');
-            $table->dateTime('tanggal_selesai');
-            $table->timestamps();
+                ->constrained('katalogs', 'katalog_id')
+                ->cascadeOnDelete(); 
+
+            $table->dateTime('waktu_mulai');
+            $table->dateTime('waktu_selesai');
+    
+            $table->integer('kuota')->default(1);
         });
     }
 

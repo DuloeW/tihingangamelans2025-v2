@@ -11,13 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contact_person', function (Blueprint $table) {
-            $table->uuid('contact_person_id')->primary();
+        Schema::create('katalogs', function (Blueprint $table) {
+             $table->uuid('katalog_id')->primary();
+
             $table->foreignUuid('bisnis_id')
-            ->constrained('bisnis', 'bisnis_id')
-            ->onDelete('cascade');
+                    ->constrained('bisnis', 'bisnis_id')
+                    ->onDelete('cascade');
+
             $table->string('nama');
-            $table->string('no_telephone');
+            $table->text('deskripsi');
+            $table->double('harga');
+            $table->string('gambar');
+            $table->enum('jenis', ['Workshop', 'Kelas', 'Gamelan']);
         });
     }
 
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact_person');
+        Schema::dropIfExists('katalogs');
     }
 };

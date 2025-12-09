@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tag_bisnis', function (Blueprint $table) {
-            $table->uuid('tag_bisnis_id')->primary();
-            
-            $table->foreignUuid('bisnis_id')
-            ->constrained('bisnis', 'bisnis_id')
-            ->onDelete('cascade');
+        Schema::create('dokumen_bisnis', function (Blueprint $table) {
+            $table->uuid('dokumen_bisnis_id')->primary();
 
-            $table->enum('jenis', ['Learn', 'Workshop', 'Purchase']);
+            $table->foreignUuid('bisnis_id')
+                    ->constrained('bisnis', 'bisnis_id')
+                    ->onDelete('cascade');
+
+            $table->string('nama_dokumen');
+            $table->string('path');
+            $table->timestamp('tanggal_dibuat');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tag_bisnis');
+        Schema::dropIfExists('dokumen_bisnis');
     }
 };
