@@ -8,8 +8,9 @@
             <div class="flex gap-8">
                 <!-- Gambar Produk & Harga -->
                 <div class="w-1/3 flex flex-col">
+                    {{-- //TODO seperti ini cara memanggil gambar --}}
                     <div class="w-full bg-gray-50 rounded-xl p-6 flex items-center justify-center mb-4">
-                        <img src="{{ asset($catalog->gambar) }}" alt="Gamelan"
+                        <img src="{{ asset('storage/' . $catalog->gambar) }}" alt="Gamelan"
                             class="w-48 h-48 object-contain drop-shadow-md">
                     </div>
                     <p class="text-4xl text-primary font-semibold">{{ $catalog->nama}}</p>

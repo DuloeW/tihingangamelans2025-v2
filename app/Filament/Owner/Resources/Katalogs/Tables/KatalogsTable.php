@@ -23,7 +23,10 @@ class KatalogsTable
                 TextColumn::make('harga')
                     ->numeric()
                     ->sortable(),
-                ImageColumn::make('gambar')
+                TextColumn::make('deskripsi')
+                    ->limit(20)
+                    ->searchable(),
+                ImageColumn::make('gambar')                         
                     ->label('Gambar Produk')
                     ->square()
                     ->height(50)

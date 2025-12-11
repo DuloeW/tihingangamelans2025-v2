@@ -13,7 +13,7 @@
     data-aos-duration="{{ $dataAosDuration }}"
     class="w-full h-auto mb-10 shadow-lg rounded-lg overflow-hidden bg-boxCatalog">
     <div class="w-auto flex justify-center items-center bg-white py-5">
-        <img src="{{ asset($profile) }}" alt="" class="h-40 w-auto object-cover">
+        <img src="{{ asset('storage/' . $profile) }}" alt="" class="h-40 w-auto object-cover">
     </div>
     <div class="px-10 py-5 h-auto w-full flex flex-col justify-between">
         <div>

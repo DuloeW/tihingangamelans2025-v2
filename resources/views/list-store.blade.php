@@ -32,7 +32,7 @@
                         :slug="$store->slug"
                         :deskripsi="$store->deskripsi" 
                         :tag_bisnis="$store->tags->pluck('jenis')" 
-                        :profile="$store->profile" 
+                        :profile="$store->gambar" 
                         :dataAos="'fade-up'" 
                         :dataAosDuration="'1500'" 
                     />

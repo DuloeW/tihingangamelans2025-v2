@@ -2,14 +2,14 @@
     <form method="POST" action="#" class="space-y-4">
         @csrf
 
-        <!-- Nama Group -->
+        {{-- <!-- Nama Group -->
         <div>
             <label for="nama_group" class="block text-xl font-semibold text-[#3A2415] mb-1">Nama Group</label>
             <input type="text" id="nama_group" name="nama_group" placeholder="Man Lari"
                 class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
-        </div>
+        </div> --}}
 
-        <div class="flex gap-5 justify-between">
+        {{-- <div class="flex gap-5 justify-between">
             <!-- Pilih hari mulai -->
             <div class="flex-1">
                 <label for="tanggal_workshop" class="block text-xl font-semibold text-[#3A2415] mb-1">Pilih Hari Mulai</label>
@@ -22,15 +22,11 @@
                 <input type="date" id="tanggal_workshop" name="tanggal_workshop"
                     class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
             </div>
-        </div>
-
-
-        {{-- <!-- Provinsi, Kabupaten, Kecamatan -->
-        @livewire('alamat-selector') --}}
+        </div> --}}
 
         <!-- Jumlah Anggota -->
         <div>
-            <label for="jumlah_anggota" class="block text-sm font-semibold text-[#3A2415] mb-1">Banyak Anggota</label>
+            <label for="jumlah_anggota" class="block text-xl font-semibold text-[#3A2415] mb-1">Banyak Anggota</label>
             <input type="number" id="jumlah_anggota" name="jumlah_anggota" value="0" min="0"
                 class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">  
         </div>

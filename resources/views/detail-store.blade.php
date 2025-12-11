@@ -11,7 +11,7 @@
             <div class="flex items-center border text-primary border-gray-300 rounded-xl px-6 py-4 bg-white shadow-sm">
                 <!-- Gambar kiri -->
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('images/bende1.png') }}" alt="Logo Toko"
+                    <img src="{{ asset('storage/' . $store->gambar) }}" alt="Logo Toko"
                         class="w-20 h-20 rounded-full border border-gray-200 object-cover" />
                 </div>
                 <!-- Info toko tengah -->

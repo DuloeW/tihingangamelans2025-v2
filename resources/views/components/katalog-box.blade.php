@@ -13,7 +13,7 @@
 <div data-aos="{{ $dataAos }}" data-aos-duration="{{ $dataAosDuration }}"
     class="w-full max-w-xs bg-[#FAF8F3] rounded-xl shadow-md p-5 flex flex-col items-center mb-6">
     <div class="w-full flex flex-col items-center">
-        <img src="{{ asset($gambar) }}" alt="" class="h-24 w-auto object-contain mb-4 drop-shadow-sm">
+        <img src="{{ asset('storage/' . $gambar) }}" alt="" class="h-24 w-auto object-contain mb-4 drop-shadow-sm">
     </div>
     <div class="w-full flex-1 flex flex-col justify-between">
         <h2 class="text-3xl font-bold text-[#3A2415] mb-1">{{ $nama }}</h2>
