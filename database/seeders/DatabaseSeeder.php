@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Owner;
 use App\Models\Pengguna;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
 
         Pengguna::factory(50)->create();
         Owner::factory(50)->create();
+        Admin::factory(1)->create();
     }
 }

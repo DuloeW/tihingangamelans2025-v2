@@ -7,10 +7,11 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Admin extends Authenticatable implements FilamentUser, HasName
 {
-    use HasUuids;
+    use HasUuids, HasFactory;
     
     protected $table = 'admin';
     protected $primaryKey = 'admin_id';

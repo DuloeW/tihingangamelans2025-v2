@@ -11,11 +11,12 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Filament\Models\Contracts\HasName;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Owner extends Authenticatable implements FilamentUser, HasName
 {
     //
-    use HasUuids;
+    use HasUuids, HasFactory;
 
     protected $table = 'owner';
     protected $primaryKey = 'owner_id';
@@ -24,7 +25,6 @@ class Owner extends Authenticatable implements FilamentUser, HasName
 
     protected $hidden = [
         'password',
-    
     ];
 
     protected $casts = [
