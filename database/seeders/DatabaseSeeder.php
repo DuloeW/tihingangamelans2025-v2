@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Owner;
 use App\Models\Pengguna;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,9 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Pengguna::factory()->create([
-            'nama' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Pengguna::factory(50)->create();
+        Owner::factory(50)->create();
     }
 }
