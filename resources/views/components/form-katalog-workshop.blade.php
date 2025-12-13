@@ -1,5 +1,5 @@
 <div>
-    <form method="POST" action="#" class="space-y-4">
+    <form method="POST" action="{{ route('pesan.workshop') }}" class="space-y-4">
         @csrf
 
         {{-- <!-- Nama Group -->
@@ -24,6 +24,15 @@
             </div>
         </div> --}}
 
+        <input type="hidden" name="katalog_id" value="{{ $catalog->katalog_id }}" />
+        <input type="hidden" name="pengguna_id" value="{{ auth('web')->id() }}">
+        <input type="hidden" name="total_harga" value="{{ $catalog->harga }}" />
+        {{-- @php
+            dd( $jadwal->jadwal_id )
+        @endphp --}}
+        <input type="hidden" name="jadwal_id" value="{{ $jadwal->jadwal_id }}" />
+
+
         <!-- Jumlah Anggota -->
         <div>
             <label for="jumlah_anggota" class="block text-xl font-semibold text-[#3A2415] mb-1">Banyak Anggota</label>
@@ -37,10 +46,16 @@
                 class="flex-1 border-2 py-3  border-[#3A2415] text-[#3A2415] text-lg tracking-wide rounded-md text-center font-semibold hover:bg-gray-50 transition">
                 Balik
             </a>
-            <button type="submit"
-                class="flex-1 bg-[#3A2415] text-white py-3 text-lg tracking-wide rounded-md font-semibold hover:bg-[#2a180a] transition">
-                Pesan
-            </button>
+            <div class="flex-1 relative">
+                <button type="submit"
+                    @disabled(!$isAuthenticated)
+                    class="w-full bg-[#3A2415] {{ $isAuthenticated ? '' : 'opacity-50 cursor-not-allowed' }} text-white py-3 text-lg tracking-wide rounded-md font-semibold hover:bg-[#2a180a] transition">
+                    Pesan
+                </button>
+                @if (!$isAuthenticated)
+                    <p class="text-red-500 mt-2 absolute">Anda harus login terlebih dahulu untuk memesan workshop.</p>
+                @endif
+            </div>
         </div>
     </form>
 </div>
