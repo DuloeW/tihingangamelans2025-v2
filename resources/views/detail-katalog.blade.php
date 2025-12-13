@@ -22,7 +22,17 @@
                 <div class="flex-1 p-6">
                     @switch($catalog->jenis)
                         @case('Workshop')
-                            <x-form-katalog-workshop :store="$store" />
+                            @livewire('form-pemesanan-workshop', 
+                                ['catalog' => $catalog, 
+                                'store' => $store, 
+                                'jadwals' => $jadwal, 
+                                'pemesanan' => $pemesanan], 
+                                key($catalog->katalog_id))
+                            {{-- <x-form-katalog-workshop  --}}
+                                {{-- :store="$store" 
+                                :catalog="$catalog"
+                                :isAuthenticated="$isAuthenticated"
+                                :jadwal="$jadwal" /> --}}
                         @break
 
                         @case('Kelas')

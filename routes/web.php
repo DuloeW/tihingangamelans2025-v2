@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BisnisController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,19 +13,18 @@ Route::get('/gallery-gamelan', function () {
     return view('gallery-gamelan');
 });
 
+Route::post('/pesan-workshop', [PemesananController::class, 'storeWorkshop'])->name('pesan.workshop');
+
 // Kita group semua URL yang berawalan 'store'
 Route::prefix('store')->name('store.')->controller(BisnisController::class)->group(function () {
 
     // 1. Halaman List Semua Toko
-    // URL: /store
     Route::get('/', 'index')->name('index');
 
     // 2. Halaman Detail Toko
-    // URL: /store/nama-toko-gamelan
     Route::get('/{slug}', 'showStore')->name('show');
 
     // 3. Halaman Detail Produk/Katalog
-    // URL: /store/nama-toko-gamelan/gamelan-bali/15
     Route::get('/{slug}/{jenis}/{katalog_id}', 'showCatalog')->name('catalog.detail');
 
 });

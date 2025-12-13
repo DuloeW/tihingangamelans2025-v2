@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bisnis;
+use App\Models\Jadwal;
 use App\Models\Katalog;
+use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
 class BisnisController extends Controller
@@ -59,11 +61,19 @@ class BisnisController extends Controller
         }
 
         $store = $katalog->bisnis;
+        // $jadwal = Jadwal::where('katalog_id', $katalog->katalog_id)->get();
+        $jadwal = Jadwal::where('katalog_id', $katalog->katalog_id)->get();
+        $isAuthenticated = auth('web')->check();
+        $pemesanan = Pemesanan::get();
+        // dd( $pemesanan->toArray() );
 
         return view('detail-katalog', [
             'store' => $store,
             'catalog' => $katalog,
-            'jenis' => $jenis_katalog
+            'jenis' => $jenis_katalog,
+            'isAuthenticated' => $isAuthenticated,
+            'jadwal' => $jadwal,
+            'pemesanan' => $pemesanan,
         ]);
     }   
 }
