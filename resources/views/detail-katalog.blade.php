@@ -28,11 +28,6 @@
                                 'jadwals' => $jadwal, 
                                 'pemesanan' => $pemesanan], 
                                 key($catalog->katalog_id))
-                            {{-- <x-form-katalog-workshop  --}}
-                                {{-- :store="$store" 
-                                :catalog="$catalog"
-                                :isAuthenticated="$isAuthenticated"
-                                :jadwal="$jadwal" /> --}}
                         @break
 
                         @case('Kelas')
