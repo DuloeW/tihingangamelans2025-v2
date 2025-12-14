@@ -17,6 +17,8 @@ class PemesananController extends Controller
         $penggunaId = $request->input('pengguna_id');
         $jadwalId = $request->input('jadwal_id');
         $totalHarga = $request->input('total_harga');
+        $nama_grup = $request->input('nama_grup');
+        $jumlah = $request->input('jumlah');
 
 
 

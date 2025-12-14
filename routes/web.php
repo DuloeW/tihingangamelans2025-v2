@@ -4,7 +4,9 @@ use App\Http\Controllers\BisnisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Pemesanan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -34,10 +36,40 @@ Route::get('/detail-katalog', function () {
 });
 
 
-
-
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // 1. Ambil User ID yang sedang login
+    $userId = Auth::id();
+
+    $riwayatWorkshop = Pemesanan::with(['katalog', 'jadwal'])
+        ->where('pengguna_id', $userId)
+        ->whereHas('katalog', function($query) {
+            $query->where('jenis', 'Workshop');
+        })
+        ->orderBy('tanggal_pemesanan', 'desc')
+        ->get();
+    
+    $riwayatKelas = Pemesanan::with(['katalog', 'jadwal'])
+        ->where('pengguna_id', $userId)
+        ->whereHas('katalog', function($query) {
+            $query->where('jenis', 'Kelas');
+        })
+        ->orderBy('tanggal_pemesanan', 'desc')
+        ->get();
+
+    $riwayatGamelan = Pemesanan::with(['katalog', 'jadwal'])
+        ->where('pengguna_id', $userId)
+        ->whereHas('katalog', function($query) {
+            $query->where('jenis', 'Gamelan');
+        })
+        ->orderBy('tanggal_pemesanan', 'desc')
+        ->get();
+
+    // 3. Return view dashboard sambil membawa data '$riwayatWorkshop' sebagai '$workshops'
+    return view('dashboard', [
+        'workshops' => $riwayatWorkshop,
+        'classes' => $riwayatKelas,
+        'gamelans' => $riwayatGamelan,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
