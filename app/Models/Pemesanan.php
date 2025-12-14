@@ -17,12 +17,20 @@ class Pemesanan extends Model
         'jadwal_id',
         'katalog_id',
         'pengguna_id', 
+
         'tgl_mulai_booking',
         'tgl_selesai_booking',
-        'status',
         'nama_grup',
         'jumlah',
+
+        'province_code',
+        'city_code',
+        'district_code',
+        'alamat_lengkap',
+        'penerima',
+
         'tanggal_pemesanan',
+        'status',
         'total_harga',
     ];
 

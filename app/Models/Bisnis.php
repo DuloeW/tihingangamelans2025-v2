@@ -55,6 +55,11 @@ class Bisnis extends Model
         return $this->hasMany(Katalog::class, 'bisnis_id', 'bisnis_id');
     }
 
+    public function contactPerson(): HasMany
+    {
+        return $this->hasMany(ContactPerson::class, 'bisnis_id', 'bisnis_id');
+    }
+
     // /**
     //  * @return array<string, string>
     //  */

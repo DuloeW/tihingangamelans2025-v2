@@ -35,7 +35,12 @@
                         @break
 
                         @default
-                            <x-form-katalog-gamelan :store="$store" />
+                            @livewire('form-pemesanan-gamelan',
+                            ['catalog' => $catalog,
+                            'store' => $store,
+                            'isAuthenticated' => $isAuthenticated],
+                            key($catalog->katalog_id))
+                            {{-- <x-form-katalog-gamelan :store="$store" /> --}}
                         @break
                     @endswitch
                 </div>

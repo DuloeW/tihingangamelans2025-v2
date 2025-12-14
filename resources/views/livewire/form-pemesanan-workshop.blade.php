@@ -30,7 +30,9 @@
                     @endphp
 
                     {{-- Hanya tampilkan jika kuota masih ada --}}
-                    <option value="{{ $jadwalItem->jadwal_id }}" {{ $sisa <= 0 ? 'disabled' : '' }}>
+                    <option 
+                        wire:key="{{ $jadwalItem->jadwal_id }}"
+                        value="{{ $jadwalItem->jadwal_id }}" {{ $sisa <= 0 ? 'disabled' : '' }}>
                         {{ \Carbon\Carbon::parse($jadwalItem->waktu_mulai)->format('d F Y, H:i -') }} 
                         {{ \Carbon\Carbon::parse($jadwalItem->waktu_selesai)->format('d F Y, H:i')}} 
                         (Sisa: {{ $sisa }} kursi)

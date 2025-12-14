@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        FilamentAsset::register([
-            // Local asset build using Vite
-            Js::make('sweetalert2', Vite::asset('resources/js/sweetalert2.js')),
-        ]);
+        // FilamentAsset::register([
+        //     // Local asset build using Vite
+        //     Js::make('sweetalert2', Vite::asset('resources/js/sweetalert2.js')),
+        // ]);
 
     }
 }

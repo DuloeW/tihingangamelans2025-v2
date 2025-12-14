@@ -14,13 +14,11 @@ class BisnisController extends Controller
     // 1. HALAMAN LIST TOKO
     public function index()
     {
-        // Ubah array jadi object supaya enak dipanggil di blade ($store->nama)
         $stores = Bisnis::query()
                          ->where('status', 'active')
                          ->orWhere('status', 'verified')
                          ->with('tags')
                          ->get();
-        // dd($stores->toArray());
         return view('list-store', ['stores' => $stores]);
     }
 
@@ -35,8 +33,6 @@ class BisnisController extends Controller
         if (!$storeData) {
             abort(404);
         }
-
-        // dd($storeData->toArray());n
 
         // 3. Kirim ke View
         return view('detail-store', [
@@ -61,11 +57,9 @@ class BisnisController extends Controller
         }
 
         $store = $katalog->bisnis;
-        // $jadwal = Jadwal::where('katalog_id', $katalog->katalog_id)->get();
         $jadwal = Jadwal::where('katalog_id', $katalog->katalog_id)->get();
         $isAuthenticated = auth('web')->check();
         $pemesanan = Pemesanan::get();
-        // dd( $pemesanan->toArray() );
 
         return view('detail-katalog', [
             'store' => $store,

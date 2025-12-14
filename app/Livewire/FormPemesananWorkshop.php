@@ -4,11 +4,14 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Pemesanan;
+use App\Traits\WhatsAppTrait;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class FormPemesananWorkshop extends Component
 {
+    use WhatsAppTrait;
+    
     public $catalog;
     public $store;
     public $jadwals;
@@ -33,35 +36,53 @@ class FormPemesananWorkshop extends Component
             return redirect()->route('login');
         }
 
-        // 1. Validasi Input
         $this->validate([
             'nama_grup'      => 'required|string|max:255',
             'jumlah_anggota' => 'required|integer|min:1',
             'jadwal_id'      => 'required|exists:jadwal,jadwal_id', // Pastikan user memilih jadwal
         ]);
 
-        // 3. Simpan
-        Pemesanan::create([
-            'pengguna_id'       => auth('web')->id(),
-            'katalog_id'        => $this->catalog->katalog_id,
-            'jadwal_id'         => $this->jadwal_id, // Ambil dari wire:model
-            'tanggal_pemesanan' => now(),
-            'status'            => 'unpaid',
-            'total_harga'       => $this->catalog->harga * $this->jumlah_anggota,
-            'jumlah'            => $this->jumlah_anggota,
-            'nama_grup'         => $this->nama_grup,
-        ]);
+        try {
+            $pesanan = Pemesanan::create([
+                'pengguna_id'       => auth('web')->id(),
+                'katalog_id'        => $this->catalog->katalog_id,
+                'jadwal_id'         => $this->jadwal_id, // Ambil dari wire:model
+                'tanggal_pemesanan' => now(),
+                'status'            => 'unpaid',
+                'total_harga'       => $this->catalog->harga * $this->jumlah_anggota,
+                'jumlah'            => $this->jumlah_anggota,
+                'nama_grup'         => $this->nama_grup,
+            ]);
 
-        LivewireAlert::title('Success')
-            ->text('Pesanan berhasil dibuat')
-            ->success()
-            ->timer(3000)
-            ->withConfirmButton('OK')
-            ->onConfirm('goToDashboard')
-            ->onDeny('goToDashboard')
-            ->onDismiss('goToDashboard')
-            ->show();
+            $wa_url = $this->generateWaUrl(
+                $this->store,
+                $this->catalog,
+                $pesanan,
+                [
+                    "Nama Grup" => $this->nama_grup,
+                    "Jumlah Anggota:" => $this->jumlah_anggota,
+                    "Mulai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_mulai,
+                    "Selesai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_selesai,
+                ],
+            );
 
+            LivewireAlert::title('Success')
+                ->text('Pesanan berhasil dibuat')
+                ->success()
+                ->timer(3000)
+                ->withConfirmButton('OK')
+                ->onConfirm('goToWa', ['url' => $wa_url])
+                ->onDeny('goToWa', ['url' => $wa_url])
+                ->onDismiss('goToWa', ['url' => $wa_url])
+                ->show();
+        } catch (\Exception $e) {
+            LivewireAlert::title('Error')
+                ->text('Terjadi kesalahan saat membuat pesanan: ' . $e->getMessage())
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            return;
+        }
     }
 
     public function render()
@@ -71,8 +92,8 @@ class FormPemesananWorkshop extends Component
         ]);
     }
 
-    public function goToDashboard()
+    public function goToWa($data)
     {
-        return redirect()->route('dashboard');
+        return redirect()->away($data['url']);
     }
 }

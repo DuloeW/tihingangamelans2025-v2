@@ -38,7 +38,7 @@ class AlamatSelector extends Component
         $this->cities = City::where('province_code', $provinceId)->pluck('name', 'code')->sortBy(function($name) {
             return $name;
         });
-        
+
         // 2. Reset pilihan di bawahnya agar tidak error
         $this->districts = [];
         $this->selectedCity = null;
@@ -57,8 +57,20 @@ class AlamatSelector extends Component
         $this->selectedDistrict = null;
     }
 
+    public function updatedSelectedDistrict($districtId)
+    {
+        $this->dispatch('alamat-update', [
+            'province_code' => $this->selectedProvince,
+            'city_code' => $this->selectedCity,
+            'district_code' => $this->selectedDistrict,
+        ]);
+    }
+
     public function render()
     {
-        return view('livewire.alamat-selector');
+        $provice_code = $this->selectedProvince;
+        $city_code = $this->selectedCity;
+        $district_code = $this->selectedDistrict;
+        return view('livewire.alamat-selector', compact('provice_code', 'city_code', 'district_code'));
     }
 }
