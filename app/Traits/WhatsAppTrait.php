@@ -27,7 +27,7 @@ trait WhatsAppTrait
             $pesan .= "{$label} {$value}\n";
         }
 
-        if($catalog->jenis == 'Gamelan' || $catalog->jenis == 'Workshop') {
+        if($catalog->jenis == 'Kelas' || $catalog->jenis == 'Workshop') {
             $pesan .= "Jumlah Anggota: {$pesanan->jumlah}\n";
         } else {
             $pesan .= "Jumlah: {$pesanan->jumlah}\n";

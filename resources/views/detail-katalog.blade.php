@@ -30,7 +30,11 @@
                         @break
 
                         @case('Kelas')
-                            <x-form-katalog-kelas :store="$store" />
+                            @livewire('form-pemesanan-kelas',
+                            ['catalog' => $catalog,
+                            'store' => $store], 
+                            key($catalog->katalog_id))
+                            {{-- <x-form-katalog-kelas :store="$store" /> --}}
                         @break
 
                         @default
