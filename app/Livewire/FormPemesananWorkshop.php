@@ -5,7 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Pemesanan;
 use App\Traits\WhatsAppTrait;
-use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class FormPemesananWorkshop extends Component
@@ -15,19 +14,16 @@ class FormPemesananWorkshop extends Component
     public $catalog;
     public $store;
     public $jadwals;
-    public $pemesanan;
     
-    // Data Inputan Form (Wire Model)
     public $nama_grup = ''; 
     public $jumlah_anggota = 1;
     public $jadwal_id = '';
 
-    public function mount($catalog, $store, $jadwals, $pemesanan)
+    public function mount($catalog, $store, $jadwals)
     {
         $this->catalog = $catalog;
         $this->store = $store;
         $this->jadwals = $jadwals;
-        $this->pemesanan = $pemesanan;
     }
 
     public function save()
@@ -59,8 +55,7 @@ class FormPemesananWorkshop extends Component
                 $this->catalog,
                 $pesanan,
                 [
-                    "Nama Grup" => $this->nama_grup,
-                    "Jumlah Anggota:" => $this->jumlah_anggota,
+                    "Nama Grup:" => $this->nama_grup,
                     "Mulai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_mulai,
                     "Selesai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_selesai,
                 ],

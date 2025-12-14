@@ -59,7 +59,6 @@ class BisnisController extends Controller
         $store = $katalog->bisnis;
         $jadwal = Jadwal::where('katalog_id', $katalog->katalog_id)->get();
         $isAuthenticated = auth('web')->check();
-        $pemesanan = Pemesanan::get();
 
         return view('detail-katalog', [
             'store' => $store,
@@ -67,7 +66,6 @@ class BisnisController extends Controller
             'jenis' => $jenis_katalog,
             'isAuthenticated' => $isAuthenticated,
             'jadwal' => $jadwal,
-            'pemesanan' => $pemesanan,
         ]);
     }   
 }

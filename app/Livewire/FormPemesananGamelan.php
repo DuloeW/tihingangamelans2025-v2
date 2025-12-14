@@ -63,35 +63,35 @@ class FormPemesananGamelan extends Component
         try {
             $total_harga = $this->catalog->harga * $this->jumlah_gamelan;
         
-        $pesanan = Pemesanan::create([
-            'pengguna_id' => auth('web')->id(),
-            'katalog_id' => $this->catalog->katalog_id,
-            'penerima' => $this->nama_penerima,
-            'provice_code' => $this->province_code,
-            'city_code' => $this->city_code,
-            'status' => 'unpaid',
-            'total_harga' => $total_harga,
-            'alamat_lengkap' => $this->alamat_lengkap,
-            'jumlah' => $this->jumlah_gamelan,
-            'tanggal_pemesanan' => now(),
-        ]);
+            $pesanan = Pemesanan::create([
+                'pengguna_id' => auth('web')->id(),
+                'katalog_id' => $this->catalog->katalog_id,
+                'penerima' => $this->nama_penerima,
+                'provice_code' => $this->province_code,
+                'city_code' => $this->city_code,
+                'status' => 'unpaid',
+                'total_harga' => $total_harga,
+                'alamat_lengkap' => $this->alamat_lengkap,
+                'jumlah' => $this->jumlah_gamelan,
+                'tanggal_pemesanan' => now(),
+            ]);
 
-        $wa_url = $this->generateWaUrl(
-            $this->store,
-            $this->catalog,
-            $pesanan,
-        );
+            $wa_url = $this->generateWaUrl(
+                $this->store,
+                $this->catalog,
+                $pesanan,
+            );
 
-    
-        LivewireAlert::title('Success')
-            ->text('Pesanan berhasil dibuat ')
-            ->success()
-            ->timer(3000)
-            ->withConfirmButton('OK')
-            ->onConfirm('goToWa', ['url' => $wa_url])
-            ->onDeny('goToWa', ['url' => $wa_url])
-            ->onDismiss('goToWa', ['url' => $wa_url])
-            ->show();
+        
+            LivewireAlert::title('Success')
+                ->text('Pesanan berhasil dibuat ')
+                ->success()
+                ->timer(3000)
+                ->withConfirmButton('OK')
+                ->onConfirm('goToWa', ['url' => $wa_url])
+                ->onDeny('goToWa', ['url' => $wa_url])
+                ->onDismiss('goToWa', ['url' => $wa_url])
+                ->show();
         } catch (\Exception $e) {
             LivewireAlert::title('Error')
                 ->text('Terjadi kesalahan saat membuat pesanan: ' . $e->getMessage())

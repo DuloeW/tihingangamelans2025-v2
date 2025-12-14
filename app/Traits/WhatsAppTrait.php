@@ -27,7 +27,12 @@ trait WhatsAppTrait
             $pesan .= "{$label} {$value}\n";
         }
 
-        $pesan .= "Jumlah: {$pesanan->jumlah}\n";
+        if($catalog->jenis == 'Gamelan' || $catalog->jenis == 'Workshop') {
+            $pesan .= "Jumlah Anggota: {$pesanan->jumlah}\n";
+        } else {
+            $pesan .= "Jumlah: {$pesanan->jumlah}\n";
+        }
+
         $totalRupiah = number_format($pesanan->total_harga, 0, ',', '.');
         $pesan .= "Total: Rp {$totalRupiah}\n";
 
