@@ -2,52 +2,56 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Pemesanan;
 use App\Traits\WhatsAppTrait;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
+use Livewire\Component;
 
-class FormPemesananWorkshop extends Component
+class FormPemesananKelas extends Component
 {
     use WhatsAppTrait;
-    
+
     public $catalog;
     public $store;
-    public $jadwals;
-    
-    public $nama_grup = ''; 
-    public $jumlah_anggota = 1;
-    public $jadwal_id = '';
 
-    public function mount($catalog, $store, $jadwals)
+    public $nama_grup = '';
+    public $hari_mulai = '';
+    public $hari_selesai = '';
+    public $jumlah_anggota = 1; 
+
+    public function mount($catalog, $store)
     {
         $this->catalog = $catalog;
         $this->store = $store;
-        $this->jadwals = $jadwals;
     }
 
-    public function save()
-    {
-        if (!auth('web')->check()) {
+    public function save() {
+        if(!auth('web')->check()) {
             return redirect()->route('login');
         }
 
         $this->validate([
             'nama_grup'      => 'required|string|max:255',
+            'hari_mulai'     => 'required|string|max:100',
+            'hari_selesai'   => 'required|string|max:100',
             'jumlah_anggota' => 'required|integer|min:1',
-            'jadwal_id'      => 'required|exists:jadwal,jadwal_id', // Pastikan user memilih jadwal
         ]);
 
         try {
+
+            $total_booking_hari = (new \DateTime($this->hari_selesai))->diff(new \DateTime($this->hari_mulai))->days + 1;
+            $total_harga = ($this->catalog->harga * $this->jumlah_anggota) * $total_booking_hari;
+            
             $pesanan = Pemesanan::create([
-                'pengguna_id'       => auth('web')->id(),
-                'katalog_id'        => $this->catalog->katalog_id,
-                'jadwal_id'         => $this->jadwal_id, // Ambil dari wire:model
-                'tanggal_pemesanan' => now(),
-                'status'            => 'unpaid',
-                'total_harga'       => $this->catalog->harga * $this->jumlah_anggota,
-                'jumlah'            => $this->jumlah_anggota,
-                'nama_grup'         => $this->nama_grup,
+                'pengguna_id'           => auth('web')->id(),
+                'katalog_id'            => $this->catalog->katalog_id,
+                'tanggal_pemesanan'     => now(),
+                'status'                => 'unpaid',
+                'total_harga'           => $total_harga,
+                'jumlah'                => $this->jumlah_anggota,
+                'nama_grup'             => $this->nama_grup,
+                'tgl_mulai_booking'     => $this->hari_mulai,
+                'tgl_selesai_booking'   => $this->hari_selesai,
             ]);
 
             $wa_url = $this->generateWaUrl(
@@ -55,10 +59,11 @@ class FormPemesananWorkshop extends Component
                 $this->catalog,
                 $pesanan,
                 [
-                    "Nama Grup:" => $this->nama_grup,
-                    "Mulai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_mulai,
-                    "Selesai Workshop:" => $this->jadwals->where('jadwal_id', $this->jadwal_id)->first()->waktu_selesai,
-                ],
+                    "Nama Grup:"      => $this->nama_grup,
+                    "Hari Mulai:"     => preg_replace('/[T]/', ' ', $this->hari_mulai),
+                    "Hari Selesai:"   => preg_replace('/[T]/', ' ', $this->hari_selesai),
+                    "Total Booking Hari:" => $total_booking_hari . " hari",
+                ]
             );
 
             LivewireAlert::title('Success')
@@ -70,6 +75,8 @@ class FormPemesananWorkshop extends Component
                 ->onDeny('goToWa', ['url' => $wa_url])
                 ->onDismiss('goToWa', ['url' => $wa_url])
                 ->show();
+
+
         } catch (\Exception $e) {
             LivewireAlert::title('Error')
                 ->text('Terjadi kesalahan saat membuat pesanan: ' . $e->getMessage())
@@ -82,7 +89,7 @@ class FormPemesananWorkshop extends Component
 
     public function render()
     {
-        return view('livewire.form-pemesanan-workshop', [
+        return view('livewire.form-pemesanan-kelas', [
             'isAuthenticated' => auth('web')->check(),
         ]);
     }

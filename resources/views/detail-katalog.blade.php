@@ -25,22 +25,23 @@
                             @livewire('form-pemesanan-workshop', 
                                 ['catalog' => $catalog, 
                                 'store' => $store, 
-                                'jadwals' => $jadwal, 
-                                'pemesanan' => $pemesanan], 
+                                'jadwals' => $jadwal], 
                                 key($catalog->katalog_id))
                         @break
 
                         @case('Kelas')
-                            <x-form-katalog-kelas :store="$store" />
+                            @livewire('form-pemesanan-kelas',
+                            ['catalog' => $catalog,
+                            'store' => $store], 
+                            key($catalog->katalog_id))
+                            {{-- <x-form-katalog-kelas :store="$store" /> --}}
                         @break
 
                         @default
                             @livewire('form-pemesanan-gamelan',
                             ['catalog' => $catalog,
-                            'store' => $store,
-                            'isAuthenticated' => $isAuthenticated],
+                            'store' => $store,],
                             key($catalog->katalog_id))
-                            {{-- <x-form-katalog-gamelan :store="$store" /> --}}
                         @break
                     @endswitch
                 </div>

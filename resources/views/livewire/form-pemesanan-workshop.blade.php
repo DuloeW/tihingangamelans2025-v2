@@ -7,7 +7,7 @@
         </label>
         <input type="text" wire:model="nama_grup" placeholder="Man Lari"
             class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
-        @error('nama_group') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        @error('nama_grup') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
     </div>
 
     {{-- PILIH JADWAL (DROPDOWN) --}}
@@ -47,12 +47,6 @@
             <span class="text-red-500 text-sm mt-1 block">{{ $message }}</span> 
         @enderror
 
-        {{-- Pesan error khusus jika kuota penuh saat submit --}}
-        @if (session()->has('error'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mt-2">
-                {{ session('error') }}
-            </div>
-        @endif
     </div>
 
     {{-- JUMLAH ANGGOTA --}}
