@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pemesanan', function (Blueprint $table) {
-            $table->dateTime('tgl_mulai_booking')->change();
-            $table->dateTime('tgl_selesai_booking')->change();
+            $table->dateTime('tgl_mulai_booking')->nullable()->change();
+            $table->dateTime('tgl_selesai_booking')->nullable()->change();
         });
     }
 

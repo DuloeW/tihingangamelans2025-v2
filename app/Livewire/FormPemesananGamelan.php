@@ -22,6 +22,9 @@ class FormPemesananGamelan extends Component
     public $city_code = '';
     public $district_code = '';
     public $alamat_lengkap = '';
+    public $total_harga = 0;
+
+    public $isShowModal = false;
 
     public function mount($store, $catalog) {
         $this->store = $store;
@@ -44,9 +47,8 @@ class FormPemesananGamelan extends Component
 
     }
 
-    public function save() 
+    public function openModal()
     {
-
         if(!auth('web')->check()) {
             return redirect()->route('login');
         }
@@ -60,9 +62,19 @@ class FormPemesananGamelan extends Component
             'alamat_lengkap' => 'required|string|max:500',
         ]);
 
+        $this->total_harga = $this->catalog->harga * $this->jumlah_gamelan;
+        $this->isShowModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isShowModal = false;
+    }
+
+
+    public function confirmPesanan() 
+    {
         try {
-            $total_harga = $this->catalog->harga * $this->jumlah_gamelan;
-        
             $pesanan = Pemesanan::create([
                 'pengguna_id' => auth('web')->id(),
                 'katalog_id' => $this->catalog->katalog_id,
@@ -70,7 +82,7 @@ class FormPemesananGamelan extends Component
                 'provice_code' => $this->province_code,
                 'city_code' => $this->city_code,
                 'status' => 'unpaid',
-                'total_harga' => $total_harga,
+                'total_harga' => $this->total_harga,
                 'alamat_lengkap' => $this->alamat_lengkap,
                 'jumlah' => $this->jumlah_gamelan,
                 'tanggal_pemesanan' => now(),
@@ -92,6 +104,7 @@ class FormPemesananGamelan extends Component
                 ->onDeny('goToWa', ['url' => $wa_url])
                 ->onDismiss('goToWa', ['url' => $wa_url])
                 ->show();
+
         } catch (\Exception $e) {
             LivewireAlert::title('Error')
                 ->text('Terjadi kesalahan saat membuat pesanan: ' . $e->getMessage())
@@ -112,6 +125,7 @@ class FormPemesananGamelan extends Component
 
     public function goToWa($data)
     {
+        $this->isShowModal = false;
         return redirect()->away($data['url']);
     }
 }
