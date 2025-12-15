@@ -18,6 +18,10 @@ class FormPemesananKelas extends Component
     public $hari_mulai = '';
     public $hari_selesai = '';
     public $jumlah_anggota = 1; 
+    public $total_harga = 0;
+    public $total_booking_hari = 0;
+
+    public $isShowModal = false;
 
     public function mount($catalog, $store)
     {
@@ -25,8 +29,9 @@ class FormPemesananKelas extends Component
         $this->store = $store;
     }
 
-    public function save() {
-        if(!auth('web')->check()) {
+    public function openModal() 
+    {
+         if(!auth('web')->check()) {
             return redirect()->route('login');
         }
 
@@ -37,17 +42,27 @@ class FormPemesananKelas extends Component
             'jumlah_anggota' => 'required|integer|min:1',
         ]);
 
+        $this->total_booking_hari = (new \DateTime($this->hari_selesai))->diff(new \DateTime($this->hari_mulai))->days + 1;
+        $this->total_harga = ($this->catalog->harga * $this->jumlah_anggota) * $this->total_booking_hari;
+            
+        return $this->isShowModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isShowModal = false;
+    }
+
+    public function confirmPesanan() {
         try {
 
-            $total_booking_hari = (new \DateTime($this->hari_selesai))->diff(new \DateTime($this->hari_mulai))->days + 1;
-            $total_harga = ($this->catalog->harga * $this->jumlah_anggota) * $total_booking_hari;
             
             $pesanan = Pemesanan::create([
                 'pengguna_id'           => auth('web')->id(),
                 'katalog_id'            => $this->catalog->katalog_id,
                 'tanggal_pemesanan'     => now(),
                 'status'                => 'unpaid',
-                'total_harga'           => $total_harga,
+                'total_harga'           => $this->total_harga,
                 'jumlah'                => $this->jumlah_anggota,
                 'nama_grup'             => $this->nama_grup,
                 'tgl_mulai_booking'     => $this->hari_mulai,
@@ -62,7 +77,7 @@ class FormPemesananKelas extends Component
                     "Nama Grup:"      => $this->nama_grup,
                     "Hari Mulai:"     => preg_replace('/[T]/', ' ', $this->hari_mulai),
                     "Hari Selesai:"   => preg_replace('/[T]/', ' ', $this->hari_selesai),
-                    "Total Booking Hari:" => $total_booking_hari . " hari",
+                    "Total Booking Hari:" => $this->total_booking_hari . " hari",
                 ]
             );
 
@@ -96,6 +111,7 @@ class FormPemesananKelas extends Component
 
     public function goToWa($data)
     {
+        $this->isShowModal = false;
         return redirect()->away($data['url']);
     }
 }
