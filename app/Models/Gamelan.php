@@ -12,12 +12,16 @@ class Gamelan extends Model
 
     protected $table = 'gamelan'; 
     protected $primaryKey = 'gamelan_id'; 
-    public $incrementing = false; 
-    protected $keyType = 'string';
     public $timestamps = false; 
 
-    protected $guarded = [];
-
+    protected $fillable = [
+        'admin_id',
+        'nama',
+        'slug',
+        'deskripsi',
+        'gambar',
+        'audio'
+    ];
   
     public function admin(): BelongsTo
     {

@@ -45,19 +45,11 @@ class GamelanResource extends Resource
     {
         return $schema
             ->components([ 
-                
-               
-                Hidden::make('admin_id')
-                    ->default(fn () => auth('admin')->user()->admin_id)
-                    ->required(),
-
-               
                 TextInput::make('nama')
                     ->required()
                     ->maxLength(100)
                     ->label('Nama Gamelan'),
 
-               
                 FileUpload::make('gambar')
                     ->label('Gambar Gamelan')
                     ->disk('public')
@@ -96,6 +88,16 @@ class GamelanResource extends Resource
                     ->sortable()
                     ->weight('bold')
                     ->label('Nama'),
+                
+                TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('admin.nama')
+                    ->label('Admin')
+                    ->searchable()
+                    ->sortable(),
 
                 ImageColumn::make('gambar')
                     ->square()
