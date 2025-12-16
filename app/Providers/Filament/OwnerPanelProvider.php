@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Owner\Pages\Auth\Register;
+use App\Filament\Owner\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -41,7 +42,8 @@ class OwnerPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Owner/Widgets'), for: 'App\Filament\Owner\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
+                StatsOverview::class,
+                // FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
