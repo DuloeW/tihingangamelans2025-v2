@@ -27,8 +27,6 @@ class Bisnis extends Model
         'gambar',
     ];
 
-    protected $guarded = [];
-
     // Relasi ke owner
     public function owner(): BelongsTo
     {
@@ -59,15 +57,5 @@ class Bisnis extends Model
     {
         return $this->hasMany(ContactPerson::class, 'bisnis_id', 'bisnis_id');
     }
-
-    // /**
-    //  * @return array<string, string>
-    //  */
-    // protected function casts(): array
-    // {
-    //     return [
-    //         'tags' => 'array',
-    //     ];
-    // }
     
 }
