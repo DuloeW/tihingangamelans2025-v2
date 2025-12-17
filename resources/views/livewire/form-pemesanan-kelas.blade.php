@@ -20,6 +20,7 @@
                     Hari Mulai
                 </label>
                 <input type="datetime-local" id="hari_mulai" wire:model="hari_mulai"
+                    min="{{ now()->format('Y-m-d\TH:i') }}"
                     class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
                 @error('hari_mulai') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror 
             </div>
@@ -31,6 +32,7 @@
                     Hari Selesai
                 </label>
                 <input type="datetime-local" id="hari_selesai" wire:model="hari_selesai"
+                    min="{{ now()->format('Y-m-d\TH:i') }}"
                     class="w-full border border-gray-300 rounded-md px-4 py-2 text-[#3A2415] focus:outline-none focus:ring-2 focus:ring-[#3A2415] focus:border-transparent">
                 @error('hari_selesai') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror 
             </div>

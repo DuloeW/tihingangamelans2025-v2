@@ -42,6 +42,80 @@ class FormPemesananKelas extends Component
             'jumlah_anggota' => 'required|integer|min:1',
         ]);
 
+        // Validasi: cek apakah tanggal mulai atau selesai sebelum hari ini
+        $hariMulai = new \DateTime($this->hari_mulai);
+        $hariSelesai = new \DateTime($this->hari_selesai);
+        $sekarang = new \DateTime();
+        
+        if ($hariMulai < $sekarang) {
+            LivewireAlert::title('Gagal')
+                ->text('Tanggal mulai booking tidak boleh sebelum hari ini.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+        
+        if ($hariSelesai < $sekarang) {
+            LivewireAlert::title('Gagal')
+                ->text('Tanggal selesai booking tidak boleh sebelum hari ini.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+        
+        if ($hariSelesai < $hariMulai) {
+            LivewireAlert::title('Gagal')
+                ->text('Tanggal selesai tidak boleh sebelum tanggal mulai.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+        
+        // Validasi: cek jam operasional (08:00 - 17:00)
+        $jamMulai = (int)$hariMulai->format('H');
+        $jamSelesai = (int)$hariSelesai->format('H');
+        
+        if ($jamMulai < 8 || $jamMulai >= 17) {
+            LivewireAlert::title('Gagal')
+                ->text('Jam mulai harus antara pukul 08:00 - 17:00.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+        
+        if ($jamSelesai < 8 || $jamSelesai >= 17) {
+            LivewireAlert::title('Gagal')
+                ->text('Jam selesai harus antara pukul 08:00 - 17:00.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+
+        // Validasi: cek apakah tanggal mulai booking sudah ada pemesanan
+        $existingPemesanan = Pemesanan::where('katalog_id', $this->catalog->katalog_id)
+            ->where('tgl_mulai_booking', $this->hari_mulai)
+            ->exists();
+        
+        if ($existingPemesanan) {
+            LivewireAlert::title('Gagal')
+                ->text('Tanggal mulai booking yang Anda pilih sudah terdaftar. Silakan pilih tanggal yang berbeda.')
+                ->error()
+                ->withConfirmButton('OK')
+                ->show();
+            
+            return;
+        }
+
         $this->total_booking_hari = (new \DateTime($this->hari_selesai))->diff(new \DateTime($this->hari_mulai))->days + 1;
         $this->total_harga = ($this->catalog->harga * $this->jumlah_anggota) * $this->total_booking_hari;
             
@@ -55,8 +129,6 @@ class FormPemesananKelas extends Component
 
     public function confirmPesanan() {
         try {
-
-            
             $pesanan = Pemesanan::create([
                 'pengguna_id'           => auth('web')->id(),
                 'katalog_id'            => $this->catalog->katalog_id,

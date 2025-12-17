@@ -25,8 +25,12 @@ class JadwalForm
                     ->numeric()
                     ->default(1),
                 DateTimePicker::make('waktu_mulai')
+                    ->native(false)
+                    ->minDate(now())
                     ->required(),
                 DateTimePicker::make('waktu_selesai')
+                    ->native(false)
+                    ->minDate(now())
                     ->required(),
             ]);
     }
