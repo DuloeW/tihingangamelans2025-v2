@@ -91,6 +91,8 @@
                                                     </span>
                                                      @if($item->jadwal && isset($item->jadwal->waktu_mulai))
                                                     <span class="text-xs text-indigo-600 font-bold">
+                                                     Pukul {{ \Carbon\Carbon::parse($item->jadwal->waktu_mulai)->format('H:i') }} WITA
+                                                     -
                                                      Pukul {{ \Carbon\Carbon::parse($item->jadwal->waktu_selesai)->format('H:i') }} WITA
                                                     </span>
                                             @endif

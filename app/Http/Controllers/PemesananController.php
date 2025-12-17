@@ -6,8 +6,7 @@ use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
 class PemesananController extends Controller
-{
-    
+{  
     public function storeWorkshop(Request $request)
     {
         //TODO membuat validate
@@ -37,5 +36,16 @@ class PemesananController extends Controller
 
         return redirect()->back()->with('success', 'Pemesanan workshop berhasil dibuat!');
     }
+
+    public function show($id)
+{
+    
+    $pemesanan = Pemesanan::with(['katalog', 'jadwal'])
+        ->where('pemesanan_id', $id)
+        ->where('pengguna_id', auth()->id()) 
+        ->firstOrFail();
+
+    return view('pemesanan.show', compact('pemesanan'));
+}
 
 }
