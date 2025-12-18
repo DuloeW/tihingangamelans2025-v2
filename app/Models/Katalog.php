@@ -27,4 +27,9 @@ class Katalog extends Model
         return $this->belongsTo(Bisnis::class, 'bisnis_id', 'bisnis_id');
     }
 
+    public function ulasan()
+    {
+        return $this->hasMany(UlasanKatalog::class, 'katalog_id', 'katalog_id');
+    }
+
 }

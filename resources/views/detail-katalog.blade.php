@@ -46,6 +46,13 @@
                     @endswitch
                 </div>
             </div>
+            <hr class="my-10 border-gray-200">
+
+            <div class="mt-10">
+                <h2 class="text-2xl font-bold mb-5 text-primary">Ulasan Pelanggan</h2>
+                @livewire('katalog.create-review', ['katalogId' => $catalog->katalog_id])
+            </div>
         </div>
     </div>
+
 </x-global-layout>
