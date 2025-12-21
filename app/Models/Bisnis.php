@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids; 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Bisnis extends Model
 {
-    use HasUuids;
+    use HasUuids, HasFactory;
     protected $table = 'bisnis'; 
     protected $primaryKey = 'bisnis_id'; 
     public $timestamps = false; 
@@ -56,6 +57,16 @@ class Bisnis extends Model
     public function contactPerson(): HasMany
     {
         return $this->hasMany(ContactPerson::class, 'bisnis_id', 'bisnis_id');
+    }
+
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'admin_id', 'admin_id');
+    }
+
+    public function ulasanBisnis(): HasMany
+    {
+        return $this->hasMany(UlasanBisnis::class, 'bisnis_id', 'bisnis_id');
     }
     
 }

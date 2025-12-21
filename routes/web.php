@@ -23,6 +23,8 @@ Route::prefix('store')->name('store.')->controller(BisnisController::class)->gro
     Route::get('/', 'index')->name('index');
 
     Route::get('/{slug}', 'showStore')->name('show');
+    
+    Route::post('/{slug}/review', 'storeReview')->name('review.store')->middleware('auth');
 
     Route::get('/{slug}/{jenis}/{katalog_id}', 'showCatalog')->name('catalog.detail');
 
