@@ -8,6 +8,8 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\Provinsi;
 use Pest\Support\Str;
 
+use function Livewire\store;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pengguna>
  */
@@ -34,10 +36,12 @@ class PenggunaFactory extends Factory
             'province_code' => $province->code,
             'city_code' => $city->code,
             'district_code' => $district->code,
-            'gambar' => 'default.png',
+            'gambar' => 'foto-profile-pengguna/LJE86stqCkBQO5GcwTqSi6YgED74mHAmGAfUbdyJ.png',
             'no_telephone' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => null,
         ];
     }
 }

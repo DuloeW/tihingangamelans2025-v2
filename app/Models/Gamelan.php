@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids; // PENTING: Untuk UUID
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Gamelan extends Model
 {
-    use HasUuids; 
+    use HasUuids, HasFactory; 
 
     protected $table = 'gamelan'; 
     protected $primaryKey = 'gamelan_id'; 

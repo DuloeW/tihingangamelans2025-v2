@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class PemesananResource extends Resource
 {
@@ -57,5 +58,13 @@ class PemesananResource extends Resource
             ->with('katalogs')
             ->whereHas('katalogs')
             ->exists();
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->whereHas('katalog.bisnis', function ($query) {
+                $query->where('owner_id', auth('owner')->id());
+            });
     }
 }

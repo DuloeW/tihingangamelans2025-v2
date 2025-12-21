@@ -55,7 +55,14 @@ class BisnisController extends Controller
         $classes = $storeData->katalogs->where('jenis', 'Kelas');
         $gamelans = $storeData->katalogs->where('jenis', 'Gamelan');
 
-        if (!$storeData) {
+        //TODO masih meunggu rating ulasan produk
+
+        $rataRataRating = $storeData->ulasanBisnis->avg('rating');
+        $pembulatanRating = round($rataRataRating, 1);
+        // if($pembulatanRating < )
+
+
+        if(!$storeData) {
             abort(404);
         }
 
@@ -67,35 +74,6 @@ class BisnisController extends Controller
             'classes' => $classes,
             'gamelans' => $gamelans
         ]);
-    }
-
-    public function storeReview(Request $request, $slug)
-    {
-        $request->validate([
-            'rating' => 'required|in:Sangat Bagus,Bagus,Cukup,Kurang',
-            'ulasan' => 'required|string|max:255',
-        ]);
-
-        $store = Bisnis::where('slug', $slug)->firstOrFail();
-        
-        $ratingMap = [
-            'Sangat Bagus' => 5,
-            'Bagus' => 4,
-            'Cukup' => 3,
-            'Kurang' => 2, // Atau 1
-        ];
-
-        $ratingValue = $ratingMap[$request->rating] ?? 0;
-
-        UlasanBisnis::create([
-            'pengguna_id' => Auth::id(),
-            'bisnis_id' => $store->bisnis_id,
-            'isi_ulasan' => $request->ulasan,
-            'rating' => $ratingValue,
-            'nama_pengulas' => Auth::user()->nama,
-        ]);
-
-        return redirect()->back()->with('success', 'Ulasan berhasil dikirim!')->with('activeTab', 'ulasan');
     }
 
     // 3. HALAMAN DETAIL KATALOG (SESUAI REQUEST KAMU)
