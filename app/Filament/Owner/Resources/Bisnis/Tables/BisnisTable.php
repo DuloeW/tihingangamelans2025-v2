@@ -52,8 +52,8 @@ class BisnisTable
                     ->listWithLineBreaks()
                     ->searchable(),
                 ImageColumn::make('gambar')
+                    ->disk('public')                         
                     ->square()
-                    ->size(50)
                     ->searchable(),
                 TextColumn::make('dokumenBisnis.nama_dokumen')
                     ->label('Dokumen')

@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class KatalogsTable
@@ -26,15 +27,19 @@ class KatalogsTable
                 TextColumn::make('deskripsi')
                     ->limit(20)
                     ->searchable(),
-                ImageColumn::make('gambar')                         
+                ImageColumn::make('gambar')
+                    ->disk('public')                         
                     ->label('Gambar Produk')
                     ->square()
-                    ->height(50)
-                    ->width(50)
                     ->placeholder('No Image'),
             ])
             ->filters([
-                //
+                SelectFilter::make('jenis')
+                    ->options([
+                        'Gamelan' => 'Gamelan',
+                        'Kelas' => 'Kelas',
+                        'Workshop' => 'Workshop',
+                    ]),
             ])
             ->recordActions([
                 EditAction::make(),
