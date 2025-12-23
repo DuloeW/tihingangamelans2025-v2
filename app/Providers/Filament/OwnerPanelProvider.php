@@ -3,11 +3,13 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Owner\Pages\Auth\Register;
+use App\Filament\Owner\Widgets\PemesananChart;
 use App\Filament\Owner\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -34,6 +36,11 @@ class OwnerPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                ->label('Pemesanan')
+                ->collapsed()
+            ])
             ->discoverResources(in: app_path('Filament/Owner/Resources'), for: 'App\Filament\Owner\Resources')
             ->discoverPages(in: app_path('Filament/Owner/Pages'), for: 'App\Filament\Owner\Pages')
             ->pages([
@@ -41,8 +48,9 @@ class OwnerPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Owner/Widgets'), for: 'App\Filament\Owner\Widgets')
             ->widgets([
-                AccountWidget::class,
+                // AccountWidget::class,    
                 StatsOverview::class,
+                PemesananChart::class
                 // FilamentInfoWidget::class,
             ])
             ->middleware([
