@@ -10,7 +10,7 @@ use Laravolt\Indonesia\Models\District;
 class AlamatSelector extends Component
 {
     //Variabel ubah layout
-    public $layout = 'default';
+    public $layout = 'register';
 
     // Variabel untuk menampung data dropdown
     public $provinces;
@@ -23,7 +23,7 @@ class AlamatSelector extends Component
     public $selectedDistrict = null;
 
     // Load Provinsi saat pertama kali komponen dimuat
-    public function mount($layout = 'default')
+    public function mount($layout = 'register')
     {
         $this->layout = $layout;
         $this->provinces = Province::pluck('name', 'code')->sortBy(function($name) {
