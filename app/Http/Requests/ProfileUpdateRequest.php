@@ -26,7 +26,7 @@ class ProfileUpdateRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(pengguna::class)->ignore($this->user()->id, 'pengguna_id'),
+                Rule::unique(pengguna::class)->ignore($this->user()->pengguna_id, 'pengguna_id'),
             ],
 
             'user_name' => ['required', 'string', 'max:50'],
