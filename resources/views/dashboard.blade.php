@@ -112,6 +112,11 @@
                                                     <span>{{ $item->jumlah ?? 1 }} Peserta</span>
                                                 </div>
                                                 <div class="font-bold text-gray-900 pt-2">Rp {{ number_format($item->total_harga, 0, ',', '.') }}</div>
+                                                <div>
+                                                    <button class="w-full bg-primary text-white py-2 mt-4 rounded-xl font-semibold hover:bg-primary-dark transition">
+                                                       Buat Ulasan
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
