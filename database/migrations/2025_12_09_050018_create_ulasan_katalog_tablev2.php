@@ -20,11 +20,16 @@ return new class extends Migration
             $table->foreignUuid('katalog_id')
                     ->constrained('katalogs', 'katalog_id')
                     ->onDelete('cascade');
+            $table->foreignUuid('pemesanan_id')
+                    ->constrained('pemesanan', 'pemesanan_id')
+                    ->onDelete('cascade');
 
             $table->string('isi_ulasan');
             $table->tinyInteger('rating');
             $table->string('nama_pengulas');
             $table->timestamps();
+
+            $table->unique(['pemesanan_id']);
         });
     }
 

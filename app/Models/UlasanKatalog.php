@@ -14,12 +14,14 @@ class UlasanKatalog extends Model
     protected $primaryKey = 'ulasan_katalog_id';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = true;
 
     protected $fillable = [
         'katalog_id',
         'pengguna_id',
-        'skor',
-        'komentar',
+        'rating',
+        'isi_ulasan',
+        'nama_pengulas',
     ];
 
     // Relasi balik ke Katalog

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Laravolt\Indonesia\Models\Provinsi;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\District;
 
 class ProfileController extends Controller
 {
@@ -16,8 +19,16 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = Auth::user();
+        $province = Provinsi::where('code', $user->province_code)->first();
+        $cities = City::where('code', $user->city_code)->first();
+        $districts = District::where('code', $user->district_code)->first();
+        
         return view('profile.edit', [
             'user' => $request->user(),
+            'province_name' => $province ? $province->name : null,
+            'city_name'     => $cities ? $cities->name : null,
+            'district_name' => $districts ? $districts->name : null,
         ]);
     }
 
@@ -34,7 +45,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.show')->with('status', 'profile-updated');
     }
 
     /**
@@ -56,5 +67,20 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(Request $request): View
+    {
+        $user = Auth::user();
+        $province = Provinsi::where('code', $user->province_code)->first();
+        $cities = City::where('code', $user->city_code)->first();
+        $districts = District::where('code', $user->district_code)->first();
+
+        return view('profile.show', [
+            'user' => $request->user(),
+            'province_name' => $province ? $province->name : null,
+            'city_name'     => $cities ? $cities->name : null,
+            'district_name' => $districts ? $districts->name : null,
+        ]);
     }
 }
