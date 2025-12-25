@@ -20,7 +20,7 @@ class UlasanKatalog extends Model
         'katalog_id',
         'pengguna_id',
         'rating',
-        'komentar',
+        'isi_ulasan',
         'nama_pengulas',
     ];
 
