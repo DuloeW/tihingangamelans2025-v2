@@ -12,6 +12,7 @@ use Livewire\Component;
 class FormUlasanKatalog extends Component
 {
     public $katalog_id;
+    public $pemesanan_id;
     public $rating = 0;
     public $isi_ulasan;
     public $showModal = false;
@@ -21,9 +22,10 @@ class FormUlasanKatalog extends Component
         'isi_ulasan' => 'required|string|max:500',
     ];
 
-    public function mount($katalogId)
+    public function mount($katalogId, $pemesananId = null)
     {
         $this->katalog_id = $katalogId;
+        $this->pemesanan_id = $pemesananId;
     }
 
     public function openModal()
@@ -32,18 +34,46 @@ class FormUlasanKatalog extends Component
             return redirect()->route('login');
         }
 
-        // Cek apakah user pernah memesan katalog ini
-        $hasOrdered = Pemesanan::where('pengguna_id', Auth::id())
-            ->where('katalog_id', $this->katalog_id)
-            ->exists();
+        // Cek apakah user berhak mengulas pesanan ini
+        $query = Pemesanan::where('pengguna_id', Auth::id())
+            ->where('katalog_id', $this->katalog_id);
 
-        if (!$hasOrdered) {
-            LivewireAlert::title('Anda belum pernah memesan produk ini.')
+        if ($this->pemesanan_id) {
+            $query->where('pemesanan_id', $this->pemesanan_id);
+        }
+
+        $pemesanan = $query->first();
+
+        if (!$pemesanan) {
+            LivewireAlert::title('Anda tidak memiliki akses untuk mengulas pesanan ini.')
                 ->error()
                 ->position('center')
                 ->timer(3000)
                 ->show();
             return;
+        }
+
+        // Validasi Status Pemesanan
+        if (in_array($pemesanan->status, ['unpaid', 'cancelled'])) {
+            LivewireAlert::title('Pesanan belum selesai atau dibatalkan, tidak dapat memberikan ulasan.')
+                ->warning()
+                ->position('center')
+                ->timer(3000)
+                ->show();
+            return;
+        }
+
+        // Cek apakah sudah pernah diulas (double check)
+        if ($this->pemesanan_id) {
+            $alreadyReviewed = UlasanKatalog::where('pemesanan_id', $this->pemesanan_id)->exists();
+            if ($alreadyReviewed) {
+                LivewireAlert::title('Pesanan ini sudah diulas.')
+                    ->warning()
+                    ->position('center')
+                    ->timer(3000)
+                    ->show();
+                return;
+            }
         }
 
         $this->showModal = true;
@@ -61,13 +91,18 @@ class FormUlasanKatalog extends Component
             return redirect()->route('login');
         }
 
-        // Cek apakah user pernah memesan katalog ini
-        $hasOrdered = Pemesanan::where('pengguna_id', Auth::id())
-            ->where('katalog_id', $this->katalog_id)
-            ->exists();
+        // Validasi kepemilikan pesanan
+        $query = Pemesanan::where('pengguna_id', Auth::id())
+            ->where('katalog_id', $this->katalog_id);
 
-        if (!$hasOrdered) {
-            LivewireAlert::title('Anda belum pernah memesan produk ini.')
+        if ($this->pemesanan_id) {
+            $query->where('pemesanan_id', $this->pemesanan_id);
+        }
+
+        $pemesanan = $query->first();
+
+        if (!$pemesanan) {
+            LivewireAlert::title('Anda tidak memiliki akses untuk mengulas pesanan ini.')
                 ->error()
                 ->position('center')
                 ->timer(3000)
@@ -75,12 +110,36 @@ class FormUlasanKatalog extends Component
             return;
         }
 
+        // Validasi Status Pemesanan
+        if (in_array($pemesanan->status, ['unpaid', 'cancelled'])) {
+            LivewireAlert::title('Pesanan belum selesai atau dibatalkan, tidak dapat memberikan ulasan.')
+                ->warning()
+                ->position('center')
+                ->timer(3000)
+                ->show();
+            return;
+        }
+
+        // Cek duplikasi ulasan
+        if ($this->pemesanan_id) {
+            $alreadyReviewed = UlasanKatalog::where('pemesanan_id', $this->pemesanan_id)->exists();
+            if ($alreadyReviewed) {
+                LivewireAlert::title('Pesanan ini sudah diulas.')
+                    ->warning()
+                    ->position('center')
+                    ->timer(3000)
+                    ->show();
+                return;
+            }
+        }
+
         $this->validate();
 
         UlasanKatalog::create([
             'katalog_id' => $this->katalog_id,
+            'pemesanan_id' => $this->pemesanan_id,
             'pengguna_id' => Auth::id(),
-            'nama_pengulas' => Auth::user()->nama ?? 'Pengguna', // Sesuaikan dengan field di tabel users/pengguna
+            'nama_pengulas' => Auth::user()->nama ?? 'Pengguna',
             'rating' => $this->rating,
             'isi_ulasan' => $this->isi_ulasan,
         ]);
@@ -95,6 +154,9 @@ class FormUlasanKatalog extends Component
 
         // Emit event jika ingin merefresh list ulasan di komponen lain
         $this->dispatch('ulasanUpdated'); 
+        
+        // Refresh halaman agar status tombol berubah
+        return redirect()->route('dashboard');
     }
 
     public function render()

@@ -67,45 +67,68 @@
        
     </section>
 
-    {{-- Pengguna Reviews Section --}}
-    <section class="h-[480px] font-markazi">
-        <div class="w-auto grid place-items-center mt-44">
-            <h1 data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine" 
-            class="text-7xl text-center w-10/12 text-primary">Beberapa
-                Pengguna Menyukai Tihingan Gamelans</h1>
-        </div>
-        <div class="relative mx-auto w-full px-20 mt-10 overflow-hidden group">
-            <div
-                class="flex gap-10 space-x-4 flex-nowrap py-4 animate-infinite-scroll group-hover:[animation-play-state:paused] cursor-default">
-                <div class="flex-shrink-0 flex gap-10 space-x-4 px-5">
-                    <x-ulasan-box />
-                    <x-ulasan-box />
-                    <x-ulasan-box />
-                    <x-ulasan-box />
+    @if ($ulasan != null)
+        {{-- Pengguna Reviews Section --}}
+        <section class="h-[480px] font-markazi">
+            <div class="w-auto grid place-items-center mt-44">
+                <h1 data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine" 
+                class="text-7xl text-center w-10/12 text-primary">Beberapa
+                    Pengguna Menyukai Tihingan Gamelans</h1>
+            </div>
+            <div class="relative mx-auto w-full px-20 mt-10 overflow-hidden group">
+                <div
+                    class="flex gap-10 space-x-4 flex-nowrap py-4 animate-infinite-scroll group-hover:[animation-play-state:paused] cursor-default">
+                    <div class="flex-shrink-0 flex gap-10 space-x-4 px-5">
+                        @forelse ($ulasan as $ulasanItem)
+                            <x-ulasan-box 
+                                :nama="$ulasanItem->nama_pengulas" 
+                                :gambar="$ulasanItem->pengguna->gambar" 
+                                :rating="$ulasanItem->rating" 
+                                :komentar="$ulasanItem->isi_ulasan" 
+                            />
+                        @empty
+                            
+                        @endforelse
+                    </div>
+
+                    <div class="flex-shrink-0 flex gap-10 space-x-4 px-5" aria-hidden="true">
+                        @foreach ($ulasan as $ulasanItem)
+                            <x-ulasan-box 
+                                :nama="$ulasanItem->nama_pengulas ?? $ulasanItem->pengguna->nama" 
+                                :gambar="$ulasanItem->pengguna->gambar ?? 'images/ulasan_profile.png'" 
+                                :rating="$ulasanItem->rating" 
+                                :komentar="$ulasanItem->isi_ulasan" 
+                            />
+                        @endforeach
+                    </div>
+                    
+                    <div class="flex-shrink-0 flex gap-10 space-x-4 px-5" aria-hidden="true">
+                        @foreach ($ulasan as $ulasanItem)
+                            <x-ulasan-box 
+                                :nama="$ulasanItem->nama_pengulas ?? $ulasanItem->pengguna->nama" 
+                                :gambar="$ulasanItem->pengguna->gambar ?? 'images/ulasan_profile.png'" 
+                                :rating="$ulasanItem->rating" 
+                                :komentar="$ulasanItem->isi_ulasan" 
+                            />
+                        @endforeach
+                    </div>
                 </div>
 
-                <div class="flex-shrink-0 flex gap-10 space-x-4 px-5" aria-hidden="true">
-                    <x-ulasan-box />
-                    <x-ulasan-box />
-                    <x-ulasan-box />
-                    <x-ulasan-box />
+                <div
+                    class="absolute top-0 bottom-0 left-0 w-56
+            bg-gradient-to-r from-white to-transparent
+            pointer-events-none">
+                </div>
+
+                <div
+                    class="absolute top-0 bottom-0 right-0 w-56
+            bg-gradient-to-l from-white to-transparent
+            pointer-events-none">
                 </div>
             </div>
 
-            <div
-                class="absolute top-0 bottom-0 left-0 w-56
-           bg-gradient-to-r from-white to-transparent
-           pointer-events-none">
-            </div>
-
-            <div
-                class="absolute top-0 bottom-0 right-0 w-56
-           bg-gradient-to-l from-white to-transparent
-           pointer-events-none">
-            </div>
-        </div>
-
-    </section>
+        </section>
+    @endif
 
     {{-- Pengguna Call to Action Section  --}}
     <section class="h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">

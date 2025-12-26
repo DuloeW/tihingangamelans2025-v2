@@ -33,4 +33,14 @@ class Katalog extends Model
         return $this->hasMany(UlasanKatalog::class, 'katalog_id', 'katalog_id');
     }
 
+    public function getAverageRatingAttribute()
+    {
+        return round($this->ulasan()->avg('rating') ?? 0, 1);
+    }
+
+    public function getTotalUlasanAttribute()
+    {
+        return $this->ulasan()->count();
+    }
+
 }

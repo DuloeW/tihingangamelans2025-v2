@@ -13,7 +13,9 @@ class HomeController extends Controller
     public function index() {
 
         $gamelans = Gamelan::orderBy('gamelan_id')->paginate(6);
-        $ulasan = UlasanBisnis::orderBy('ulasan_bisnis_id')->paginate(5);
+        $ulasan = UlasanBisnis::where('rating', '>=', 4)
+                    ->with('pengguna')
+                    ->orderBy('created_at', 'desc')->take(5)->get();
 
         return view ('home', compact('gamelans', 'ulasan'));
     }

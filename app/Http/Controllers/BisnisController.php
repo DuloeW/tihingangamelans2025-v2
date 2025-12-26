@@ -48,20 +48,16 @@ class BisnisController extends Controller
     // 2. HALAMAN DETAIL TOKO
     public function showStore($slug) {
         $storeData = Bisnis::where('slug', $slug)
-            ->with(['katalogs', 'tags', 'ulasanBisnis.pengguna'])
+            ->with(['katalogs', 'tags', 'ulasanBisnis.pengguna',])
             ->first();
 
         $workshops = $storeData->katalogs->where('jenis', 'Workshop');
         $classes = $storeData->katalogs->where('jenis', 'Kelas');
         $gamelans = $storeData->katalogs->where('jenis', 'Gamelan');
 
-        //TODO masih meunggu rating ulasan produk
+        $rating = $storeData->average_rating;
 
-        $rataRataRating = $storeData->ulasanBisnis->avg('rating');
-        $pembulatanRating = round($rataRataRating, 1);
-        // if($pembulatanRating < )
-
-
+        // Jika toko tidak ditemukan, tampilkan halaman 404
         if(!$storeData) {
             abort(404);
         }
@@ -72,7 +68,8 @@ class BisnisController extends Controller
             'slug' => $slug,
             'workshops' => $workshops,
             'classes' => $classes,
-            'gamelans' => $gamelans
+            'gamelans' => $gamelans,
+            'rating' => $rating,
         ]);
     }
 
