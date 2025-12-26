@@ -93,6 +93,12 @@
                             key($catalog->katalog_id))
                         @break
                     @endswitch
+                    @if(!Auth::check()) 
+                        <p class="mt-4 text-sm text-gray-600">
+                            Sudah punya akun? 
+                            <a href="{{ route('login') }}" class="text-indigo-600 font-semibold hover:underline">Masuk di sini</a>
+                        </p>
+                    @endif
                 </div>
             </div>
             <hr class="my-10 border-gray-200">

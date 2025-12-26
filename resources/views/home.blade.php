@@ -40,6 +40,34 @@
         </div>
     </section>
 
+    {{-- THE MOST POPULAR STORE --}}
+    <section class="h-fit px-20">
+        <div class="w-auto font-markazi px-20 py-20 ">
+            <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">The Most Popular Store</h1>
+            <p class="text-center text-primary text-2xl" data-aos="fade-up" data-aos-duration="1500">Lorem ipsum dolor
+                sit amet consectetur adipisicing elit. Id
+                illo provident a quam repellendus eos.
+            </p>
+        </div>
+        <div class="flex flex-wrap justify-around gap-24 px-20 pb-20">
+            @foreach ($stores as $store)
+                <div class="flex 1 w-1/2 max-w-lg">
+                    <x-box-store 
+                        :nama="$store->nama"
+                        :slug="$store->slug"
+                        :deskripsi="$store->deskripsi" 
+                        :tag_bisnis="$store->tags->pluck('jenis')" 
+                        :profile="$store->gambar" 
+                        :rating="$store->average_rating"
+                        :total_ulasan="$store->total_ulasan"
+                        :dataAos="'fade-up'" 
+                        :dataAosDuration="'1500'" 
+                    />
+                </div>
+            @endforeach
+        </div>
+    </section>
+
     {{-- Gamelan Gallery Section --}}
     <section class="h-fit px-20">
         <div class="w-auto font-markazi py-20 ">
