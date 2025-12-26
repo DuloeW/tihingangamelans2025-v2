@@ -99,13 +99,9 @@
 
                 </div>
 
-                <div class="flex justify-between items-center mt-12">
-                    <button type="button" onclick="alert('Fitur tambah nomor HP akan segera hadir!')" 
-                        class="bg-[#3E2C22] text-[#F3F1EA] px-6 py-3 rounded-lg font-medium shadow-md hover:bg-opacity-90 transition">
-                        + Add Phone Number
-                    </button>
 
-                <div class="flex space-x-4">
+
+                <div class="flex space-x-4 mt-20">
                     <button>
                         
                         <a href="{{ route('profile.show') }}" class="bg-[#3E2C22] text-[#F3F1EA] px-10 py-3 rounded-lg font-medium shadow-md hover:bg-opacity-90 transition flex items-center justify-center">

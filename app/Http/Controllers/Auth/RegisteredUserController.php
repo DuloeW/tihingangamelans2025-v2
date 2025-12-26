@@ -43,6 +43,17 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $hp = $request->no_telephone;
+        $hp = preg_replace('/[^0-9]/', '', $hp); // Hapus selain angka
+
+        if (str_starts_with($hp, '0')) {
+        $hp = '+62' . substr($hp, 1);
+         } elseif (str_starts_with($hp, '62')) {
+        $hp = '+' . $hp;
+        } elseif (!str_starts_with($hp, '0') && !str_starts_with($hp, '62')) {
+        $hp = '+62' . $hp;
+        }
+
         try {
 
             $path_gambar = 'default.png';
@@ -58,7 +69,7 @@ class RegisteredUserController extends Controller
                 'city_code' => $request->city_code,
                 'district_code' => $request->district_code,
                 'province_code' => $request->province_code,
-                'no_telephone' => $request->no_telephone,
+                'no_telephone' => $hp,
                 'email' => $request->email,
                 'gambar' => $path_gambar,
                 'password' => Hash::make($request->password),

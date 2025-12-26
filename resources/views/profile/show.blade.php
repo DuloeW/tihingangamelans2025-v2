@@ -68,20 +68,42 @@
                     </div>
 
                 </div>
-
                 
-                        <div>
-                            <p class="text-[#3E2C22] font-medium">{{ $user->email }}</p>
-                            <p class="text-xs text-gray-400">Registered Account</p>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">    
+                    {{-- CARD 1: EMAIL --}}
+                    <div>
+                        <h4 class="text-lg font-bold text-[#3E2C22] mb-4">My Email Address</h4>
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 bg-blue-100 rounded-full text-blue-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[#3E2C22] font-medium">{{ $user->email }}</p>
+                                <p class="text-xs text-gray-400">Registered Account</p>
+                            </div>
                         </div>
                     </div>
+
+                    {{-- CARD 2: PHONE NUMBER (Read Only) --}}
+                    <div>
+                        <h4 class="text-lg font-bold text-[#3E2C22] mb-4">My Phone Number</h4>
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 bg-green-100 rounded-full text-green-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-[#3E2C22] font-medium">{{ $user->no_telephone ?? '-' }}</p>
+                                <p class="text-xs text-gray-400">Registered Phone</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="flex justify-between items-center mt-12">
-                    <button type="button" class="bg-[#3E2C22] text-[#F3F1EA] px-6 py-3 rounded-lg font-medium shadow-md hover:bg-opacity-90 transition opacity-50 cursor-not-allowed">
-                        + Add Phone Number
-                    </button>
 
+
+                <div class="mt-20">
                     <a href="{{ route('profile.edit') }}" 
                        class="bg-[#3E2C22] text-[#F3F1EA] px-10 py-3 rounded-lg font-medium shadow-md hover:bg-opacity-90 transition inline-block text-center">
                         Go to Edit Profile
