@@ -69,12 +69,7 @@
 
                 </div>
 
-                <div class="mt-8">
-                    <h4 class="text-lg font-bold text-[#3E2C22] mb-4">My email Address</h4>
-                    <div class="flex items-center space-x-4">
-                        <div class="p-3 bg-blue-100 rounded-full text-blue-600">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-                        </div>
+                
                         <div>
                             <p class="text-[#3E2C22] font-medium">{{ $user->email }}</p>
                             <p class="text-xs text-gray-400">Registered Account</p>
