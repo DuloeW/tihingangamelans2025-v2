@@ -42,26 +42,24 @@
 
     {{-- Gamelan Gallery Section --}}
     <section class="h-fit px-20">
-        {{-- TODO contoh menggunakan animasi --}}
         <div class="w-auto font-markazi py-20 ">
             <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Gamelans</h1>
             <p class="text-center text-primary text-2xl" data-aos="fade-up" data-aos-duration="1500">Lorem ipsum dolor
                 sit amet consectetur adipisicing elit. Id
                 illo provident a quam repellendus eos.</p>
         </div>
-        <div class="grid grid-cols-2 grid-rows-2 gap-24">
+        <div class="flex flex-wrap justify-around gap-24">
             @foreach ($gamelans as $gamelan)
-                <x-gamelan-box 
-                    :nama="$gamelan->nama" 
-                    :slug="$gamelan->slug"
-                    :showPrice="false" 
-                    :deskripsi="$gamelan->deskripsi" 
-                    :price="$gamelan->price"
-                    :gambar="$gamelan->gambar"
-                    :dataAos="'fade-up'"
-                    :dataAosDuration="1500"
-                    :horizontal="false" 
-                />
+                <div class="flex 1 w-1/2 max-w-lg">
+                    <x-gamelan-box 
+                        :nama="$gamelan->nama" 
+                        :slug="$gamelan->slug"
+                        :deskripsi="$gamelan->deskripsi" 
+                        :gambar="$gamelan->gambar"
+                        :dataAos="'fade-up'"
+                        :dataAosDuration="1500"
+                    />
+                </div>
             @endforeach
         </div>
        
