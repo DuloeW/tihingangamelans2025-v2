@@ -50,7 +50,7 @@
 
             <div class="mt-10">
                 <h2 class="text-2xl font-bold mb-5 text-primary">Ulasan Pelanggan</h2>
-                {{-- @livewire('katalog.create-review', ['katalogId' => $catalog->katalog_id])  --}}
+                @livewire('list-ulasan-katalog', ['katalogId' => $catalog->katalog_id])
             </div>
         </div>
     </div>

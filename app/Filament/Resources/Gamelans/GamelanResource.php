@@ -100,8 +100,8 @@ class GamelanResource extends Resource
                     ->sortable(),
 
                 ImageColumn::make('gambar')
+                    ->disk('public')                         
                     ->square()
-                    ->size(60)
                     ->label('Gambar'),
 
                 TextColumn::make('deskripsi')

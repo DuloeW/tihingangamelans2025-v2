@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Bisnis;
+use App\Models\Pemesanan;
 use App\Models\UlasanBisnis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -33,6 +34,22 @@ class StoreReview extends Component
         ]);
 
         try {
+
+            $havedPemesanan = Pemesanan::where('pengguna_id', Auth::id())
+                ->whereHas('katalog', function ($query) {
+                    $query->where('bisnis_id', $this->store->bisnis_id);
+                })
+                ->exists();
+
+            if (!$havedPemesanan) {
+                LivewireAlert::title('Anda belum pernah melakukan pemesanan di toko ini.')
+                    ->error()
+                    ->position('center')
+                    ->timer(3000)
+                    ->show();
+                return;
+            }
+
             UlasanBisnis::create([
                 'pengguna_id' => Auth::id(),
                 'bisnis_id' => $this->store->bisnis_id,
