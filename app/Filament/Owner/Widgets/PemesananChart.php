@@ -10,7 +10,10 @@ class PemesananChart extends ChartWidget
 {
     protected static ?int $sort = 2;
     
-    protected int | string | array $columnSpan = 'full';
+    protected int | string | array $columnSpan = [
+        'md' => 1,
+        'xl' => 1,
+    ];
 
     protected ?string $heading = 'Grafik Pendapatan Bulanan';
 

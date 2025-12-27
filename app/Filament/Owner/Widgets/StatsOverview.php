@@ -11,15 +11,15 @@ class StatsOverview extends StatsOverviewWidget
 {
     protected static ?int $sort = 1;
 
-    // TODO benerkan heading dan description
+    
     protected function getHeading(): ?string
     {
-        return 'Analytics';
+        return 'Laporan';
     }
 
     protected function getDescription(): ?string
     {
-        return 'An overview of some analytics.';
+        return 'Berisi Laporan Singkat Pemesanan dan Pendapatan Bisnis Anda, Serta jumlah Katalog yang Tersedia.';
     }
 
 

@@ -22,12 +22,14 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\PenjualanChart;
 
 class OwnerPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->brandName('Tihingan Gamelans')
             ->id('owner')
             ->path('owner')
             ->login()
@@ -50,7 +52,8 @@ class OwnerPanelProvider extends PanelProvider
             ->widgets([
                 // AccountWidget::class,    
                 StatsOverview::class,
-                PemesananChart::class
+                PemesananChart::class,
+                PenjualanChart::class,
                 // FilamentInfoWidget::class,
             ])
             ->middleware([
