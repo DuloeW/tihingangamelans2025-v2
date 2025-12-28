@@ -52,6 +52,8 @@
                         :deskripsi="$store->deskripsi" 
                         :tag_bisnis="$store->tags->pluck('jenis')" 
                         :profile="$store->gambar" 
+                        :rating="$store->average_rating"
+                        :total_ulasan="$store->total_ulasan"
                         :dataAos="'fade-up'" 
                         :dataAosDuration="'1500'" 
                     />

@@ -68,5 +68,33 @@ class Bisnis extends Model
     {
         return $this->hasMany(UlasanBisnis::class, 'bisnis_id', 'bisnis_id');
     }
+
+    public function ulasanKatalog()
+    {
+        return $this->hasManyThrough(UlasanKatalog::class, Katalog::class, 'bisnis_id', 'katalog_id', 'bisnis_id', 'katalog_id');
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        $totalRatingBisnis = $this->ulasanBisnis()->sum('rating');
+        $countBisnis = $this->ulasanBisnis()->count();
+
+        $totalRatingKatalog = $this->ulasanKatalog()->sum('rating');
+        $countKatalog = $this->ulasanKatalog()->count();
+
+        $totalRating = $totalRatingBisnis + $totalRatingKatalog;
+        $totalCount = $countBisnis + $countKatalog;
+
+        if ($totalCount == 0) {
+            return 0;
+        }
+
+        return round($totalRating / $totalCount, 1);
+    }
+
+    public function getTotalUlasanAttribute()
+    {
+        return $this->ulasanBisnis()->count() + $this->ulasanKatalog()->count();
+    }
     
 }

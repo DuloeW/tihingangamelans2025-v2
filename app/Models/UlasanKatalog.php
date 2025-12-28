@@ -19,20 +19,25 @@ class UlasanKatalog extends Model
     protected $fillable = [
         'katalog_id',
         'pengguna_id',
+        'pemesanan_id',
         'rating',
         'isi_ulasan',
         'nama_pengulas',
     ];
 
-    // Relasi balik ke Katalog
     public function katalog()
     {
         return $this->belongsTo(Katalog::class, 'katalog_id');
     }
 
-    // Relasi balik ke Pengguna
     public function pengguna()
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id');
     }
+
+    public function pemesanan()
+    {
+        return $this->belongsTo(Pemesanan::class, 'pemesanan_id');
+    }
+
 }

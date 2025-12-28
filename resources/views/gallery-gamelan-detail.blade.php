@@ -4,7 +4,7 @@
     </x-slot:title>
 
     <!-- Detail Section -->
-    <section class="py-16 px-6 bg-white">
+    <section class="py-16 px-6 bg-white font-markazi">
         <div class="max-w-6xl mx-auto">
             <div class="bg-gradient-to-br from-[#FAF8F3] to-white rounded-2xl shadow-xl p-8 md:p-12">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="prose prose-lg max-w-none">
-                            <h3 class="text-2xl font-semibold text-[#3A2415] mb-3">Deskripsi</h3>
-                            <p class="text-[#6B5A4A] leading-relaxed">
+                            <h3 class="text-3xl font-semibold text-[#3A2415] mb-3">Deskripsi</h3>
+                            <p class="text-[#6B5A4A] text-lg leading-relaxed">
                                 {{ $gamelan->deskripsi }}
                             </p>
                         </div>
