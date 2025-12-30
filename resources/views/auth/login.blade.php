@@ -6,7 +6,7 @@
         @csrf
 
         <h1 class="text-5xl font-markazi font-semibold text-primary">Login</h1>
-
+        TODO: VALIDASI USERNAME.
         <!-- User Name -->
         <div class="mt-6 font-markazi text-primary">
             <x-input-label for="user_name" class="text-xl" :value="__('User Name')" />

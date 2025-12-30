@@ -5,53 +5,52 @@
     </x-slot:title>
 
     {{-- Hero Section --}}
-    <section class="relative h-[600px] font-markazi flex items-center justify-center text-center text-white">
-        <img class="absolute top-0 left-0 w-full h-full object-cover object-center brightness-50"
+    <section class="relative min-h-[100svh] md:h-[600px] bg-primary md:bg-transparent font-markazi flex items-center justify-center text-center text-white">
+        <img class="hidden md:block absolute inset-0 w-full h-full object-cover object-center brightness-50"
             src="{{ asset('images/hero-bg.jpg') }}" alt="">
 
-        <div class="relative z-10">
-            <h1 class="text-6xl mb-3 tracking-wider animate__animated animate__fadeIn">TIHINGAN GAMELANS</h1>
-            <p class="text-xl tracking-wider text-center font-light animate__animated animate__fadeIn animate__delay-1s">
+        <div class="relative z-10 px-4 md:px-0 md:text-white max-w-4xl">
+            <h1 class="text-4xl md:text-6xl mb-3 tracking-wider animate__animated animate__fadeIn">TIHINGAN GAMELANS</h1>
+            <p class="text-base md:text-xl tracking-wider font-light animate__animated animate__fadeIn animate__delay-1s">
                 Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Totam quas fuga sapiente rerum, explicabo quia corrupti assumenda !</p>
         </div>
     </section>
 
     {{-- What Can You Do Section --}}
-    <section class="h-[480px] w-auto px-20 grid place-items-center font-markazi text-primary">
+    <section class="py-16 px-4 md:px-20 grid place-items-center font-markazi text-primary">
         <div class="h-fit w-auto flex flex-col gap-10">
-            <h1 class="text-8xl text-center mb-7" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">What Can You Do ?</h1>
-            <div class="flex justify-around gap-10">
+            <h1 class="text-8xl text-center mb-7" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in-sine">Apa Yang bisa Anda Lakukan ?</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1510" data-aos-easing="ease-in-sine">
-                    <h3 class="font-bold">Shop Gamelans</h3>
-                    <p>Don't Know where to buy the Gamelan ?
-                        buy here !</p>
+                    <h3 class="font-bold">Pesan Gamelan</h3>
+                    <p>Gak tau dimana tempat beli gamelan ?
+
+                        Beli Disini !
+                    </p>
                 </div>
                 <div class="text-2xl text-center tracking-wider px-5 border-r-2 border-l-2 border-primary/50"
                     data-aos="zoom-in" data-aos-duration="1590" data-aos-easing="ease-in-sine">
-                    <h3 class="font-bold">Learn How To Play</h3>
-                    <p>You can feel the experience to play the Gamelan from here.</p>
+                    <h3 class="font-bold">Belajar Bermain Gamelan</h3>
+                    <p>Anda bisa mulai belajar gamelan disini.</p>
                 </div>
                 <div class="text-2xl text-center tracking-wider px-5" data-aos="zoom-in" data-aos-duration="1680" data-aos-easing="ease-in-sine">
-                    <h3 class="font-bold">Join The Workshop</h3>
-                    <p>Witness the fascinating process of making the Gamelan.</p>
+                    <h3 class="font-bold">Join Workshop</h3>
+                    <p>Ikut Bantu dan meraskan bagaimana rasanya jadi pengrajin gamelan sungguhan!</p>
                 </div>
             </div>
         </div>
     </section>
 
     {{-- THE MOST POPULAR STORE --}}
-    <section class="h-fit px-20">
+    <section class="w-full py-12 md:py-20">
         <div class="w-auto font-markazi px-20 py-20 ">
-            <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">The Most Popular Store</h1>
-            <p class="text-center text-primary text-2xl" data-aos="fade-up" data-aos-duration="1500">Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Id
-                illo provident a quam repellendus eos.
+            <h1 class="text-center text-primary text-4xl md:text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Toko dan Galeri Terpopuler</h1>
+            <p class="mt-4 text-center text-primary text-base md:text-2xl" data-aos="fade-up" data-aos-duration="1500">Yuk intip toko dan galeri gamelan terpopuler dari para pengrajin Tihingan berikut ini!
             </p>
         </div>
-        <div class="flex flex-wrap justify-around gap-24 px-20 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-20">
             @foreach ($stores as $store)
-                <div class="flex 1 w-1/2 max-w-lg">
                     <x-box-store 
                         :nama="$store->nama"
                         :slug="$store->slug"
@@ -63,22 +62,18 @@
                         :dataAos="'fade-up'" 
                         :dataAosDuration="'1500'" 
                     />
-                </div>
             @endforeach
         </div>
     </section>
 
     {{-- Gamelan Gallery Section --}}
-    <section class="h-fit px-20">
-        <div class="w-auto font-markazi py-20 ">
-            <h1 class="text-center text-primary text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Gamelans</h1>
-            <p class="text-center text-primary text-2xl" data-aos="fade-up" data-aos-duration="1500">Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Id
-                illo provident a quam repellendus eos.</p>
+    <section class="w-full py-12 md:py-20">
+        <div class="font-markazi px-4 md:px-20 mb-10 ">
+            <h1 class="text-center text-primary text-4xl md:text-8xl" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-in-sine">Gamelan</h1>
+            <p class="mt-4 text-center text-primary text-base md:text-2xl" data-aos="fade-up" data-aos-duration="1500">penasaran dengan produk gamelan dari tangan tangan pengrajin Tihingan ?</p>
         </div>
-        <div class="flex flex-wrap justify-around gap-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-20">
             @foreach ($gamelans as $gamelan)
-                <div class="flex 1 w-1/2 max-w-lg">
                     <x-gamelan-box 
                         :nama="$gamelan->nama" 
                         :slug="$gamelan->slug"
@@ -87,12 +82,12 @@
                         :dataAos="'fade-up'"
                         :dataAosDuration="1500"
                     />
-                </div>
             @endforeach
         </div>
        
     </section>
 
+    {{-- Hapus condition --}}
     @if ($ulasan != null)
         {{-- Pengguna Reviews Section --}}
         <section class="h-[480px] font-markazi">
@@ -159,7 +154,7 @@
     {{-- Pengguna Call to Action Section  --}}
     <section class="h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">
         <div class="flex flex-col justify-center items-center">
-            <h1 class="text-8xl">Siap Memulai?</h1>
+            <h1 class="text-3xl md:text-8xl text-center">Siap Memulai?</h1>
             <p class="text-2xl tracking-wider">Gabung bersama kami dan jelajahi jutaan gamelan dari pengerajin
                 terpercaya!</p>
         </div>
@@ -172,23 +167,23 @@
     {{-- Owner Call to Action Section  --}}
     <section class="h-[480px] font-markazi px-20 py-20 flex text-primary overflow-x-hidden">
         <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" class="flex-1">
-            <h1 class="text-8xl">Tentang Kami</h1>
-            <p class="text-2xl">Desa Tihingan yang terletak di Kecamatan Banjarangkan, Kabupaten Klungkung, dikenal luas
+            <h1 class="text-3xl md:text-8xl text-center md:text-left">Tentang Kami</h1>
+            <p class="text-justify md:text-left text-2xl">Desa Tihingan yang terletak di Kecamatan Banjarangkan, Kabupaten Klungkung, dikenal luas
                 sebagai desa pengrajin gamelan Bali yang telah mewariskan keahlian turun-temurun sejak berabad-abad
                 silam. Desa ini menjadi pusat pembuatan gamelan tradisional yang sangat dihormati di Bali, di mana
                 hampir setiap keluarga memiliki keterampilan dalam menempa logam perunggu dan menciptakan instrumen
                 gamelan dengan nada khas yang sakral.</p>
         </div>
-        <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
+        <div class="hidden md:block" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
             class="flex-1 grid place-items-center">
-            <img class="w-96" src="{{ asset('images/logo_vektor_02.svg') }}" alt="">
+            <img class=" hidden md:block w-96" src="{{ asset('images/logo_vektor_02.svg') }}" alt="">
         </div>
     </section>
 
     {{-- Owner Call to Action Section  --}}
     <section class="min-h-[480px] font-markazi bg-boxCatalog px-20 py-10 flex flex-col justify-center items-center">
         <div class="flex flex-col justify-center items-center">
-            <h1 class="text-8xl text-center">Seniman Tihingan?</h1>
+            <h1 class="text-3xl md:text-8xl text-center">Seniman Tihingan?</h1>
             <p class="text-2xl tracking-wider">Gabung bersama kami dan luaskan jangkauan pasar anda!</p>
         </div>
         <div class="w-auto grid place-items-center mt-8">

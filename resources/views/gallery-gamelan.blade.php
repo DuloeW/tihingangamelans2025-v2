@@ -10,7 +10,7 @@
                 Gamelan Gallery
             </h1>
             <p class="text-xl text-[#6B5A4A] max-w-2xl mx-auto">
-                Explore the rich heritage of traditional Indonesian gamelan instruments
+                Jelajahi koleksi gamelan kami yang indah dan temukan cerita di balik setiap instrumen.
             </p>
         </div>
     </section>
@@ -36,14 +36,14 @@
     <section class="py-16 px-6 bg-gradient-to-r from-[#3A2415] to-[#4A3020]">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-markazi font-bold text-white mb-4">
-                Interested in Learning More?
+                Tertarik Belajar Lebih Lanjut?
             </h2>
             <p class="text-xl text-[#FAF8F3] mb-8">
-                Discover the beauty and cultural significance of traditional gamelan music
+                Temukan keindahan dan makna budaya musik gamelan tradisional di website kami.
             </p>
             <a href="{{ route('store.index') }}" 
                class="inline-block px-8 py-4 bg-white text-[#3A2415] font-bold rounded-lg hover:bg-[#FAF8F3] transition-all duration-300 shadow-lg hover:shadow-xl">
-                Explore Our Collection
+                Jelajahi Store Kami
             </a>
         </div>
     </section>
