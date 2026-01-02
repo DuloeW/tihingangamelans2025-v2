@@ -49,9 +49,6 @@ class BisnisForm
                         ->required(),
                 ])->columns(2),
  
-                // TODO ni kira kira kel anggo format +62 atau sing?
-                // yen kel tambahin ubah mase di Whatsapp Trait
-                // trus di sisi regis user mase harusne anggo +62 ye
                 Section::make('Contact Persons')
                 ->schema([
                     Repeater::make('contact_person')
@@ -70,12 +67,10 @@ class BisnisForm
                     ])
                 ]),
 
-                // TODO ni fix in kude kel jangin file, 2 misalkan (NPWP, ajak KK misalkan)
-                // trus nama dokumennya juga di fix, care select te
+               
                 // --- BAGIAN 3: RELASI DOKUMEN (HAS MANY) ---
                 Section::make('Dokumen Legalitas')
                     ->schema([
-                        // Gunakan nama fungsi relasi di Model Bisnis: 'dokumenBisnis'
                         Repeater::make('dokumenBisnis')
                             ->relationship('dokumenBisnis')
                             ->schema([

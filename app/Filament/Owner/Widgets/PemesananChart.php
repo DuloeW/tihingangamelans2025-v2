@@ -5,7 +5,6 @@ namespace App\Filament\Owner\Widgets;
 use App\Models\Pemesanan;
 use Filament\Widgets\ChartWidget;
 
-// TODO tambahkan chart penjualan per jenis katalog
 class PemesananChart extends ChartWidget
 {
     protected static ?int $sort = 2;

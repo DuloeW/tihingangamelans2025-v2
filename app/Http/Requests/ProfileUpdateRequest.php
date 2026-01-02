@@ -34,6 +34,7 @@ class ProfileUpdateRequest extends FormRequest
             'province_code' => ['required'],
             'city_code' => ['required'],
             'district_code' => ['required'],
+            'gambar' => ['nullable', 'image', 'max:2048'],
         ];
     }
 }

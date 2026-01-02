@@ -23,6 +23,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\PenjualanChart;
+use Filament\Actions\Action;
+use Filament\Auth\Pages\EditProfile;
 
 class OwnerPanelProvider extends PanelProvider
 {
@@ -38,6 +40,7 @@ class OwnerPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
+            ->globalSearch(false)
             ->navigationGroups([
                 NavigationGroup::make()
                 ->label('Pemesanan')
@@ -55,6 +58,10 @@ class OwnerPanelProvider extends PanelProvider
                 PemesananChart::class,
                 PenjualanChart::class,
                 // FilamentInfoWidget::class,
+            ])
+            ->profile(EditProfile::class)
+            ->userMenuItems([
+                'profile' => fn (Action $action) => $action->label('Edit Profile')
             ])
             ->middleware([
                 EncryptCookies::class,

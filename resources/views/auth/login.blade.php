@@ -6,14 +6,6 @@
         @csrf
 
         <h1 class="text-5xl font-markazi font-semibold text-primary">Login</h1>
-        TODO: VALIDASI USERNAME.
-        <!-- User Name -->
-        <div class="mt-6 font-markazi text-primary">
-            <x-input-label for="user_name" class="text-xl" :value="__('User Name')" />
-            <x-text-input id="user_name" class="block mt-1 w-full text-xl" type="text" name="user_name" :value="old('user_name')" required autofocus autocomplete="user_name" />
-            <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
-        </div>
-
 
         <!-- Email Address -->
         <div class="mt-4 font-markazi">

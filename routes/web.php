@@ -28,7 +28,8 @@ Route::prefix('store')->name('store.')->controller(BisnisController::class)->gro
 
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/view', [ProfileController::class, 'show'])->name('profile.show');

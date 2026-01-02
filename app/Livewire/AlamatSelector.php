@@ -23,12 +23,30 @@ class AlamatSelector extends Component
     public $selectedDistrict = null;
 
     // Load Provinsi saat pertama kali komponen dimuat
-    public function mount($layout = 'register')
+    public function mount($layout = 'register', $provinceCode = null, $cityCode = null, $districtCode = null)
     {
         $this->layout = $layout;
         $this->provinces = Province::pluck('name', 'code')->sortBy(function($name) {
             return $name;
         });
+
+        if ($provinceCode) {
+            $this->selectedProvince = $provinceCode;
+            $this->cities = City::where('province_code', $provinceCode)->pluck('name', 'code')->sortBy(function($name) {
+                return $name;
+            });
+        }
+
+        if ($cityCode) {
+            $this->selectedCity = $cityCode;
+            $this->districts = District::where('city_code', $cityCode)->pluck('name', 'code')->sortBy(function($name) {
+                return $name;
+            });
+        }
+
+        if ($districtCode) {
+            $this->selectedDistrict = $districtCode;
+        }
     }
 
     // LISTENER: Berjalan otomatis saat user memilih Provinsi

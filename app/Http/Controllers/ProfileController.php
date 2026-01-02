@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Laravolt\Indonesia\Models\Provinsi;
 use Laravolt\Indonesia\Models\City;
@@ -39,6 +40,14 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
 {
     $data = $request->validated();
+
+    if ($request->hasFile('gambar')) {
+        if ($request->user()->gambar) {
+            Storage::disk('public')->delete($request->user()->gambar);
+        }
+        $path = $request->file('gambar')->store('profile-photos', 'public');
+        $data['gambar'] = $path;
+    }
 
     if (isset($data['no_telephone'])) {
         $hp = $data['no_telephone'];

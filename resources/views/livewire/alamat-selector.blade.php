@@ -6,7 +6,6 @@
     };
 @endphp
 
-{{-- // TODO tambahkan outline/border supaya masuk dengan design form lainnya --}}
 <div class="{{ $containerClass }}">
     {{-- Input Provinsi --}}
     <div class="flex flex-col gap-2">

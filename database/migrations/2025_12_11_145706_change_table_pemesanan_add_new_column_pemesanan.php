@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('pemesanan', function (Blueprint $table) {
             $table->string('nama_grup')->nullable()->after('jadwal_id');
-            $table->string('jumlah')->nullable()->after('nama_grup')
+            $table->integer('jumlah')->nullable()->after('nama_grup')
                 ->comment('Untuk Katalog jenis Workshop dan Kelas, isinya jumlah peserta. Untuk Gamelan, isinya jumlah unit gamelan yang dipesan.');
             $table->string('penerima')->nullable()->after('jumlah');
             $table->char('province_code', 2)->nullable()->after('penerima');
