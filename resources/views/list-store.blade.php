@@ -5,7 +5,7 @@
 
     <section id="store" class="min-h-[480px] px-4 md:px-20 pb-20 font-markazi">
         <div class="container mx-auto">
-            <h2 class="text-center text-4xl md:text-8xl py-10">Store</h2>
+            <h2 class="text-center text-primary text-4xl md:text-8xl py-10">Store</h2>
 
             <div class="w-full grid place-items-center">
                 <form action="{{ route('store.index') }}" method="GET" class="w-full flex justify-center">
