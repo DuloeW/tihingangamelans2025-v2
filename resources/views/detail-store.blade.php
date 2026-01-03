@@ -5,7 +5,7 @@
     </x-slot:title>
 
 
-    <div class="min-h-[480px] px-20 pb-20 font-markazi" x-data="{ activeTab: '{{ session('activeTab', 'katalog') }}' }">
+    <div class="min-h-[480px] px-4 md:px-20 pb-10 md:pb-20 font-markazi" x-data="{ activeTab: '{{ session('activeTab', 'katalog') }}' }">
 
         <div class="max-w-7xl mx-auto mt-8">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
@@ -16,11 +16,11 @@
                     </div>
                 </div>
                 
-                <div class="pt-14 px-8 pb-8">
+                <div class="pt-14 px-4 md:px-8 pb-8">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-6">
                         <!-- Info Toko -->
                         <div class="flex-1">
-                            <h1 class="text-4xl font-bold text-gray-900 tracking-tight mb-2">{{ $store->nama }}</h1>
+                            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-2">{{ $store->nama }}</h1>
                             <div class="flex items-center gap-4 text-gray-500 mb-4">
                                 <div class="flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -35,7 +35,6 @@
                             <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">{{ $store->deskripsi }}</p>
                         </div>
 
-                        {{-- //TODO nomer harus di configure formatnya supaya menjadi +62xxxxxxx --}}
                         <!-- Contact Persons -->
                         <div class="w-full md:w-72 bg-gray-50 rounded-xl p-4 border border-gray-100">
                             <h3 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
@@ -43,7 +42,7 @@
                                 Hubungi Kami
                             </h3>
                             <div class="space-y-3">
-                                @forelse($store->contactPerson as $cp)
+                                @forelse($store->contactPersons as $cp)
                                     <div class="flex items-center justify-between text-sm group">
                                         <span class="text-gray-600 font-medium">{{ $cp->nama }}</span>
                                         <a href="https://wa.me/{{ $cp->no_telephone }}" target="_blank" class="flex items-center gap-1 text-green-600 hover:text-green-700 bg-green-50 hover:bg-green-100 px-2 py-1 rounded-md transition-colors">
@@ -61,19 +60,19 @@
             </div>
         </div>
 
-        <div class="w-full max-h-40 flex gap-5 mt-4 border-b-2 py-6">
+        <div class="w-full max-h-40 flex gap-2 md:gap-5 mt-4 border-b-2 py-4 md:py-6 overflow-x-auto">
             <button @click="activeTab = 'katalog'"
                 :class="activeTab === 'katalog' ?
                     'bg-primary text-white rounded-md' :
                     'text-primary '"
-                class="px-10 py-3 ">
+                class="px-6 py-2 md:px-10 md:py-3 whitespace-nowrap">
                 Katalog
             </button>
             <button @click="activeTab = 'ulasan'"
                 :class="activeTab === 'ulasan' ?
                     'bg-primary text-white rounded-md' :
                     'text-primary '"
-                class="px-10 py-3 ">
+                class="px-6 py-2 md:px-10 md:py-3 whitespace-nowrap">
                 Ulasan
             </button>
         </div>
@@ -87,11 +86,11 @@
             <div class="flex flex-col gap-10">
                 @if (in_array('Purchase', $jenisBisnis))
                     <div>
-                        <h2 class="text-5xl">Gamelans</h2>
-                        <p class="text-xl">Gamelan yang kami sediakan</p>
+                        <h2 class="text-3xl md:text-5xl">Gamelans</h2>
+                        <p class="text-lg md:text-xl">Gamelan yang kami sediakan</p>
                         <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                             @forelse ($gamelans as $gamelan)
-                                <div class="w-1/3 flex-shrink-0">
+                                <div class="w-10/12 md:w-1/2 lg:w-1/3 flex-shrink-0 snap-center">
                                     <x-katalog-box 
                                         :nama="$gamelan->nama" 
                                         :deskripsi="$gamelan->deskripsi" 
@@ -114,11 +113,11 @@
 
                 @if (in_array('Workshop', $jenisBisnis))
                     <div>
-                        <h2 class="text-5xl">Workshop</h2>
-                        <p class="text-xl">Berbagai macam workshop gamelan</p>
+                        <h2 class="text-3xl md:text-5xl">Workshop</h2>
+                        <p class="text-lg md:text-xl">Berbagai macam workshop gamelan</p>
                         <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                             @forelse ($workshops as $workshop)
-                                <div class="w-1/3 flex-shrink-0">
+                                <div class="w-10/12 md:w-1/2 lg:w-1/3 flex-shrink-0 snap-center">
                                     <x-katalog-box 
                                         :nama="$workshop->nama" 
                                         :deskripsi="$workshop->deskripsi" 
@@ -141,11 +140,11 @@
 
                 @if (in_array('Learn', $jenisBisnis))
                     <div>
-                        <h2 class="text-5xl">Kelas Belajar</h2>
-                        <p class="text-xl">Berbagai macam kelas gamelan</p>
+                        <h2 class="text-3xl md:text-5xl">Kelas Belajar</h2>
+                        <p class="text-lg md:text-xl">Berbagai macam kelas gamelan</p>
                         <div class="w-full overflow-x-auto flex gap-4 p-4 snap-x snap-mandatory scrollbar-hide">
                             @forelse ($classes as $class)
-                                <div class="w-1/3 flex-shrink-0">
+                                <div class="w-10/12 md:w-1/2 lg:w-1/3 flex-shrink-0 snap-center">
                                     <x-katalog-box 
                                         :nama="$class->nama" 
                                         :deskripsi="$class->deskripsi" 

@@ -46,7 +46,8 @@ class BisnisController extends Controller
     }
 
     // 2. HALAMAN DETAIL TOKO
-    public function showStore($slug) {
+    public function showStore($slug) 
+    {
         $storeData = Bisnis::where('slug', $slug)
             ->with(['katalogs', 'tags', 'ulasanBisnis.pengguna',])
             ->first();

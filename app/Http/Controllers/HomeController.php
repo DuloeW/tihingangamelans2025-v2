@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
-
     public function index() {
 
         $gamelans = Gamelan::orderBy('gamelan_id')->paginate(6);

@@ -38,44 +38,44 @@ class ProfileController extends Controller
      */
 
     public function update(ProfileUpdateRequest $request): RedirectResponse
-{
-    $data = $request->validated();
+    {
+        $data = $request->validated();
 
-    if ($request->hasFile('gambar')) {
-        if ($request->user()->gambar) {
-            Storage::disk('public')->delete($request->user()->gambar);
+        if ($request->hasFile('gambar')) {
+            if ($request->user()->gambar) {
+                Storage::disk('public')->delete($request->user()->gambar);
+            }
+            $path = $request->file('gambar')->store('profile-photos', 'public');
+            $data['gambar'] = $path;
         }
-        $path = $request->file('gambar')->store('profile-photos', 'public');
-        $data['gambar'] = $path;
-    }
 
-    if (isset($data['no_telephone'])) {
-        $hp = $data['no_telephone'];
-        
-        $hp = preg_replace('/[^0-9]/', '', $hp);
-        if (str_starts_with($hp, '0')) {
-            $hp = '+62' . substr($hp, 1);
-        } elseif (str_starts_with($hp, '62')) {
-            $hp = '+' . $hp;
-        } elseif (!str_starts_with($hp, '0') && !str_starts_with($hp, '62')) {
-            $hp = '+62' . $hp;
+        if (isset($data['no_telephone'])) {
+            $hp = $data['no_telephone'];
+            
+            $hp = preg_replace('/[^0-9]/', '', $hp);
+            if (str_starts_with($hp, '0')) {
+                $hp = '+62' . substr($hp, 1);
+            } elseif (str_starts_with($hp, '62')) {
+                $hp = '+' . $hp;
+            } elseif (!str_starts_with($hp, '0') && !str_starts_with($hp, '62')) {
+                $hp = '+62' . $hp;
+            }
+            
+            
+            $data['no_telephone'] = $hp;
         }
-        
-        
-        $data['no_telephone'] = $hp;
+    
+        if (isset($data['name'])) {
+            $data['nama'] = $data['name'];
+            unset($data['name']);
+        }
+        $request->user()->fill($data);
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+        $request->user()->save();
+        return Redirect::route('profile.show')->with('status', 'profile-updated');
     }
-   
-    if (isset($data['name'])) {
-        $data['nama'] = $data['name'];
-        unset($data['name']);
-    }
-    $request->user()->fill($data);
-    if ($request->user()->isDirty('email')) {
-        $request->user()->email_verified_at = null;
-    }
-    $request->user()->save();
-    return Redirect::route('profile.show')->with('status', 'profile-updated');
-}
 
     /**
      * Delete the user's account.

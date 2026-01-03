@@ -4,12 +4,12 @@
     </x-slot:title>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-b from-[#FAF8F3] to-white py-16 px-6">
+    <section class="bg-gradient-to-b from-[#FAF8F3] to-white py-12 md:py-20 px-4 md:px-20">
         <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-6xl md:text-7xl font-markazi font-bold text-[#3A2415] mb-4">
+            <h1 class="text-4xl md:text-8xl font-markazi font-bold text-[#3A2415] mb-4">
                 Gamelan Gallery
             </h1>
-            <p class="text-xl text-[#6B5A4A] max-w-2xl mx-auto">
+            <p class="text-lg md:text-2xl text-[#6B5A4A] max-w-2xl mx-auto">
                 Jelajahi koleksi gamelan kami yang indah dan temukan cerita di balik setiap instrumen.
             </p>
         </div>
@@ -33,16 +33,16 @@
         </div>
     </section>
 
-    <section class="py-16 px-6 bg-gradient-to-r from-[#3A2415] to-[#4A3020]">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-markazi font-bold text-white mb-4">
+    <section class="h-auto md:h-[480px] px-4 md:px-20 py-10 flex flex-col justify-center items-center bg-gradient-to-r from-[#3A2415] to-[#4A3020]">
+        <div class="max-w-4xl mx-auto text-center flex flex-col justify-center items-center gap-2 md:gap-0">
+            <h2 class="text-4xl md:text-8xl font-markazi font-bold text-white mb-4">
                 Tertarik Belajar Lebih Lanjut?
             </h2>
-            <p class="text-xl text-[#FAF8F3] mb-8">
+            <p class="text-lg md:text-2xl text-[#FAF8F3] mb-8">
                 Temukan keindahan dan makna budaya musik gamelan tradisional di website kami.
             </p>
             <a href="{{ route('store.index') }}" 
-               class="inline-block px-8 py-4 bg-white text-[#3A2415] font-bold rounded-lg hover:bg-[#FAF8F3] transition-all duration-300 shadow-lg hover:shadow-xl">
+               class="inline-block text-xl md:text-3xl px-6 py-3 md:px-10 md:py-5 bg-white text-[#3A2415] font-bold rounded-full hover:bg-[#FAF8F3] transition-all duration-300 shadow-lg hover:shadow-xl">
                 Jelajahi Store Kami
             </a>
         </div>

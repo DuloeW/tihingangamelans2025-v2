@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Owner extends Authenticatable implements FilamentUser, HasName
 {
-    //
     use HasUuids, HasFactory;
 
     protected $table = 'owner';
@@ -39,19 +39,14 @@ class Owner extends Authenticatable implements FilamentUser, HasName
         'no_telephone'
     ];
 
-    // Relasi ke binis
-    public function bisnis(): BelongsTo {
-        return $this->belongsTo(Bisnis::class, 'bisnis_id', 'bisnis_id');
+    public function bisnis(): HasOne 
+    {
+        return $this->hasOne(Bisnis::class, 'bisnis_id', 'bisnis_id');
 
-    }
-
-    public function bisnisList(): HasMany {
-        return $this->hasMany(Bisnis::class, 'owner_id', 'owner_id');
     }
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // Return true agar semua data di tabel owner bisa login ke panel
         return true; 
     }
 
@@ -59,6 +54,5 @@ class Owner extends Authenticatable implements FilamentUser, HasName
     {
         return (String) $this->nama;
     }
-
 
 }

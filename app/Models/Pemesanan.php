@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pemesanan extends Model
@@ -35,17 +36,17 @@ class Pemesanan extends Model
         'total_harga',
     ];
 
-    public function jadwal()
+    public function jadwal(): BelongsTo
     {
         return $this->belongsTo(Jadwal::class, 'jadwal_id', 'jadwal_id');
     }
 
-    public function pengguna()
+    public function pengguna(): BelongsTo
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id', 'pengguna_id');
     }
 
-    public function katalog()
+    public function katalog(): BelongsTo
     {
         return $this->belongsTo(Katalog::class, 'katalog_id', 'katalog_id');
     }
@@ -55,7 +56,7 @@ class Pemesanan extends Model
         return $this->hasOne(UlasanKatalog::class, 'pemesanan_id', 'pemesanan_id');
     }
 
-    public function getStatusColorAttribute()
+    public function getStatusColorAttribute(): string
     {
         return match(strtolower($this->status)) {
             'paid', 'lunas', 'completed', 'selesai' => 'bg-green-100 text-green-800 border border-green-200',
@@ -67,7 +68,7 @@ class Pemesanan extends Model
         };
     }
 
-    public function getStatusLabelAttribute()
+    public function getStatusLabelAttribute(): string   
     {
         return match(strtolower($this->status)) {
             'unpaid' => 'Belum Bayar',

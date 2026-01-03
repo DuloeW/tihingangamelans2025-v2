@@ -21,7 +21,7 @@ class GamelanResource extends Resource
     protected static ?string $model = Pemesanan::class;
 
     protected static ?string $modelLabel = 'Gamelan';
-     protected static ?string $pluralModelLabel = 'Pesanan Gamelan';
+    protected static ?string $pluralModelLabel = 'Pesanan Gamelan';
     protected static ?string $navigationLabel = 'Gamelan';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingCart;

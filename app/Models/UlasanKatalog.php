@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UlasanKatalog extends Model
 {
@@ -12,8 +13,6 @@ class UlasanKatalog extends Model
 
     protected $table = 'ulasan_katalog';
     protected $primaryKey = 'ulasan_katalog_id';
-    public $incrementing = false;
-    protected $keyType = 'string';
     public $timestamps = true;
 
     protected $fillable = [
@@ -25,17 +24,17 @@ class UlasanKatalog extends Model
         'nama_pengulas',
     ];
 
-    public function katalog()
+    public function katalog(): BelongsTo
     {
         return $this->belongsTo(Katalog::class, 'katalog_id');
     }
 
-    public function pengguna()
+    public function pengguna(): BelongsTo
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id');
     }
 
-    public function pemesanan()
+    public function pemesanan(): BelongsTo
     {
         return $this->belongsTo(Pemesanan::class, 'pemesanan_id');
     }

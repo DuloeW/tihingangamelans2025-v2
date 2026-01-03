@@ -3,11 +3,11 @@
         Detail Katalog
     </x-slot:title>
 
-    <div class="px-20 py-5 font-markazi">
-        <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-10">
-            <div class="flex gap-8">
+    <div class="px-4 md:px-20 py-5 font-markazi">
+        <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-4 md:p-10">
+            <div class="flex flex-col lg:flex-row gap-8">
                 <!-- Gambar Produk & Informasi -->
-                <div class="w-2/5 flex flex-col">
+                <div class="w-full lg:w-2/5 flex flex-col">
                     {{-- Product Image Card --}}
                     <div class="relative group">
                         <div class="absolute -inset-1 bg-gradient-to-r from-[#7A2420] to-[#3A2415] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
@@ -41,11 +41,11 @@
 
                         {{-- Product Name --}}
                         <div>
-                            <h1 class="text-4xl lg:text-5xl text-[#3A2415] font-bold leading-tight">{{ $catalog->nama }}</h1>
+                            <h1 class="text-3xl md:text-4xl lg:text-5xl text-[#3A2415] font-bold leading-tight">{{ $catalog->nama }}</h1>
                         </div>
                         
                         {{-- Description --}}
-                        <p class="text-[#3A2415]/80 text-xl leading-relaxed border-l-4 border-[#7A2420] pl-4">
+                        <p class="text-[#3A2415]/80 text-lg md:text-xl leading-relaxed border-l-4 border-[#7A2420] pl-4">
                             {{ $catalog->deskripsi }}
                         </p>
                         
@@ -53,7 +53,7 @@
                         <div class="bg-[#3A2415] rounded-2xl p-6 flex items-center justify-between">
                             <div>
                                 <p class="text-[#FAF8F3]/60 text-sm uppercase tracking-wider mb-1">Harga</p>
-                                <p class="text-4xl font-bold text-[#FAF8F3]">
+                                <p class="text-2xl md:text-4xl font-bold text-[#FAF8F3]">
                                     Rp {{ number_format($catalog->harga, 0, ',', '.') }}
                                     @if ($catalog->jenis == 'Workshop')
                                         <span class="text-xs"> / anggota</span>
@@ -68,7 +68,7 @@
                 </div>
 
                 <!-- Form Pemesanan -->
-                <div class="flex-1 p-6">
+                <div class="flex-1 p-0 md:p-6">
                     @switch($catalog->jenis)
                         @case('Workshop')
                             @livewire('form-pemesanan-workshop', 

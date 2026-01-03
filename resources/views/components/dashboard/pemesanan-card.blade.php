@@ -1,5 +1,28 @@
     @props(['item'])
 
+    @php
+        $status = strtolower($item->status);
+        $statusColor = match ($status) {
+            'unpaid', 'pending' => 'bg-yellow-500 text-white',
+            'paid', 'lunas' => 'bg-green-500 text-white',
+            'processing', 'diproses' => 'bg-blue-500 text-white',
+            'shipped', 'dikirim' => 'bg-purple-500 text-white',
+            'completed', 'selesai' => 'bg-green-600 text-white',
+            'cancelled', 'batal', 'failed' => 'bg-red-500 text-white',
+            default => 'bg-gray-500 text-white',
+        };
+
+        $statusLabel = match($status) {
+            'unpaid' => 'Belum Bayar',
+            'paid' => 'Lunas',
+            'processing' => 'Diproses',
+            'shipped' => 'Dikirim',
+            'completed' => 'Selesai',
+            'cancelled' => 'Dibatalkan',
+            default => ucfirst($item->status)
+        };
+    @endphp
+
 <div class="border rounded-xl overflow-hidden hover:shadow-lg transition bg-white flex flex-col">
     <div class="relative h-48 bg-gray-200">
         @if($item->katalog && $item->katalog->gambar)
@@ -7,8 +30,8 @@
         @else
             <div class="flex items-center justify-center h-full text-gray-400 text-sm">No Image</div>
         @endif
-        <span class="absolute top-2 right-2 px-2 py-1 text-xs font-bold rounded-full {{ $item->status_color }}">
-            {{ $item->status_label }}
+        <span class="absolute top-2 right-2 px-3 py-1 text-xs font-bold rounded-full shadow-sm {{ $statusColor }}">
+            {{ $statusLabel }}
         </span>
     </div>
     <div class="p-4 flex flex-col flex-grow">

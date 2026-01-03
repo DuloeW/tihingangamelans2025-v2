@@ -3,12 +3,12 @@
         {{-- List Ulasan --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @forelse($reviews as $ulasan)
-                <div class="w-full bg-white rounded-2xl shadow-md px-8 py-6 flex flex-col gap-2">
-                    <div class="flex items-center gap-4 mb-2">
-                        <img class="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm" 
+                <div class="w-full bg-white rounded-2xl shadow-md px-4 py-4 md:px-8 md:py-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-3 md:gap-4 mb-2">
+                        <img class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border border-gray-200 shadow-sm" 
                                 src="{{ $ulasan->pengguna->gambar ? asset('storage/' . $ulasan->pengguna->gambar) : asset('images/ulasan_profile.png') }}" 
                                 alt="Ulasan Profile">
-                        <span class="text-lg font-bold text-gray-800">{{ $ulasan->nama_pengulas }}</span>
+                        <span class="text-base md:text-lg font-bold text-gray-800">{{ $ulasan->nama_pengulas }}</span>
                     </div>
                     <div class="flex items-center gap-1 mb-2">
                         @for($i = 1; $i <= 5; $i++)
@@ -19,7 +19,7 @@
                         @endfor
                         <span class="text-xs text-gray-500 ml-2">({{ $ulasan->rating }}/5)</span>
                     </div>
-                    <blockquote class="mt-2 text-base italic text-[#7c4a1e] font-medium leading-relaxed">"{{ $ulasan->isi_ulasan }}"</blockquote>
+                    <blockquote class="mt-2 text-sm md:text-base italic text-[#7c4a1e] font-medium leading-relaxed">"{{ $ulasan->isi_ulasan }}"</blockquote>
                     <span class="text-xs text-gray-400 mt-2">{{ $ulasan->created_at->diffForHumans() }}</span>
                 </div>
             @empty
@@ -30,7 +30,7 @@
 
     <div class="mt-10">
         <hr class="mb-4">
-        <h2 class="text-3xl font-semibold text-primary mb-2">Berikan Ulasan</h2>
+        <h2 class="text-2xl md:text-3xl font-semibold text-primary mb-2">Berikan Ulasan</h2>
         
         @auth
             <div class="space-y-4">
@@ -43,7 +43,7 @@
                                 @mouseenter="hoverRating = {{ $i }}" 
                                 @mouseleave="hoverRating = 0"
                                 class="focus:outline-none transition-transform hover:scale-110 p-1">
-                                <svg class="w-8 h-8 transition-colors" 
+                                <svg class="w-6 h-6 md:w-8 md:h-8 transition-colors" 
                                      :class="{ 'text-yellow-400 fill-current': hoverRating >= {{ $i }} || (!hoverRating && '{{ $rating }}' >= {{ $i }}), 'text-gray-300': !(hoverRating >= {{ $i }} || (!hoverRating && '{{ $rating }}' >= {{ $i }})) }"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />

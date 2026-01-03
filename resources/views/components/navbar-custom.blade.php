@@ -9,8 +9,8 @@
     <div class="max-w-7xl mx-auto px-6 sm:px-12 h-20 flex items-center justify-between">
         {{-- Logo Section --}}
         <a href="/" class="flex items-center gap-3 group">
-            <img src="{{ asset('images/logo_vektor_02.svg') }}" alt="Logo" class="h-12 w-auto transition-transform duration-300 group-hover:scale-105" />
-            <h1 class="text-2xl font-markazi tracking-wide">
+            <img src="{{ asset('images/logo_vektor_02.svg') }}" alt="Logo" class="h-8 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105" />
+            <h1 class="text-xl md:text-2xl font-markazi tracking-wide">
                 <span class="font-bold text-logo">Tihingan</span><span class="text-primary">Gamelans</span>
             </h1>
         </a>
@@ -47,16 +47,12 @@
             <button
                 x-ref="mobileButton"
                 @click="open = !open"
-                class="md:hidden text-primary focus:outline-none"
+                class="md:hidden text-primary focus:outline-none p-2"
             >
-                {{-- Icon Hamburger (Muncul saat open == false) --}}
-                <svg x-show="close" class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                
-                {{-- Icon Close/Silang (Muncul saat open == true) --}}
-                <svg x-show="open" x-cloak class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg class="h-8 w-8 transition-transform duration-300" :class="{'rotate-90': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                          d="M4 6h16M4 12h16M4 18h16" 
+                          :d="open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'" />
                 </svg>
             </button>
         </div>
@@ -71,16 +67,16 @@
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-2"
             @click.outside="if (!$refs.mobileButton.contains($event.target)) open = false"
-            class="md:hidden bg-[#FDFBF7] border-t border-[#E5DDBF]/50 px-6 py-6 space-y-4 font-markazi text-xl shadow-lg absolute w-full left-0"
+            class="md:hidden bg-[#FDFBF7]/90 backdrop-blur-md border-t border-[#E5DDBF]/50 px-6 py-6 space-y-4 font-markazi text-xl shadow-lg absolute w-full left-0 top-full z-40"
         >
-            <a href="/" class="block text-primary hover:text-logo">Home</a>
-            <a href="/gallery-gamelan" class="block text-primary hover:text-logo">Gallery</a>
-            <a href="/store" class="block text-primary hover:text-logo">Store</a>
+            <a href="/" class="block {{ request()->is('/') ? 'text-logo font-bold' : 'text-primary hover:text-logo' }}">Home</a>
+            <a href="/gallery-gamelan" class="block {{ request()->is('gallery-gamelan*') ? 'text-logo font-bold' : 'text-primary hover:text-logo' }}">Gallery</a>
+            <a href="/store" class="block {{ request()->is('store*') ? 'text-logo font-bold' : 'text-primary hover:text-logo' }}">Store</a>
 
             @auth
-                <a href="{{ route('dashboard') }}" class="block text-primary font-bold">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="block {{ request()->is('dashboard') ? 'text-logo font-bold' : 'text-primary hover:text-logo' }}">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="block text-primary font-bold">Login</a>
+                <a href="{{ route('login') }}" class="block {{ request()->is('login') ? 'text-logo font-bold' : 'text-primary hover:text-logo' }}">Login</a>
             @endauth
     </div>
 </nav>

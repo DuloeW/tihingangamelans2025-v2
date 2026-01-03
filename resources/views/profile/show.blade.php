@@ -1,6 +1,3 @@
-
-    {{-- //TODO pertimbangan kolom role// --}}
-
 <x-app-layout>
     <div class="min-h-screen bg-[#F3F1EA] text-[#4B3B30] font-sans pb-20">
         

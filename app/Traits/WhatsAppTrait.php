@@ -15,7 +15,7 @@ trait WhatsAppTrait
      */
     public function generateWaUrl($store, $catalog, $pesanan, $extraLines = [])
     {
-        $nomorTujuan = $this->formatNomorHp($store->contactPerson()->first()->no_telephone);
+        $nomorTujuan = $this->formatNomorHp($store->contactPersons()->first()->no_telephone);
 
         $pesan = "Halo *{$store->nama}*,\n\n";
         $pesan .= "Saya baru saja melakukan pemesanan via website.\n";

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Bisnis extends Model
@@ -54,11 +55,6 @@ class Bisnis extends Model
         return $this->hasMany(Katalog::class, 'bisnis_id', 'bisnis_id');
     }
 
-    public function contactPerson(): HasMany
-    {
-        return $this->hasMany(ContactPerson::class, 'bisnis_id', 'bisnis_id');
-    }
-
     public function admin(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'admin_id', 'admin_id');
@@ -69,12 +65,12 @@ class Bisnis extends Model
         return $this->hasMany(UlasanBisnis::class, 'bisnis_id', 'bisnis_id');
     }
 
-    public function ulasanKatalog()
+    public function ulasanKatalog(): HasManyThrough
     {
         return $this->hasManyThrough(UlasanKatalog::class, Katalog::class, 'bisnis_id', 'katalog_id', 'bisnis_id', 'katalog_id');
     }
 
-    public function getAverageRatingAttribute()
+    public function getAverageRatingAttribute(): float
     {
         $totalRatingBisnis = $this->ulasanBisnis()->sum('rating');
         $countBisnis = $this->ulasanBisnis()->count();
@@ -92,7 +88,7 @@ class Bisnis extends Model
         return round($totalRating / $totalCount, 1);
     }
 
-    public function getTotalUlasanAttribute()
+    public function getTotalUlasanAttribute(): int
     {
         return $this->ulasanBisnis()->count() + $this->ulasanKatalog()->count();
     }

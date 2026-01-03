@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Jadwal extends Model
@@ -22,7 +23,7 @@ class Jadwal extends Model
         'kuota',
     ];
 
-    public function katalog()
+    public function katalog(): BelongsTo
     {
         return $this->belongsTo(Katalog::class, 'katalog_id', 'katalog_id');
     }

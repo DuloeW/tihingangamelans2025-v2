@@ -18,6 +18,14 @@ class Admin extends Authenticatable implements FilamentUser, HasName
     protected $guard = 'admin';
     public $timestamps = false;
 
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
     protected $fillable = [
         'nama', 
         'email', 

@@ -1,7 +1,2 @@
-TODO pemesanan Kelas belum
-
-
-TODO pengecekan jadwal yang kadaluarsa di pemesanan workshop
-
 TODO error menampilkan gambar di table owner dan juga saat mengeditnya tidak tampak
 

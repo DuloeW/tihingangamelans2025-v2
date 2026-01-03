@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UlasanBisnis extends Model
 {
@@ -12,8 +13,6 @@ class UlasanBisnis extends Model
 
     protected $table = 'ulasan_bisnis';
     protected $primaryKey = 'ulasan_bisnis_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
     public $timestamps = true;
     protected $fillable = [
         'pengguna_id',
@@ -23,12 +22,12 @@ class UlasanBisnis extends Model
         'nama_pengulas'
     ];
 
-    public function pengguna()
+    public function pengguna(): BelongsTo
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id');
     }
 
-    public function bisnis()
+    public function bisnis(): BelongsTo
     {
         return $this->belongsTo(Bisnis::class, 'bisnis_id');
     }
