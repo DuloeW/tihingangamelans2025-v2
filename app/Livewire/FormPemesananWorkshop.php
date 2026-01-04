@@ -18,7 +18,7 @@ class FormPemesananWorkshop extends Component
     public $nama_grup = ''; 
     public $jumlah_anggota = 1;
     public $jadwal_id = '';
-    public $total_harga = 0;
+    public $total_harga = 0;    
 
     public $jadwal_workshop = '';
 
@@ -55,7 +55,7 @@ class FormPemesananWorkshop extends Component
     }
 
     public function confirmPesanan()
-    {
+    {   
         try {
             $pesanan = Pemesanan::create([
                 'pengguna_id'       => auth('web')->id(),

@@ -87,18 +87,18 @@ class BisnisForm
                                 TextInput::make('nama_dokumen')
                                     ->label('Nama Dokumen')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->disabled(),
 
                                 FileUpload::make('path')
                                     ->label('File Dokumen')
                                     ->disk('public')
-                                    ->openable()
-                                    ->disabled()
-                                    ->dehydrated(false),
-
+                                    ->openable(true)     
+                                    ->downloadable(true) 
+                                    ->dehydrated(false)  
+                                    ->previewable(true),
                             ])
                             ->label('Dokumen Legalitas')
-                            ->disabled()
                             ->addable(false)
                             ->deletable(false)
                             ->reorderable(false)
