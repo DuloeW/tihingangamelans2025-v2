@@ -38,7 +38,7 @@ class BisnisForm
                         ->disk('public')
                         ->label('Logo Bisnis')
                         ->image()
-                        ->maxSize(1024) // Maksimal 1MB
+                        ->maxSize(2048) 
                         ->directory('bisnis-gambars') // Simpan di folder bisnis-gambars
                         ->required(),
 
