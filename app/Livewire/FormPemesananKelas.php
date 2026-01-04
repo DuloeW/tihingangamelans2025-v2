@@ -127,7 +127,8 @@ class FormPemesananKelas extends Component
         $this->isShowModal = false;
     }
 
-    public function confirmPesanan() {
+    public function confirmPesanan() 
+    {
         try {
             $pesanan = Pemesanan::create([
                 'pengguna_id'           => auth('web')->id(),

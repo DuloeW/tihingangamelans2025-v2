@@ -83,6 +83,8 @@ class BisnisForm
                                     ->label('File Dokumen')
                                     ->disk('public')
                                     ->directory('dokumen-bisnis')
+                                    ->openable(true)
+                                    ->previewable(true)
                                     ->required(),
                             ])
                             ->label('Dokumen Legalitas')

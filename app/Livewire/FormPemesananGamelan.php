@@ -26,7 +26,8 @@ class FormPemesananGamelan extends Component
 
     public $isShowModal = false;
 
-    public function mount($store, $catalog) {
+    public function mount($store, $catalog) 
+    {
         $this->store = $store;
         $this->catalog = $catalog;
     }
